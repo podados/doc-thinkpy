@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Debugging</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book020.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book022.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc236"><FONT COLOR=black><FONT SIZE=3>Appendix&#XA0;A</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1772"></A></P><P><FONT COLOR=black><FONT SIZE=3>Different kinds of errors can occur
+in a program, and it is useful to distinguish among them
+in order to track them down more quickly:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Syntax errors are produced by Python when it is translating the
+source code into byte code. They usually indicate that there is
+something wrong with the syntax of the program. Example: Omitting
+the colon at the end of a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>def</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement yields the somewhat
+redundant message </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>SyntaxError: invalid syntax</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Runtime errors are produced by the interpreter if something goes
+wrong while the program is running. Most runtime error messages
+include information about where the error occurred and what
+functions were executing. Example: An infinite recursion eventually
+causes the runtime error &#X201C;maximum recursion depth exceeded.&#X201D;</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Semantic errors are problems with a program that runs without
+producing error messages but doesn&#X2019;t do the right thing. Example:
+An expression may not be evaluated in the order you expect, yielding
+an incorrect result.</FONT></FONT></LI></UL><P><A NAME="@default1773"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1774"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1775"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1776"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1777"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1778"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1779"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1780"></A></P><P><FONT COLOR=black><FONT SIZE=3>The first step in debugging is to figure out which kind of
+error you are dealing with. Although the following sections are
+organized by error type, some techniques are
+applicable in more than one situation.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc215"></A><A NAME="htoc237"><FONT COLOR=black><FONT SIZE=3>A.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Syntax errors</FONT></FONT></H2><P><A NAME="@default1781"></A></P><P><FONT COLOR=black><FONT SIZE=3>Syntax errors are usually easy to fix once you figure out what they
+are. Unfortunately, the error messages are often not helpful.
+The most common messages are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>SyntaxError: invalid syntax</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>SyntaxError: invalid token</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, neither of which is very informative.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>On the other hand, the message does tell you where in the program the
+problem occurred. Actually, it tells you where Python
+noticed a problem, which is not necessarily where the error
+is. Sometimes the error is prior to the location of the error
+message, often on the preceding line.</FONT></FONT></P><P><A NAME="@default1782"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1783"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you are building the program incrementally, you should have
+a good idea about where the error is. It will be in the last
+line you added.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If you are copying code from a book, start by comparing
+your code to the book&#X2019;s code very carefully. Check every character.
+At the same time, remember that the book might be wrong, so
+if you see something that looks like a syntax error, it might be.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here are some ways to avoid the most common syntax errors:</FONT></FONT></P><P><A NAME="@default1784"></A></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Make sure you are not using a Python keyword for a variable name.</FONT></FONT><P><A NAME="@default1785"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Check that you have a colon at the end of the header of every
+compound statement, including </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>def</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements.</FONT></FONT><P><A NAME="@default1786"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1787"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Make sure that any strings in the code have matching
+quotation marks.</FONT></FONT><P><A NAME="@default1788"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>If you have multiline strings with triple quotes (single or double), make
+sure you have terminated the string properly. An unterminated string
+may cause an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>invalid token</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> error at the end of your program,
+or it may treat the following part of the program as a string until it
+comes to the next string. In the second case, it might not produce an error
+message at all!</FONT></FONT><P><A NAME="@default1789"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1790"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>An unclosed opening operator&#X2014;</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>(</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>{</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, or
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>[</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>&#X2014;makes Python continue with the next line as part of the
+current statement. Generally, an error occurs almost immediately in
+the next line.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Check for the classic </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> instead of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>==</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> inside
+a conditional.</FONT></FONT><P><A NAME="@default1791"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Check the indentation to make sure it lines up the way it
+is supposed to. Python can handle space and tabs, but if you mix
+them it can cause problems. The best way to avoid this problem
+is to use a text editor that knows about Python and generates
+consistent indentation.</FONT></FONT><P><A NAME="@default1792"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1793"></A></P></LI></OL><P><FONT COLOR=black><FONT SIZE=3>If nothing works, move on to the next section...</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc238"><FONT COLOR=black><FONT SIZE=3>A.1.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;I keep making changes and it makes no difference.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>If the interpreter says there is an error and you don&#X2019;t see it, that
+might be because you and the interpreter are not looking at the same
+code. Check your programming environment to make sure that the
+program you are editing is the one Python is trying to run.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If you are not sure, try putting an obvious and deliberate syntax
+error at the beginning of the program. Now run it again. If the
+interpreter doesn&#X2019;t find the new error, you are not running the
+new code.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>There are a few likely culprits:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>You edited the file and forgot to save the changes before
+running it again. Some programming environments do this
+for you, but some don&#X2019;t.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>You changed the name of the file, but you are still running
+the old name.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Something in your development environment is configured
+incorrectly.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If you are writing a module and using </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>import</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+make sure you don&#X2019;t give your module the same name as one
+of the standard Python modules.</FONT></FONT><P><A NAME="@default1794"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1795"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1796"></A></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If you are using </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>import</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to read a module, remember
+that you have to restart the interpreter or use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>reload</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+to read a modified file. If you import the module again, it
+doesn&#X2019;t do anything.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>If you get stuck and you can&#X2019;t figure out what is going on, one
+approach is to start again with a new program like &#X201C;Hello, World!,&#X201D;
+and make sure you can get a known program to run. Then gradually add
+the pieces of the original program to the new one.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc216"></A><A NAME="htoc239"><FONT COLOR=black><FONT SIZE=3>A.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Runtime errors</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>Once your program is syntactically correct,
+Python can compile it and at least start running it. What could
+possibly go wrong?</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc240"><FONT COLOR=black><FONT SIZE=3>A.2.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;My program does absolutely nothing.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>This problem is most common when your file consists of functions and
+classes but does not actually invoke anything to start execution.
+This may be intentional if you only plan to import this module to
+supply classes and functions.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If it is not intentional, make sure that you
+are invoking a function to start execution, or execute one from
+the interactive prompt. Also see the &#X201C;Flow of Execution&#X201D; section
+below.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc241"><FONT COLOR=black><FONT SIZE=3>A.2.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;My program hangs.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1797"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1798"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1799"></A></P><P><FONT COLOR=black><FONT SIZE=3>If a program stops and seems to be doing nothing, it is &#X201C;hanging.&#X201D;
+Often that means that it is caught in an infinite loop or infinite
+recursion.</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If there is a particular loop that you suspect is the
+problem, add a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement immediately before the loop that says
+&#X201C;entering the loop&#X201D; and another immediately after that says
+&#X201C;exiting the loop.&#X201D;</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>Run the program. If you get the first message and not the second,
+you&#X2019;ve got an infinite loop. Go to the &#X201C;Infinite Loop&#X201D; section
+below.</FONT></FONT></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Most of the time, an infinite recursion will cause the program
+to run for a while and then produce a &#X201C;RuntimeError: Maximum
+recursion depth exceeded&#X201D; error. If that happens, go to the
+&#X201C;Infinite Recursion&#X201D; section below.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>If you are not getting this error but you suspect there is a problem
+with a recursive method or function, you can still use the techniques
+in the &#X201C;Infinite Recursion&#X201D; section.</FONT></FONT></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If neither of those steps works, start testing other
+loops and other recursive functions and methods.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If that doesn&#X2019;t work, then it is possible that
+you don&#X2019;t understand the flow of execution in your program.
+Go to the &#X201C;Flow of Execution&#X201D; section below.</FONT></FONT></LI></UL><H4 CLASS="subsubsection"><FONT COLOR=black><FONT SIZE=3>Infinite Loop</FONT></FONT></H4><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1800"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1801"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1802"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1803"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you think you have an infinite loop and you think you know
+what loop is causing the problem, add a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement at
+the end of the loop that prints the values of the variables in
+the condition and the value of the condition.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>while x &gt; 0 and y &lt; 0 :
+    # do something to x
+    # do something to y
+
+    print  "x: ", x
+    print  "y: ", y
+    print  "condition: ", (x &gt; 0 and y &lt; 0)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now when you run the program, you will see three lines of output
+for each time through the loop. The last time through the
+loop, the condition should be </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>false</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If the loop keeps
+going, you will be able to see the values of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+and you might figure out why they are not being updated correctly.</FONT></FONT></P><H4 CLASS="subsubsection"><FONT COLOR=black><FONT SIZE=3>Infinite Recursion</FONT></FONT></H4><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1804"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1805"></A></P><P><FONT COLOR=black><FONT SIZE=3>Most of the time, an infinite recursion will cause the program to run
+for a while and then produce a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Maximum recursion depth exceeded</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+error.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If you suspect that a function or method is causing an infinite
+recursion, start by checking to make sure that there is a base case.
+In other words, there should be some condition that will cause the
+function or method to return without making a recursive invocation.
+If not, then you need to rethink the algorithm and identify a base
+case.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If there is a base case but the program doesn&#X2019;t seem to be reaching
+it, add a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement at the beginning of the function or method
+that prints the parameters. Now when you run the program, you will see
+a few lines of output every time the function or method is invoked,
+and you will see the parameters. If the parameters are not moving
+toward the base case, you will get some ideas about why not.</FONT></FONT></P><H4 CLASS="subsubsection"><FONT COLOR=black><FONT SIZE=3>Flow of Execution</FONT></FONT></H4><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1806"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you are not sure how the flow of execution is moving through
+your program, add </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements to the beginning of each
+function with a message like &#X201C;entering function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>foo</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,&#X201D; where
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>foo</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the name of the function.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Now when you run the program, it will print a trace of each
+function as it is invoked.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc242"><FONT COLOR=black><FONT SIZE=3>A.2.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;When I run the program I get an exception.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1807"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1808"></A></P><P><FONT COLOR=black><FONT SIZE=3>If something goes wrong during runtime, Python
+prints a message that includes the name of the
+exception, the line of the program where the problem occurred,
+and a traceback.</FONT></FONT></P><P><A NAME="@default1809"></A></P><P><FONT COLOR=black><FONT SIZE=3>The traceback identifies the function that is currently running,
+and then the function that invoked it, and then the function that
+invoked </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>that</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and so on. In other words, it traces the
+sequence of function invocations that got you to where you are. It
+also includes the line number in your file where each of these
+calls occurs.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The first step is to examine the place in the program where
+the error occurred and see if you can figure out what happened.
+These are some of the most common runtime errors:</FONT></FONT></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>NameError:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> You are trying to use a variable that doesn&#X2019;t
+exist in the current environment.
+Remember that local variables are local. You
+cannot refer to them from outside the function where they are defined.</FONT></FONT><P><A NAME="@default1810"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1811"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1812"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1813"></A></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>TypeError:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> There are several possible causes:</FONT></FONT><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>You are trying to use a value improperly. Example: indexing
+a string, list, or tuple with something other than an integer.</FONT></FONT><P><A NAME="@default1814"></A></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>There is a mismatch between the items in a format string and
+the items passed for conversion. This can happen if either the number
+of items does not match or an invalid conversion is called for.</FONT></FONT><P><A NAME="@default1815"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1816"></A></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>You are passing the wrong number of arguments to a function or method.
+For methods, look at the method definition and
+check that the first parameter is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Then look at the
+method invocation; make sure you are invoking the method on an
+object with the right type and providing the other arguments
+correctly.</FONT></FONT></LI></UL></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>KeyError:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> You are trying to access an element of a dictionary
+using a key that the dictionary does not contain.</FONT></FONT><P><A NAME="@default1817"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1818"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1819"></A></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>AttributeError:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> You are trying to access an attribute or method
+that does not exist. Check the spelling! You can use
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dir</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to list the attributes that do exist.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>If an AttributeError indicates that an object has </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>NoneType</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+that means that it is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. One common cause is forgetting
+to return a value from a function; if you get to the end of
+a function without hitting a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>return</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement, it returns
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Another common cause is using the result from
+a list method, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, that returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1820"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1821"></A></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>IndexError:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The index you are using
+to access a list, string, or tuple is greater than
+its length minus one. Immediately before the site of the error,
+add a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement to display
+the value of the index and the length of the array.
+Is the array the right size? Is the index the right value?</FONT></FONT><P><A NAME="@default1822"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1823"></A></P></DD></DL><P><A NAME="@default1824"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1825"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1826"></A></P><P><FONT COLOR=black><FONT SIZE=3>The Python debugger (</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pdb</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>) is useful for tracking down
+Exceptions because it allows you to examine the state of the
+program immediately before the error. You can read
+about </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pdb</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> at </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>docs.python.org/lib/module-pdb.html</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc243"><FONT COLOR=black><FONT SIZE=3>A.2.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;I added so many </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements I get inundated with
+output.</FONT></FONT></H3><P><A NAME="@default1827"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1828"></A></P><P><FONT COLOR=black><FONT SIZE=3>One of the problems with using </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements for debugging
+is that you can end up buried in output. There are two ways
+to proceed: simplify the output or simplify the program.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>To simplify the output, you can remove or comment out </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+statements that aren&#X2019;t helping, or combine them, or format
+the output so it is easier to understand.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>To simplify the program, there are several things you can do. First,
+scale down the problem the program is working on. For example, if you
+are searching a list, search a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>small</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> list. If the program takes
+input from the user, give it the simplest input that causes the
+problem.</FONT></FONT></P><P><A NAME="@default1829"></A></P><P><FONT COLOR=black><FONT SIZE=3>Second, clean up the program. Remove dead code and reorganize the
+program to make it as easy to read as possible. For example, if you
+suspect that the problem is in a deeply nested part of the program,
+try rewriting that part with simpler structure. If you suspect a
+large function, try splitting it into smaller functions and testing them
+separately.</FONT></FONT></P><P><A NAME="@default1830"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1831"></A></P><P><FONT COLOR=black><FONT SIZE=3>Often the process of finding the minimal test case leads you to the
+bug. If you find that a program works in one situation but not in
+another, that gives you a clue about what is going on.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Similarly, rewriting a piece of code can help you find subtle
+bugs. If you make a change that you think doesn&#X2019;t affect the
+program, and it does, that can tip you off.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc217"></A><A NAME="htoc244"><FONT COLOR=black><FONT SIZE=3>A.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Semantic errors</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1832"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1833"></A></P><P><FONT COLOR=black><FONT SIZE=3>In some ways, semantic errors are the hardest to debug,
+because the interpreter provides no information
+about what is wrong. Only you know what the program is supposed to
+do.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The first step is to make a connection between the program
+text and the behavior you are seeing. You need a hypothesis
+about what the program is actually doing. One of the things
+that makes that hard is that computers run so fast.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>You will often wish that you could slow the program down to human
+speed, and with some debuggers you can. But the time it takes to
+insert a few well-placed </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements is often short compared to
+setting up the debugger, inserting and removing breakpoints, and
+&#X201C;stepping&#X201D; the program to where the error is occurring.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc245"><FONT COLOR=black><FONT SIZE=3>A.3.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;My program doesn&#X2019;t work.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>You should ask yourself these questions:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Is there something the program was supposed to do but
+which doesn&#X2019;t seem to be happening? Find the section of the code
+that performs that function and make sure it is executing when
+you think it should.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Is something happening that shouldn&#X2019;t? Find code in
+your program that performs that function and see if it is
+executing when it shouldn&#X2019;t.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Is a section of code producing an effect that is not
+what you expected? Make sure that you understand the code in
+question, especially if it involves invocations to functions or methods in
+other Python modules. Read the documentation for the functions you invoke.
+Try them out by writing simple test cases and checking the results.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>In order to program, you need to have a mental model of how
+programs work. If you write a program that doesn&#X2019;t do what you expect,
+very often the problem is not in the program; it&#X2019;s in your mental
+model.</FONT></FONT></P><P><A NAME="@default1834"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1835"></A></P><P><FONT COLOR=black><FONT SIZE=3>The best way to correct your mental model is to break the program
+into its components (usually the functions and methods) and test
+each component independently. Once you find the discrepancy
+between your model and reality, you can solve the problem.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Of course, you should be building and testing components as you
+develop the program. If you encounter a problem,
+there should be only a small amount of new code
+that is not known to be correct.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc246"><FONT COLOR=black><FONT SIZE=3>A.3.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;I&#X2019;ve got a big hairy expression and it doesn&#X2019;t
+do what I expect.</FONT></FONT></H3><P><A NAME="@default1836"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1837"></A></P><P><FONT COLOR=black><FONT SIZE=3>Writing complex expressions is fine as long as they are readable,
+but they can be hard to debug. It is often a good idea to
+break a complex expression into a series of assignments to
+temporary variables.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>self.hands[i].addCard(self.hands[self.findNeighbor(i)].popCard())
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This can be rewritten as:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>neighbor = self.findNeighbor(i)
+pickedCard = self.hands[neighbor].popCard()
+self.hands[i].addCard(pickedCard)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The explicit version is easier to read because the variable
+names provide additional documentation, and it is easier to debug
+because you can check the types of the intermediate variables
+and display their values.</FONT></FONT></P><P><A NAME="@default1838"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1839"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1840"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1841"></A></P><P><FONT COLOR=black><FONT SIZE=3>Another problem that can occur with big expressions is
+that the order of evaluation may not be what you expect.
+For example, if you are translating the expression
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>x</I>/2 &#X3C0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3> into Python, you might write:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>y = x / 2 * math.pi
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>That is not correct because multiplication and division have
+the same precedence and are evaluated from left to right.
+So this expression computes </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>x</I> &#X3C0; / 2</FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>A good way to debug expressions is to add parentheses to make
+the order of evaluation explicit:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4> y = x / (2 * math.pi)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Whenever you are not sure of the order of evaluation, use
+parentheses. Not only will the program be correct (in the sense
+of doing what you intended), it will also be more readable for
+other people who haven&#X2019;t memorized the rules of precedence.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc247"><FONT COLOR=black><FONT SIZE=3>A.3.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;I&#X2019;ve got a function or method that doesn&#X2019;t return what I
+expect.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1842"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1843"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you have a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>return</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement with a complex expression,
+you don&#X2019;t have a chance to print the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>return</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> value before
+returning. Again, you can use a temporary variable. For
+example, instead of:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>return self.hands[i].removeMatches()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>you could write:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>count = self.hands[i].removeMatches()
+return count
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now you have the opportunity to display the value of
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>count</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> before returning.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc248"><FONT COLOR=black><FONT SIZE=3>A.3.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;I&#X2019;m really, really stuck and I need help.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>First, try getting away from the computer for a few minutes.
+Computers emit waves that affect the brain, causing these
+symptoms:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Frustration and rage.</FONT></FONT><P><A NAME="@default1844"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1845"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1846"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1847"></A></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Superstitious beliefs (&#X201C;the computer hates me&#X201D;) and
+magical thinking (&#X201C;the program only works when I wear my
+hat backward&#X201D;).</FONT></FONT><P><A NAME="@default1848"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1849"></A></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Random walk programming (the attempt to program by writing
+every possible program and choosing the one that does the right
+thing).</FONT></FONT><P><A NAME="@default1850"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1851"></A></P></LI></UL><P><FONT COLOR=black><FONT SIZE=3>If you find yourself suffering from any of these symptoms, get
+up and go for a walk. When you are calm, think about the program.
+What is it doing? What are some possible causes of that
+behavior? When was the last time you had a working program,
+and what did you do next?</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Sometimes it just takes time to find a bug. I often find bugs
+when I am away from the computer and let my mind wander. Some
+of the best places to find bugs are trains, showers, and in bed,
+just before you fall asleep.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc249"><FONT COLOR=black><FONT SIZE=3>A.3.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;No, I really need help.</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>It happens. Even the best programmers occasionally get stuck.
+Sometimes you work on a program so long that you can&#X2019;t see the
+error. A fresh pair of eyes is just the thing.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Before you bring someone else in, make sure you are prepared.
+Your program should be as simple
+as possible, and you should be working on the smallest input
+that causes the error. You should have </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements in the
+appropriate places (and the output they produce should be
+comprehensible). You should understand the problem well enough
+to describe it concisely.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>When you bring someone in to help, be sure to give
+them the information they need:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If there is an error message, what is it
+and what part of the program does it indicate?</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>What was the last thing you did before this error occurred?
+What were the last lines of code that you wrote, or what is
+the new test case that fails?</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>What have you tried so far, and what have you learned?</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>When you find the bug, take a second to think about what you
+could have done to find it faster. Next time you see something
+similar, you will be able to find the bug more quickly.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Remember, the goal is not just to make the program
+work. The goal is to learn how to make the program work.</FONT></FONT></P><HR>
+<A HREF="book020.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book022.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

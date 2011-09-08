@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Conditionals and recursion</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book005.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book007.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc57"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Conditionals and recursion</FONT></FONT></H1><H2 CLASS="section"><A NAME="toc51"></A><A NAME="htoc58"><FONT COLOR=black><FONT SIZE=3>5.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Modulus operator</FONT></FONT></H2><P><A NAME="@default342"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default343"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>modulus operator</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> works on integers and yields the remainder
+when the first operand is divided by the second. In Python, the
+modulus operator is a percent sign (</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>%</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>). The syntax is the same
+as for other operators:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; quotient = 7 / 3
+&gt;&gt;&gt; print quotient
+2
+&gt;&gt;&gt; remainder = 7 % 3
+&gt;&gt;&gt; print remainder
+1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>So 7 divided by 3 is 2 with 1 left over.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The modulus operator turns out to be surprisingly useful. For
+example, you can check whether one number is divisible by another&#X2014;if
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x % y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is zero, then </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is divisible by </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default344"></A></P><P><FONT COLOR=black><FONT SIZE=3>Also, you can extract the right-most digit
+or digits from a number. For example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x % 10</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> yields the
+right-most digit of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (in base 10). Similarly </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x % 100</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+yields the last two digits.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc52"></A><A NAME="htoc59"><FONT COLOR=black><FONT SIZE=3>5.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Boolean expressions</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default345"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default346"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default347"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default348"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>boolean expression</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an expression that is either true
+or false. The following examples use the 
+operator </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>==</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which compares two operands and produces
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if they are equal and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> otherwise:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 5 == 5
+True
+&gt;&gt;&gt; 5 == 6
+False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are special
+values that belong to the type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bool</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; they are not strings:</FONT></FONT></P><P><A NAME="@default349"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default350"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default351"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default352"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default353"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default354"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; type(True)
+&lt;type 'bool'&gt;
+&gt;&gt;&gt; type(False)
+&lt;type 'bool'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>==</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator is one of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>comparison operators</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; the
+others are:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>      x != y               # x is not equal to y
+      x &gt; y                # x is greater than y
+      x &lt; y                # x is less than y
+      x &gt;= y               # x is greater than or equal to y
+      x &lt;= y               # x is less than or equal to y
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Although these operations are probably familiar to you, the Python
+symbols are different from the mathematical symbols. A common error
+is to use a single equal sign (</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>) instead of a double equal sign
+(</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>==</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>). Remember that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an assignment operator and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>==</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a comparison operator. There is no such thing as
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>=&lt;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>=&gt;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default355"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default356"></A></P><H2 CLASS="section"><A NAME="toc53"></A><A NAME="htoc60"><FONT COLOR=black><FONT SIZE=3>5.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Logical operators</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default357"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default358"></A></P><P><FONT COLOR=black><FONT SIZE=3>There are three </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>logical operators</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>: </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>and</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>or</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>not</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The semantics (meaning) of these operators is
+similar to their meaning in English. For example,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x &gt; 0 and x &lt; 10</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is true only if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is greater than 0
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>and</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> less than 10.</FONT></FONT></P><P><A NAME="@default359"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default360"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default361"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default362"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default363"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default364"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>n%2 == 0 or n%3 == 0</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is true if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>either</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> of the conditions
+is true, that is, if the number is divisible by 2 </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>or</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> 3.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Finally, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>not</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator negates a boolean
+expression, so </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>not (x &gt; y)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is true if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x &gt; y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is false,
+that is, if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is less than or equal to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Strictly speaking, the operands of the logical operators should be
+boolean expressions, but Python is not very strict.
+Any nonzero number is interpreted as &#X201C;true.&#X201D;</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 17 and True
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This flexibility can be useful, but there are some subtleties to
+it that might be confusing. You might want to avoid it (unless
+you know what you are doing).</FONT></FONT></P><H2 CLASS="section"><A NAME="toc54"></A><A NAME="htoc61"><FONT COLOR=black><FONT SIZE=3>5.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Conditional execution</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="conditional execution"></A></P><P><A NAME="@default365"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default366"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default367"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default368"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default369"></A></P><P><FONT COLOR=black><FONT SIZE=3>In order to write useful programs, we almost always need the ability
+to check conditions and change the behavior of the program
+accordingly. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>Conditional statements</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> give us this ability. The
+simplest form is the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if x &gt; 0:
+    print 'x is positive'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The boolean expression after the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement is
+called the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>condition</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If it is true, then the indented
+statement gets executed. If not, nothing happens.</FONT></FONT></P><P><A NAME="@default370"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default371"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default372"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements have the same structure as function definitions:
+a header followed by an indented block. Statements like this are
+called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>compound statements</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>There is no limit on the number of statements that can appear in
+the body, but there has to be at least one.
+Occasionally, it is useful to have a body with no statements (usually
+as a place keeper for code you haven&#X2019;t written yet). In that
+case, you can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pass</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement, which does nothing.</FONT></FONT></P><P><A NAME="@default373"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default374"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if x &lt; 0:
+    pass          # need to handle negative values!
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc55"></A><A NAME="htoc62"><FONT COLOR=black><FONT SIZE=3>5.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Alternative execution</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="alternative execution"></A></P><P><A NAME="@default375"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default376"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default377"></A></P><P><FONT COLOR=black><FONT SIZE=3>A second form of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>alternative execution</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+in which there are two possibilities and the condition determines
+which one gets executed. The syntax looks like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if x%2 == 0:
+    print 'x is even'
+else:
+    print 'x is odd'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If the remainder when </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is divided by 2 is 0, then we
+know that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is even, and the program displays a message to that
+effect. If the condition is false, the second set of statements is
+executed. Since the condition must be true or false, exactly one of
+the alternatives will be executed. The alternatives are called
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>branches</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, because they are branches in the flow of execution.</FONT></FONT></P><P><A NAME="@default378"></A></P><H2 CLASS="section"><A NAME="toc56"></A><A NAME="htoc63"><FONT COLOR=black><FONT SIZE=3>5.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Chained conditionals</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default379"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default380"></A></P><P><FONT COLOR=black><FONT SIZE=3>Sometimes there are more than two possibilities and we need more than
+two branches. One way to express a computation like that is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>chained conditional</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if x &lt; y:
+    print 'x is less than y'
+elif x &gt; y:
+    print 'x is greater than y'
+else:
+    print 'x and y are equal'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>elif</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an abbreviation of &#X201C;else if.&#X201D; Again, exactly one
+branch will be executed. There is no limit on the number of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>elif</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements. If there is an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>else</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> clause, it has to be
+at the end, but there doesn&#X2019;t have to be one.</FONT></FONT></P><P><A NAME="@default381"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default382"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if choice == 'a':
+    draw_a()
+elif choice == 'b':
+    draw_b()
+elif choice == 'c':
+    draw_c()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Each condition is checked in order. If the first is false,
+the next is checked, and so on. If one of them is
+true, the corresponding branch executes, and the statement
+ends. Even if more than one condition is true, only the
+first true branch executes. </FONT></FONT></P><H2 CLASS="section"><A NAME="toc57"></A><A NAME="htoc64"><FONT COLOR=black><FONT SIZE=3>5.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Nested conditionals</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default383"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default384"></A></P><P><FONT COLOR=black><FONT SIZE=3>One conditional can also be nested within another. We could have
+written the trichotomy example like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if x == y:
+    print 'x and y are equal'
+else:
+    if x &lt; y:
+        print 'x is less than y'
+    else:
+        print 'x is greater than y'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The outer conditional contains two branches. The
+first branch contains a simple statement. The second branch
+contains another </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement, which has two branches of its
+own. Those two branches are both simple statements,
+although they could have been conditional statements as well.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Although the indentation of the statements makes the structure
+apparent, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>nested conditionals</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> become difficult to read very
+quickly. In general, it is a good idea to avoid them when you can.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Logical operators often provide a way to simplify nested conditional
+statements. For example, we can rewrite the following code using a
+single conditional:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if 0 &lt; x:
+    if x &lt; 10:
+        print 'x is a positive single-digit number.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement is executed only if we make it past both
+conditionals, so we can get the same effect with the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>and</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if 0 &lt; x and x &lt; 10:
+    print 'x is a positive single-digit number.'
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc58"></A><A NAME="htoc65"><FONT COLOR=black><FONT SIZE=3>5.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Recursion</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="recursion"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default385"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is legal for one function to call another;
+it is also legal for a function to call itself. It may not be obvious
+why that is a good thing, but it turns out to be one of the most
+magical things a program can do.
+For example, look at the following function:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def countdown(n):
+    if n &lt;= 0:
+        print 'Blastoff!'
+    else:
+        print n
+        countdown(n-1)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 0 or negative, it outputs the word, &#X201C;Blastoff!&#X201D;
+Otherwise, it outputs </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and then calls a function named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X2014;itself&#X2014;passing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n-1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as an argument.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>What happens if we call this function like this?</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; countdown(3)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The execution of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> begins with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and since
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is greater than 0, it outputs the value 3, and then calls itself...</FONT></FONT></P><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+The execution of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> begins with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and since
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is greater than 0, it outputs the value 2, and then calls itself...</FONT></FONT><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+The execution of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> begins with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and since
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is greater than 0, it outputs the value 1, and then calls itself...</FONT></FONT><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+The execution of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> begins with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=0</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and since </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not greater than 0, it outputs the word, &#X201C;Blastoff!&#X201D; and then
+returns.
+</FONT></FONT></BLOCKQUOTE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that got </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns.
+</FONT></FONT></P></BLOCKQUOTE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that got </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns.
+</FONT></FONT></P></BLOCKQUOTE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that got </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>And then you&#X2019;re back in </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__main__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. So, the
+total output looks like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>3
+2
+1
+Blastoff!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>A function that calls itself is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>recursive</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; the process is
+called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>recursion</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default386"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default387"></A></P><P><FONT COLOR=black><FONT SIZE=3>As another example, we can write a function that prints a
+string </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> times.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def print_n(s, n):
+    if n &lt;= 0:
+        return
+    print s
+    print_n(s, n-1)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n &lt;= 0</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>return</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement exits the function. The
+flow of execution immediately returns to the caller, and the remaining
+lines of the function are not executed.</FONT></FONT></P><P><A NAME="@default388"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default389"></A></P><P><FONT COLOR=black><FONT SIZE=3>The rest of the function is similar to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>: if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+greater than 0, it displays </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>s</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and then calls itself to display
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>s</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>n</I>&#X2212;1</FONT></FONT><FONT COLOR=black><FONT SIZE=3> additional times. So the number of lines of output
+is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1 + (n - 1)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which adds up to
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For simple examples like this, it is probably easier to use a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop. But we will see examples later that are hard to write
+with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop and easy to write with recursion, so it is
+good to start early.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc59"></A><A NAME="htoc66"><FONT COLOR=black><FONT SIZE=3>5.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Stack diagrams for recursive functions</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default390"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default391"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default392"></A></P><P><FONT COLOR=black><FONT SIZE=3>In Section&#XA0;</FONT></FONT><A HREF="book004.html#stackdiagram"><FONT COLOR=black><FONT SIZE=3>3.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>, we used a stack diagram to represent
+the state of a program during a function call. The same kind of
+diagram can help interpret a recursive function.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Every time a function gets called, Python creates a new function
+frame, which contains the function&#X2019;s local variables and parameters.
+For a recursive function, there might be more than one frame on the
+stack at the same time.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This figure shows a stack diagram for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> called with
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n = 3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book007.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>As usual, the top of the stack is the frame for </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__main__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>.
+It is empty because we did not create any variables in 
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__main__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> or pass any arguments to it.</FONT></FONT></P><P><A NAME="@default393"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default394"></A></P><P><FONT COLOR=black><FONT SIZE=3>The four </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> frames have different values for the
+parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The bottom of the stack, where </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=0</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, is
+called the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>base case</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. It does not make a recursive call, so
+there are no more frames.</FONT></FONT></P><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+Draw a stack diagram for </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_n</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> called with
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>s = &#X2019;Hello&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+</FONT></FONT></BLOCKQUOTE><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+Write a function called </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>do_n</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> that takes a function
+object and a number, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as arguments, and that calls
+the given function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> times.
+</FONT></FONT></BLOCKQUOTE><H2 CLASS="section"><A NAME="toc60"></A><A NAME="htoc67"><FONT COLOR=black><FONT SIZE=3>5.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Infinite recursion</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default395"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default396"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default397"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default398"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default399"></A></P><P><FONT COLOR=black><FONT SIZE=3>If a recursion never reaches a base case, it goes on making
+recursive calls forever, and the program never terminates. This is
+known as </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>infinite recursion</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and it is generally not
+a good idea. Here is a minimal program with an infinite recursion:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def recurse():
+    recurse()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In most programming environments, a program with infinite recursion
+does not really run forever. Python reports an error
+message when the maximum recursion depth is reached:</FONT></FONT></P><P><A NAME="@default400"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default401"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>  File "&lt;stdin&gt;", line 2, in recurse
+  File "&lt;stdin&gt;", line 2, in recurse
+  File "&lt;stdin&gt;", line 2, in recurse
+                  .   
+                  .
+                  .
+  File "&lt;stdin&gt;", line 2, in recurse
+RuntimeError: Maximum recursion depth exceeded
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This traceback is a little bigger than the one we saw in the
+previous chapter. When the error occurs, there are 1000
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>recurse</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> frames on the stack!</FONT></FONT></P><H2 CLASS="section"><A NAME="toc61"></A><A NAME="htoc68"><FONT COLOR=black><FONT SIZE=3>5.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Keyboard input</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default402"></A></P><P><FONT COLOR=black><FONT SIZE=3>The programs we have written so far are a bit rude in the sense that
+they accept no input from the user. They just do the same thing every
+time.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Python provides a built-in function called </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>raw_input</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> that gets
+input from the keyboard</FONT></FONT><SUP><A NAME="text7" HREF="#note7"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>. When this function is called, the program stops and
+waits for the user to type something. When the user presses </FONT></FONT><FONT SIZE=3><FONT COLOR=purple>Return</FONT></FONT><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT SIZE=3><FONT COLOR=purple>Enter</FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the program resumes and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>raw_input</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+returns what the user typed as a string.</FONT></FONT></P><P><A NAME="@default403"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default404"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default405"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; input = raw_input()
+What are you waiting for?
+&gt;&gt;&gt; print input
+What are you waiting for?
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Before getting input from the user, it is a good idea to print a
+prompt telling the user what to input. </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>raw_input</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> can take a
+prompt as an argument:</FONT></FONT></P><P><A NAME="@default406"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; name = raw_input('What...is your name?\n')
+What...is your name?
+Arthur, King of the Britons!
+&gt;&gt;&gt; print name
+Arthur, King of the Britons!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The sequence </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>\n</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> at the end of the prompt represents a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>newline</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+which is a special character that causes a line break.
+That&#X2019;s why the user&#X2019;s input appears below the prompt.</FONT></FONT></P><P><A NAME="@default407"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you expect the user to type an integer, you can try to convert
+the return value to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>int</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; prompt = 'What...is the airspeed velocity of an unladen swallow?\n'
+&gt;&gt;&gt; speed = raw_input(prompt)
+What...is the airspeed velocity of an unladen swallow?
+17
+&gt;&gt;&gt; int(speed)
+17
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But if the user types something other than a string of digits,
+you get an error:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; speed = raw_input(prompt)
+What...is the airspeed velocity of an unladen swallow?
+What do you mean, an African or a European swallow?
+&gt;&gt;&gt; int(speed)
+ValueError: invalid literal for int()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>We will see how to handle this kind of error later.</FONT></FONT></P><P><A NAME="@default408"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default409"></A></P><H2 CLASS="section"><A NAME="toc62"></A><A NAME="htoc69"><FONT COLOR=black><FONT SIZE=3>5.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default410"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default411"></A></P><P><FONT COLOR=black><FONT SIZE=3>The traceback Python displays when an error occurs contains
+a lot of information, but it can be overwhelming, especially
+when there are many frames on the stack. The most
+useful parts are usually:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>What kind of error it was, and</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Where it occurred.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>Syntax errors are usually easy to find, but there are a few
+gotchas. Whitespace errors can be tricky because spaces and
+tabs are invisible and we are used to ignoring them.</FONT></FONT></P><P><A NAME="@default412"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = 5
+&gt;&gt;&gt;  y = 6
+  File "&lt;stdin&gt;", line 1
+    y = 6
+    ^
+SyntaxError: invalid syntax
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this example, the problem is that the second line is indented by
+one space. But the error message points to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is
+misleading. In general, error messages indicate where the problem was
+discovered, but the actual error might be earlier in the code,
+sometimes on a previous line.</FONT></FONT></P><P><A NAME="@default413"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default414"></A></P><P><FONT COLOR=black><FONT SIZE=3>The same is true of runtime errors. Suppose you are trying
+to compute a signal-to-noise ratio in decibels. The formula
+is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>SNR</I></FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3><I>db</I></FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3> = 10 </FONT></FONT><FONT COLOR=black><FONT SIZE=3>log</FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3>10</FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3> (<I>P</I></FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3><I>signal</I></FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3> / <I>P</I></FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3><I>noise</I></FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3>)</FONT></FONT><FONT COLOR=black><FONT SIZE=3>. In Python,
+you might write something like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>import math
+signal_power = 9
+noise_power = 10
+ratio = signal_power / noise_power
+decibels = 10 * math.log10(ratio)
+print decibels
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But when you run it, you get an error message:</FONT></FONT></P><P><A NAME="@default415"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default416"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>Traceback (most recent call last):
+  File "snr.py", line 5, in ?
+    decibels = 10 * math.log10(ratio)
+OverflowError: math range error
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The error message indicates line 5, but there is nothing
+wrong with that line. To find the real error, it might be
+useful to print the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ratio</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which turns out to
+be 0. The problem is in line 4, because dividing two integers
+does floor division. The solution is to represent signal power
+and noise power with floating-point values.</FONT></FONT></P><P><A NAME="@default417"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default418"></A></P><P><FONT COLOR=black><FONT SIZE=3>In general, error messages tell you where the problem was discovered, 
+but that is often not where it was caused.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc63"></A><A NAME="htoc70"><FONT COLOR=black><FONT SIZE=3>5.13</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>modulus operator:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An operator, denoted with a percent sign
+(</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>%</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>), that works on integers and yields the remainder when one
+number is divided by another.
+</FONT></FONT><A NAME="@default419"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default420"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>boolean expression:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An expression whose value is either 
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+</FONT></FONT><A NAME="@default421"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default422"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>comparison operator:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the operators that compares
+its operands: </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>==</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>!=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&gt;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&lt;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&gt;=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&lt;=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>logical operator:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the operators that combines boolean
+expressions: </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>and</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>or</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>not</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>conditional statement:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A statement that controls the flow of
+execution depending on some condition.
+</FONT></FONT><A NAME="@default423"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default424"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>condition:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The boolean expression in a conditional statement
+that determines which branch is executed.
+</FONT></FONT><A NAME="@default425"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>compound statement:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A statement that consists of a header
+and a body. The header ends with a colon (:). The body is indented
+relative to the header.
+</FONT></FONT><A NAME="@default426"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>body:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The sequence of statements within a compound statement.
+</FONT></FONT><A NAME="@default427"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>branch:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the alternative sequences of statements in
+a conditional statement.
+</FONT></FONT><A NAME="@default428"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>chained conditional:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A conditional statement with a series
+of alternative branches.
+</FONT></FONT><A NAME="@default429"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default430"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>nested conditional:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A conditional statement that appears
+in one of the branches of another conditional statement.
+</FONT></FONT><A NAME="@default431"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default432"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>recursion:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The process of calling the function that is
+currently executing.
+</FONT></FONT><A NAME="@default433"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>base case:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A conditional branch in a
+recursive function that does not make a recursive call.
+</FONT></FONT><A NAME="@default434"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>infinite recursion:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function that calls itself recursively
+without ever reaching the base case. Eventually, an infinite recursion
+causes a runtime error.
+</FONT></FONT><A NAME="@default435"></A></DD></DL><H2 CLASS="section"><A NAME="toc64"></A><A NAME="htoc71"><FONT COLOR=black><FONT SIZE=3>5.14</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default436"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Fermat&#X2019;s Last Theorem says that there are no integers
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>a</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>b</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>c</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> such that</EM></FONT></FONT></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM><I>a</I></EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;+&#XA0;<I>b</I></EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;=&#XA0;<I>c</I></EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;</EM></FONT></FONT></TD></TR>
+</TABLE><P><FONT COLOR=black><FONT SIZE=3><EM>
+for any values of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> greater than 2.</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a function named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>check_fermat</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes four
+parameters&#X2014;</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>a</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>b</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>c</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>n</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>&#X2014;and
+that checks to see if Fermat&#X2019;s theorem holds. If
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is greater than 2 and it turns out to be true that </EM></FONT></FONT><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><EM><FONT COLOR=black><FONT SIZE=3><EM><I>a</I></EM></FONT></FONT></EM><SUP><EM><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT></EM></SUP><EM><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;+&#XA0;<I>b</I></EM></FONT></FONT></EM><SUP><EM><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT></EM></SUP><EM><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;=&#XA0;<I>c</I></EM></FONT></FONT></EM><SUP><EM><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT></EM></SUP><EM><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;</EM></FONT></FONT></EM></TD></TR>
+</TABLE><P><EM><FONT COLOR=black><FONT SIZE=3><EM>
+the program should print, &#X201C;Holy smokes, Fermat was wrong!&#X201D;
+Otherwise the program should print, &#X201C;No, that doesn&#X2019;t work.&#X201D;</EM></FONT></FONT></EM></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM>Write a function that prompts the user to input values
+for </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>a</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>b</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>c</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>n</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>, converts them to
+integers, and uses </EM></FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3><EM>check_fermat</EM></FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3><EM> to check whether they
+violate Fermat&#X2019;s theorem.</EM></FONT></FONT></EM></LI></OL></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default437"></A><P><FONT COLOR=black><FONT SIZE=3><EM>If you are given three sticks, you may or may not be able to arrange
+them in a triangle. For example, if one of the sticks is 12 inches
+long and the other two are one inch long, it is clear that you will
+not be able to get the short sticks to meet in the middle. For any
+three lengths, there is a simple test to see if it is possible to form
+a triangle:</EM></FONT></FONT></P><BLOCKQUOTE CLASS="quotation"><FONT COLOR=black><FONT SIZE=3><EM>
+&#X201C;If any of the three lengths is greater than the sum of the other two,
+then you cannot form a triangle. Otherwise, you can.&#X201D;
+</EM></FONT></FONT></BLOCKQUOTE><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a function named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_triangle</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes three
+integers as arguments, and that prints either &#X201C;Yes&#X201D; or &#X201C;No,&#X201D; depending
+on whether you can or cannot form a triangle from sticks with the
+given lengths.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a function that prompts the user to input three stick
+lengths, converts them to integers, and uses </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_triangle</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> to
+check whether sticks with the given lengths can form a triangle.</EM></FONT></FONT></LI></OL></DIV><P><FONT COLOR=black><FONT SIZE=3>The following exercises use TurtleWorld from Chapter&#XA0;</FONT></FONT><A HREF="book005.html#turtlechap"><FONT COLOR=black><FONT SIZE=3>4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default438"></A></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Read the following function and see if you can figure out
+what it does. Then run it (see the examples in Chapter&#XA0;</EM></FONT></FONT><A HREF="book005.html#turtlechap"><FONT COLOR=black><FONT SIZE=3><EM>4</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>).</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>def draw(t, length, n):
+    if n == 0:
+        return
+    angle = 50
+    fd(t, length*n)
+    lt(t, angle)
+    draw(t, length, n-1)
+    rt(t, 2*angle)
+    draw(t, length, n-1)
+    lt(t, angle)
+    bk(t, length*n)
+</FONT></FONT></EM></PRE></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default439"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The Koch curve is a fractal that looks something like
+this:</EM></FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><EM><IMG SRC="book008.png"></EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3><EM>To draw a Koch curve with length </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, all you have to do is</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Draw a Koch curve with length </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I>/3</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Turn left 60 degrees.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Draw a Koch curve with length </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I>/3</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Turn right 120 degrees.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Draw a Koch curve with length </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I>/3</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Turn left 60 degrees.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Draw a Koch curve with length </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I>/3</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3><EM>The only exception is if </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is less than 2. In that case,
+you can just draw a straight line with length </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>koch</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that takes a turtle and
+a length as parameters, and that uses the turtle to draw a Koch
+curve with the given length.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>snowflake</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that draws three
+Koch curves to make the outline of a snowflake.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/koch.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>The Koch curve can be generalized in several ways. See
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>wikipedia.org/wiki/Koch_snowflake</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> for examples and
+implement your favorite.</EM></FONT></FONT></LI></OL></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note7" HREF="#text7"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>In Python 3.0, this function is named
+<TT>input</TT>
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book005.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book007.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

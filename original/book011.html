@@ -1,0 +1,535 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Lists</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book010.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book012.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc116"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Lists</FONT></FONT></H1><P><A NAME="@default719"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default720"></A></P><H2 CLASS="section"><A NAME="toc105"></A><A NAME="htoc117"><FONT COLOR=black><FONT SIZE=3>10.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;A list is a sequence</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>Like a string, a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>list</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a sequence of values. In a string, the
+values are characters; in a list, they can be any type. The values in
+list are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>elements</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or sometimes </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>items</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default721"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default722"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default723"></A></P><P><FONT COLOR=black><FONT SIZE=3>There are several ways to create a new list; the simplest is to
+enclose the elements in square brackets (</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>[</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>]</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>[10, 20, 30, 40]
+['crunchy frog', 'ram bladder', 'lark vomit']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first example is a list of four integers. The second is a list of
+three strings. The elements of a list don&#X2019;t have to be the same type.
+The following list contains a string, a float, an integer, and
+(lo!) another list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>['spam', 2.0, 5, [10, 20]]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>A list within another list is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>nested</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default724"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default725"></A></P><P><FONT COLOR=black><FONT SIZE=3>A list that contains no elements is
+called an empty list; you can create one with empty
+brackets, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>[]</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default726"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default727"></A></P><P><FONT COLOR=black><FONT SIZE=3>As you might expect, you can assign list values to variables:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; cheeses = ['Cheddar', 'Edam', 'Gouda']
+&gt;&gt;&gt; numbers = [17, 123]
+&gt;&gt;&gt; empty = []
+&gt;&gt;&gt; print cheeses, numbers, empty
+['Cheddar', 'Edam', 'Gouda'] [17, 123] []
+</FONT></FONT></PRE><P><A NAME="@default728"></A></P><H2 CLASS="section"><A NAME="toc106"></A><A NAME="htoc118"><FONT COLOR=black><FONT SIZE=3>10.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Lists are mutable</FONT></FONT></H2><P><A NAME="@default729"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default730"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default731"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default732"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default733"></A></P><P><FONT COLOR=black><FONT SIZE=3>The syntax for accessing the elements of a list is the same as for
+accessing the characters of a string&#X2014;the bracket operator. The
+expression inside the brackets specifies the index. Remember that the
+indices start at 0:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print cheeses[0]
+Cheddar
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Unlike strings, lists are mutable. When the bracket operator appears
+on the left side of an assignment, it identifies the element of the
+list that will be assigned.</FONT></FONT></P><P><A NAME="@default734"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; numbers = [17, 123]
+&gt;&gt;&gt; numbers[1] = 5
+&gt;&gt;&gt; print numbers
+[17, 5]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The one-eth element of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>numbers</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which
+used to be 123, is now 5.</FONT></FONT></P><P><A NAME="@default735"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default736"></A></P><P><FONT COLOR=black><FONT SIZE=3>You can think of a list as a relationship between indices and
+elements. This relationship is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>mapping</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; each index
+&#X201C;maps to&#X201D; one of the elements. Here is a state diagram showing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>cheeses</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>numbers</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>empty</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default737"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default738"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default739"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book013.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>Lists are represented by boxes with the word &#X201C;list&#X201D; outside
+and the elements of the list inside. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>cheeses</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to
+a list with three elements indexed 0, 1 and 2.
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>numbers</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> contains two elements; the diagram shows that the
+value of the second element has been reassigned from 123 to 5.
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>empty</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to a list with no elements.</FONT></FONT></P><P><A NAME="@default740"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default741"></A></P><P><FONT COLOR=black><FONT SIZE=3>List indices work the same way as string indices:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Any integer expression can be used as an index.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If you try to read or write an element that does not exist, you
+get an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>IndexError</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT><P><A NAME="@default742"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default743"></A></P></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>If an index has a negative value, it counts backward from the
+end of the list.</FONT></FONT></LI></UL><P><A NAME="@default744"></A></P><P><A NAME="@default745"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default746"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default747"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default748"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator also works on lists.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; cheeses = ['Cheddar', 'Edam', 'Gouda']
+&gt;&gt;&gt; 'Edam' in cheeses
+True
+&gt;&gt;&gt; 'Brie' in cheeses
+False
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc107"></A><A NAME="htoc119"><FONT COLOR=black><FONT SIZE=3>10.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Traversing a list</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default749"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default750"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default751"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default752"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default753"></A></P><P><FONT COLOR=black><FONT SIZE=3>The most common way to traverse the elements of a list is
+with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop. The syntax is the same as for strings:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for cheese in cheeses:
+    print cheese
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This works well if you only need to read the elements of the
+list. But if you want to write or update the elements, you
+need the indices. A common way to do that is to combine
+the functions </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>range</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>len</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default754"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default755"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for i in range(len(numbers)):
+    numbers[i] = numbers[i] * 2
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This loop traverses the list and updates each element. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>len</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+returns the number of elements in the list. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>range</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns
+a list of indices from 0 to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>n</I>&#X2212;1</FONT></FONT><FONT COLOR=black><FONT SIZE=3>, where </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>n</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the length of
+the list. Each time through the loop </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>i</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets the index
+of the next element. The assignment statement in the body uses
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>i</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to read the old value of the element and to assign the
+new value.</FONT></FONT></P><P><A NAME="@default756"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default757"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop over an empty list never executes the body:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for x in empty:
+    print 'This never happens.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Although a list can contain another list, the nested
+list still counts as a single element. The length of this list is
+four:</FONT></FONT></P><P><A NAME="@default758"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default759"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>['spam', 1, ['Brie', 'Roquefort', 'Pol le Veq'], [1, 2, 3]]
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc108"></A><A NAME="htoc120"><FONT COLOR=black><FONT SIZE=3>10.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;List operations</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default760"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator concatenates lists:</FONT></FONT></P><P><A NAME="@default761"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default762"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; b = [4, 5, 6]
+&gt;&gt;&gt; c = a + b
+&gt;&gt;&gt; print c
+[1, 2, 3, 4, 5, 6]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Similarly, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>*</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator repeats a list a given number of times:</FONT></FONT></P><P><A NAME="@default763"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default764"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; [0] * 4
+[0, 0, 0, 0]
+&gt;&gt;&gt; [1, 2, 3] * 3
+[1, 2, 3, 1, 2, 3, 1, 2, 3]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first example repeats </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[0]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> four times. The second example
+repeats the list </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[1, 2, 3]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> three times.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc109"></A><A NAME="htoc121"><FONT COLOR=black><FONT SIZE=3>10.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;List slices</FONT></FONT></H2><P><A NAME="@default765"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default766"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default767"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default768"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default769"></A></P><P><FONT COLOR=black><FONT SIZE=3>The slice operator also works on lists:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c', 'd', 'e', 'f']
+&gt;&gt;&gt; t[1:3]
+['b', 'c']
+&gt;&gt;&gt; t[:4]
+['a', 'b', 'c', 'd']
+&gt;&gt;&gt; t[3:]
+['d', 'e', 'f']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you omit the first index, the slice starts at the beginning.
+If you omit the second, the slice goes to the end. So if you
+omit both, the slice is a copy of the whole list.</FONT></FONT></P><P><A NAME="@default770"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default771"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default772"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t[:]
+['a', 'b', 'c', 'd', 'e', 'f']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Since lists are mutable, it is often useful to make a copy
+before performing operations that fold, spindle or mutilate
+lists.</FONT></FONT></P><P><A NAME="@default773"></A></P><P><FONT COLOR=black><FONT SIZE=3>A slice operator on the left side of an assignment
+can update multiple elements:</FONT></FONT></P><P><A NAME="@default774"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default775"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c', 'd', 'e', 'f']
+&gt;&gt;&gt; t[1:3] = ['x', 'y']
+&gt;&gt;&gt; print t
+['a', 'x', 'y', 'd', 'e', 'f']
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc110"></A><A NAME="htoc122"><FONT COLOR=black><FONT SIZE=3>10.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;List methods</FONT></FONT></H2><P><A NAME="@default776"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default777"></A></P><P><FONT COLOR=black><FONT SIZE=3>Python provides methods that operate on lists. For example,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>append</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> adds a new element to the end of a list:</FONT></FONT></P><P><A NAME="@default778"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default779"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c']
+&gt;&gt;&gt; t.append('d')
+&gt;&gt;&gt; print t
+['a', 'b', 'c', 'd']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>extend</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a list as an argument and appends all of
+the elements:</FONT></FONT></P><P><A NAME="@default780"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default781"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t1 = ['a', 'b', 'c']
+&gt;&gt;&gt; t2 = ['d', 'e']
+&gt;&gt;&gt; t1.extend(t2)
+&gt;&gt;&gt; print t1
+['a', 'b', 'c', 'd', 'e']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This example leaves </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> unmodified.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> arranges the elements of the list from low to high:</FONT></FONT></P><P><A NAME="@default782"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default783"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['d', 'c', 'e', 'b', 'a']
+&gt;&gt;&gt; t.sort()
+&gt;&gt;&gt; print t
+['a', 'b', 'c', 'd', 'e']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>List methods are all void; they modify the list and return </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+If you accidentally write </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t = t.sort()</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you will be disappointed
+with the result.</FONT></FONT></P><P><A NAME="@default784"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default785"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default786"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default787"></A></P><H2 CLASS="section"><A NAME="toc111"></A><A NAME="htoc123"><FONT COLOR=black><FONT SIZE=3>10.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Map, filter and reduce</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>To add up all the numbers in a list, you can use a loop like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def add_all(t):
+    total = 0
+    for x in t:
+        total += x
+    return total
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>total</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is initialized to 0. Each time through the loop,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets one element from the list. The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator
+provides a short way to update a variable:</FONT></FONT></P><P><A NAME="@default788"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default789"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    total += x
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>is equivalent to:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    total = total + x
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>As the loop executes, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>total</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> accumulates the sum of the
+elements; a variable used this way is sometimes called an
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>accumulator</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default790"></A></P><P><FONT COLOR=black><FONT SIZE=3>Adding up the elements of a list is such a common operation
+that Python provides it as a built-in function, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sum</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = [1, 2, 3]
+&gt;&gt;&gt; sum(t)
+6
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>An operation like this that combines a sequence of elements into
+a single value is sometimes called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>reduce</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default791"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default792"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default793"></A></P><P><FONT COLOR=black><FONT SIZE=3>Sometimes you want to traverse one list while building
+another. For example, the following function takes a list of strings
+and returns a new list that contains capitalized strings:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def capitalize_all(t):
+    res = []
+    for s in t:
+        res.append(s.capitalize())
+    return res
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>res</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is initialized with an empty list; each time through
+the loop, we append the next element. So </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>res</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is another
+kind of accumulator.</FONT></FONT></P><P><A NAME="@default794"></A></P><P><FONT COLOR=black><FONT SIZE=3>An operation like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>capitalize_all</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is sometimes called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>map</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because it &#X201C;maps&#X201D; a function (in this case the method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>capitalize</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>) onto each of the elements in a sequence.</FONT></FONT></P><P><A NAME="@default795"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default796"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default797"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default798"></A></P><P><FONT COLOR=black><FONT SIZE=3>Another common operation is to select some of the elements from
+a list and return a sublist. For example, the following
+function takes a list of strings and returns a list that contains
+only the uppercase strings:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def only_upper(t):
+    res = []
+    for s in t:
+        if s.isupper():
+            res.append(s)
+    return res
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>isupper</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a string method that returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if
+the string contains only upper case letters.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>An operation like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>only_upper</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>filter</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because
+it selects some of the elements and filters out the others.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Most common list operations can be expressed as a combination
+of map, filter and reduce. Because these operations are
+so common, Python provides language features to support them,
+including the built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>map</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and an operator
+called a &#X201C;list comprehension.&#X201D;</FONT></FONT></P><P><A NAME="@default799"></A></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="cumulative"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default800"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function that takes a list of numbers and returns the
+cumulative sum; that is, a new list where the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>i</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>th element
+is the sum of the first </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>i</I>+1</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> elements from the original list.
+For example, the cumulative sum of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>[1, 2, 3]</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>[1, 3, 6]</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. 
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc112"></A><A NAME="htoc124"><FONT COLOR=black><FONT SIZE=3>10.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Deleting elements</FONT></FONT></H2><P><A NAME="@default801"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default802"></A></P><P><FONT COLOR=black><FONT SIZE=3>There are several ways to delete elements from a list. If you
+know the index of the element you want, you can use
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pop</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default803"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default804"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c']
+&gt;&gt;&gt; x = t.pop(1)
+&gt;&gt;&gt; print t
+['a', 'c']
+&gt;&gt;&gt; print x
+b
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>pop</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> modifies the list and returns the element that was removed.
+If you don&#X2019;t provide an index, it deletes and returns the
+last element.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If you don&#X2019;t need the removed value, you can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>del</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+operator:</FONT></FONT></P><P><A NAME="@default805"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default806"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c']
+&gt;&gt;&gt; del t[1]
+&gt;&gt;&gt; print t
+['a', 'c']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you know the element you want to remove (but not the index), you
+can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>remove</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default807"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default808"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c']
+&gt;&gt;&gt; t.remove('b')
+&gt;&gt;&gt; print t
+['a', 'c']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The return value from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>remove</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default809"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default810"></A></P><P><FONT COLOR=black><FONT SIZE=3>To remove more than one element, you can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>del</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with
+a slice index:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'b', 'c', 'd', 'e', 'f']
+&gt;&gt;&gt; del t[1:5]
+&gt;&gt;&gt; print t
+['a', 'f']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>As usual, the slice selects all the elements up to, but not
+including, the second index.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc113"></A><A NAME="htoc125"><FONT COLOR=black><FONT SIZE=3>10.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Lists and strings</FONT></FONT></H2><P><A NAME="@default811"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default812"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default813"></A></P><P><FONT COLOR=black><FONT SIZE=3>A string is a sequence of characters and a list is a sequence
+of values, but a list of characters is not the same as a
+string. To convert from a string to a list of characters,
+you can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>list</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default814"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default815"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = 'spam'
+&gt;&gt;&gt; t = list(s)
+&gt;&gt;&gt; print t
+['s', 'p', 'a', 'm']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Because </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>list</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the name of a built-in function, you should
+avoid using it as a variable name. I also avoid </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>l</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because
+it looks too much like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. So that&#X2019;s why I use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>list</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> function breaks a string into individual letters. If
+you want to break a string into words, you can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>split</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+method:</FONT></FONT></P><P><A NAME="@default816"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default817"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = 'pining for the fjords'
+&gt;&gt;&gt; t = s.split()
+&gt;&gt;&gt; print t
+['pining', 'for', 'the', 'fjords']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>An optional argument called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>delimiter</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> specifies which
+characters to use as word boundaries.
+The following example
+uses a hyphen as a delimiter:</FONT></FONT></P><P><A NAME="@default818"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default819"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default820"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = 'spam-spam-spam'
+&gt;&gt;&gt; delimiter = '-'
+&gt;&gt;&gt; s.split(delimiter)
+['spam', 'spam', 'spam']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>join</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the inverse of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>split</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. It
+takes a list of strings and
+concatenates the elements. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>join</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a string method,
+so you have to invoke it on the delimiter and pass the
+list as a parameter:</FONT></FONT></P><P><A NAME="@default821"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default822"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default823"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['pining', 'for', 'the', 'fjords']
+&gt;&gt;&gt; delimiter = ' '
+&gt;&gt;&gt; delimiter.join(t)
+'pining for the fjords'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this case the delimiter is a space character, so
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>join</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> puts a space between words. To concatenate
+strings without spaces, you can use the empty string,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a delimiter. </FONT></FONT></P><P><A NAME="@default824"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default825"></A></P><H2 CLASS="section"><A NAME="toc114"></A><A NAME="htoc126"><FONT COLOR=black><FONT SIZE=3>10.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Objects and values</FONT></FONT></H2><P><A NAME="@default826"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default827"></A></P><P><FONT COLOR=black><FONT SIZE=3>If we execute these assignment statements:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>a = 'banana'
+b = 'banana'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>We know that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> both refer to a
+string, but we don&#X2019;t
+know whether they refer to the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>same</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> string.
+There are two possible states:</FONT></FONT></P><P><A NAME="@default828"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book014.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>In one case, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refer to two different objects that
+have the same value. In the second case, they refer to the same
+object.</FONT></FONT></P><P><A NAME="@default829"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default830"></A></P><P><FONT COLOR=black><FONT SIZE=3>To check whether two variables refer to the same object, you can
+use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>is</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a = 'banana'
+&gt;&gt;&gt; b = 'banana'
+&gt;&gt;&gt; a is b
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this example, Python only created one string object,
+and both </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refer to it.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But when you create two lists, you get two objects:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; b = [1, 2, 3]
+&gt;&gt;&gt; a is b
+False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>So the state diagram looks like this:</FONT></FONT></P><P><A NAME="@default831"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default832"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book015.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>In this case we would say that the two lists are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>equivalent</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+because they have the same elements, but not </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>identical</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, because
+they are not the same object. If two objects are identical, they are
+also equivalent, but if they are equivalent, they are not necessarily
+identical.</FONT></FONT></P><P><A NAME="@default833"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default834"></A></P><P><FONT COLOR=black><FONT SIZE=3>Until now, we have been using &#X201C;object&#X201D; and &#X201C;value&#X201D;
+interchangeably, but it is more precise to say that an object has a
+value. If you execute </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a = [1,2,3]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to a list
+object whose value is a particular sequence of elements. If another
+list has the same elements, we would say it has the same value.</FONT></FONT></P><P><A NAME="@default835"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default836"></A></P><H2 CLASS="section"><A NAME="toc115"></A><A NAME="htoc127"><FONT COLOR=black><FONT SIZE=3>10.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Aliasing</FONT></FONT></H2><P><A NAME="@default837"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default838"></A></P><P><FONT COLOR=black><FONT SIZE=3>If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to an object and you assign </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b = a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+then both variables refer to the same object:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; b is a
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The state diagram looks like this:</FONT></FONT></P><P><A NAME="@default839"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default840"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book016.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>The association of a variable with an object is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>reference</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. In this example, there are two references to the same
+object.</FONT></FONT></P><P><A NAME="@default841"></A></P><P><FONT COLOR=black><FONT SIZE=3>An object with more than one reference has more
+than one name, so we say that the object is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>aliased</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default842"></A></P><P><FONT COLOR=black><FONT SIZE=3>If the aliased object is mutable, 
+changes made with one alias affect
+the other:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; b[0] = 17
+&gt;&gt;&gt; print a
+[17, 2, 3]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Although this behavior can be useful, it is error-prone. In general,
+it is safer to avoid aliasing when you are working with mutable
+objects.</FONT></FONT></P><P><A NAME="@default843"></A></P><P><FONT COLOR=black><FONT SIZE=3>For immutable objects like strings, aliasing is not as much of a
+problem. In this example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>a = 'banana'
+b = 'banana'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>It almost never makes a difference whether </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refer
+to the same string or not.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc116"></A><A NAME="htoc128"><FONT COLOR=black><FONT SIZE=3>10.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;List arguments</FONT></FONT></H2><P><A NAME="@default844"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default845"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default846"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default847"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default848"></A></P><P><FONT COLOR=black><FONT SIZE=3>When you pass a list to a function, the function gets a reference
+to the list.
+If the function modifies a list parameter, the caller sees the change.
+For example, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>delete_head</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> removes the first element from a list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def delete_head(t):
+    del t[0]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s how it is used:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; letters = ['a', 'b', 'c']
+&gt;&gt;&gt; delete_head(letters)
+&gt;&gt;&gt; print letters
+['b', 'c']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and the variable </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>letters</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are
+aliases for the same object. The stack diagram looks like
+this:</FONT></FONT></P><P><A NAME="@default849"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default850"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book017.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>Since the list is shared by two frames, I drew
+it between them.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>It is important to distinguish between operations that
+modify lists and operations that create new lists. For
+example, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>append</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method modifies a list, but the
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator creates a new list:</FONT></FONT></P><P><A NAME="@default851"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default852"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default853"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default854"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t1 = [1, 2]
+&gt;&gt;&gt; t2 = t1.append(3)
+&gt;&gt;&gt; print t1
+[1, 2, 3]
+&gt;&gt;&gt; print t2
+None
+
+&gt;&gt;&gt; t3 = t1 + [3]
+&gt;&gt;&gt; print t3
+[1, 2, 3]
+&gt;&gt;&gt; t2 is t3
+False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This difference is important when you write functions that
+are supposed to modify lists. For example, this function
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>does not</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> delete the head of a list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def bad_delete_head(t):
+    t = t[1:]              # WRONG!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The slice operator creates a new list and the assignment
+makes </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refer to it, but none of that has any effect
+on the list that was passed as an argument.</FONT></FONT></P><P><A NAME="@default855"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default856"></A></P><P><FONT COLOR=black><FONT SIZE=3>An alternative is to write a function that creates and
+returns a new list. For
+example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>tail</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns all but the first
+element of a list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def tail(t):
+    return t[1:]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This function leaves the original list unmodified.
+Here&#X2019;s how it is used:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; letters = ['a', 'b', 'c']
+&gt;&gt;&gt; rest = tail(letters)
+&gt;&gt;&gt; print rest
+['b', 'c']
+</FONT></FONT></PRE><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>chop</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that takes a list and modifies
+it, removing the first and last elements, and returns </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>None</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Then write function called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>middle</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that takes a list and
+returns a new list that contains all but the first and last
+elements.</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc117"></A><A NAME="htoc129"><FONT COLOR=black><FONT SIZE=3>10.13</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default857"></A></P><P><FONT COLOR=black><FONT SIZE=3>Careless use of lists (and other mutable objects)
+can lead to long hours of debugging. Here are some common
+pitfalls and ways to avoid them:</FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Don&#X2019;t forget that most list methods modify the argument and
+return </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. This is the opposite of the string methods,
+which return a new string and leave the original alone.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>If you are used to writing string code like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>word = word.strip()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>It is tempting to write list code like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>t = t.sort()           # WRONG!
+</FONT></FONT></PRE><P><A NAME="@default858"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default859"></A></P><P><FONT COLOR=black><FONT SIZE=3>Because </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the
+next operation you perform with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is likely to fail.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Before using list methods and operators, you should read the
+documentation carefully and then test them in interactive mode. The
+methods and operators that lists share with other sequences (like
+strings) are documented at
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>docs.python.org/lib/typesseq.html</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The
+methods and operators that only apply to mutable sequences
+are documented at </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>docs.python.org/lib/typesseq-mutable.html</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Pick an idiom and stick with it.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>Part of the problem with lists is that there are too many
+ways to do things. For example, to remove an element from
+a list, you can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pop</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>remove</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>del</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+or even a slice assignment.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>To add an element, you can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>append</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method or
+the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator. But don&#X2019;t forget that these are right: </FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>t.append(x)
+t = t + [x]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And these are wrong:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>t.append([x])          # WRONG!
+t = t.append(x)        # WRONG!
+t + [x]                # WRONG!
+t = t + x              # WRONG!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Try out each of these examples in interactive mode to make sure
+you understand what they do. Notice that only the last
+one causes a runtime error; the other three are legal, but they
+do the wrong thing.</FONT></FONT></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Make copies to avoid aliasing.</FONT></FONT><P><A NAME="@default860"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default861"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you want to use a method like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that modifies
+the argument, but you need to keep the original list as
+well, you can make a copy.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>orig = t[:]
+t.sort()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this example you could also use the built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sorted</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+which returns a new, sorted list and leaves the original alone.
+But in that case you should avoid using </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sorted</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a variable
+name!</FONT></FONT></P></LI></OL><H2 CLASS="section"><A NAME="toc118"></A><A NAME="htoc130"><FONT COLOR=black><FONT SIZE=3>10.14</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>list:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A sequence of values.
+</FONT></FONT><A NAME="@default862"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>element:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the values in a list (or other sequence),
+also called items.
+</FONT></FONT><A NAME="@default863"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>index:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An integer value that indicates an element in a list.
+</FONT></FONT><A NAME="@default864"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>nested list:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A list that is an element of another list.
+</FONT></FONT><A NAME="@default865"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>list traversal:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The sequential accessing of each element in a list.
+</FONT></FONT><A NAME="@default866"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>mapping:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A relationship in which each element of one set
+corresponds to an element of another set. For example, a list is
+a mapping from indices to elements.
+</FONT></FONT><A NAME="@default867"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>accumulator:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A variable used in a loop to add up or
+accumulate a result.
+</FONT></FONT><A NAME="@default868"></A><P><A NAME="@default869"></A></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>reduce:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A processing pattern that traverses a sequence 
+and accumulates the elements into a single result.
+</FONT></FONT><A NAME="@default870"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default871"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>map:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A processing pattern that traverses a sequence and
+performs an operation on each element.
+</FONT></FONT><A NAME="@default872"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default873"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>filter:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A processing pattern that traverses a list and
+selects the elements that satisfy some criterion.
+</FONT></FONT><A NAME="@default874"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default875"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>object:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Something a variable can refer to. An object
+has a type and a value.
+</FONT></FONT><A NAME="@default876"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>equivalent:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Having the same value.
+</FONT></FONT><A NAME="@default877"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>identical:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Being the same object (which implies equivalence).
+</FONT></FONT><A NAME="@default878"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>reference:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The association between a variable and its value.
+</FONT></FONT><A NAME="@default879"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>aliasing:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A circumstance where two variables refer to the same
+object.
+</FONT></FONT><A NAME="@default880"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>delimiter:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A character or string used to indicate where a
+string should be split.
+</FONT></FONT><A NAME="@default881"></A></DD></DL><H2 CLASS="section"><A NAME="toc119"></A><A NAME="htoc131"><FONT COLOR=black><FONT SIZE=3>10.15</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_sorted</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes a list as a
+parameter and returns </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>True</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> if the list is sorted in ascending
+order and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>False</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> otherwise. You can assume (as a precondition)
+that the elements of the list can be compared with the comparison
+operators </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>&lt;</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>&gt;</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, etc.</EM></FONT></FONT><P><A NAME="@default882"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>For example, </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_sorted([1,2,2])</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> should return </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>True</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+and </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_sorted(['b','a'])</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> should return </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>False</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="anagram"></A><P><A NAME="@default883"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Two words are anagrams if you can rearrange the letters from one
+to spell the other. Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_anagram</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>
+that takes two strings and returns </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>True</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> if they are anagrams.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>The (so-called) Birthday Paradox:</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><P><A NAME="@default884"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default885"></A></P><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>has_duplicates</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes
+a list and returns </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>True</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> if there is any element that
+appears more than once. It should not modify the original
+list.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>If there are 23 students in your class, what are the chances
+that two of you have the same birthday? You can estimate this
+probability by generating random samples of twelve birthdays
+and checking for matches. Hint: you can generate random birthdays
+with the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>randint</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> function in the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>random</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module.</EM></FONT></FONT><P><A NAME="@default886"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default887"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default888"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default889"></A></P></LI></OL><P><FONT COLOR=black><FONT SIZE=3><EM>You can read about this problem at
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>wikipedia.org/wiki/Birthday_paradox</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and you can see my solution
+at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/birthday.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="duplicates"></A><P><A NAME="@default890"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default891"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>remove_duplicates</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes
+a list and returns a new list with only the unique elements from
+the original. Hint: they don&#X2019;t have to be in the same order.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default892"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default893"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default894"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default895"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function that reads the file </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>words.txt</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and builds
+a list with one element per word. Write two versions of
+this function, one using the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>append</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> method and the
+other using the idiom </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>t = t + [x]</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Which one takes
+longer to run? Why?</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/wordlist.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;8</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="wordlist1"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="bisection"></A><P><A NAME="@default896"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default897"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default898"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>To check whether a word is in the word list, you could use
+the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>in</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> operator, but it would be slow because it searches
+through the words in order.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Because the words are in alphabetical order, we can speed things up
+with a bisection search, which is similar to what you do when you look
+a word up in the dictionary. You start in the middle and check to see
+whether the word you are looking for comes before the word in the
+middle of the list. If so, then you search the first half of the list
+the same way. Otherwise you search the second half.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Either way, you cut the remaining search space in half. If the
+word list has 113,809 words, it will take about 17 steps to
+find the word or conclude that it&#X2019;s not there.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>bisect</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that takes a sorted list
+and a target value and returns the index of the value
+in the list, if it&#X2019;s there, or </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>None</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> if it&#X2019;s not.</EM></FONT></FONT></P><P><A NAME="@default899"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default900"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Or you could read the documentation of the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>bisect</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module
+and use that!
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;9</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default901"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Two words are a &#X201C;reverse pair&#X201D; if each is the reverse of the
+other. Write a program that finds all the reverse pairs in the
+word list. 
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;10</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default902"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Two words &#X201C;interlock&#X201D; if taking alternating letters from each forms
+a new word</EM></FONT></FONT><SUP><A NAME="text19" HREF="#note19"><FONT COLOR=black><FONT SIZE=3><EM>1</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>. For example, &#X201C;shoe&#X201D; and &#X201C;cold&#X201D;
+interlock to form &#X201C;schooled.&#X201D;</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a program that finds all pairs of words that interlock.
+Hint: don&#X2019;t enumerate all pairs!</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Can you find any words that are three-way interlocked; that is,
+every third letter forms a word, starting from the first, second or
+third?</EM></FONT></FONT></LI></OL></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note19" HREF="#text19"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>This exercise is inspired by an example at
+<TT>puzzlers.org</TT>.
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book010.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book012.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

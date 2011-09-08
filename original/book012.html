@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Dictionaries</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book011.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book013.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc132"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Dictionaries</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default903"></A></P><P><A NAME="@default904"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default905"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default906"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default907"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default908"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>dictionary</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is like a list, but more general. In a list,
+the indices have to be integers; in a dictionary they can
+be (almost) any type.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>You can think of a dictionary as a mapping between a set of indices
+(which are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>keys</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>) and a set of values. Each key maps to a
+value. The association of a key and a value is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>key-value pair</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or sometimes an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>item</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>As an example, we&#X2019;ll build a dictionary that maps from English
+to Spanish words, so the keys and the values are all strings.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dict</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a new dictionary with no items.
+Because </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dict</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the name of a built-in function, you
+should avoid using it as a variable name.</FONT></FONT></P><P><A NAME="@default909"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default910"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; eng2sp = dict()
+&gt;&gt;&gt; print eng2sp
+{}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The squiggly-brackets, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>{}</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, represent an empty dictionary.
+To add items to the dictionary, you can use square brackets:</FONT></FONT></P><P><A NAME="@default911"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default912"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; eng2sp['one'] = 'uno'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This line creates an item that maps from the key
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;one&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to the value </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;uno&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If we print the
+dictionary again, we see a key-value pair with a colon
+between the key and value:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print eng2sp
+{'one': 'uno'}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This output format is also an input format. For example,
+you can create a new dictionary with three items:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; eng2sp = {'one': 'uno', 'two': 'dos', 'three': 'tres'}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But if you print </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>eng2sp</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you might be surprised:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print eng2sp
+{'one': 'uno', 'three': 'tres', 'two': 'dos'}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The order of the key-value pairs is not the same. In fact, if
+you type the same example on your computer, you might get a
+different result. In general, the order of items in
+a dictionary is unpredictable.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But that&#X2019;s not a problem because
+the elements of a dictionary are never indexed with integer indices.
+Instead, you use the keys to look up the corresponding values:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print eng2sp['two']
+'dos'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The key </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;two&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> always maps to the value </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;dos&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> so the order
+of the items doesn&#X2019;t matter.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If the key isn&#X2019;t in the dictionary, you get an exception:</FONT></FONT></P><P><A NAME="@default913"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default914"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print eng2sp['four']
+KeyError: 'four'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>len</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> function works on dictionaries; it returns the
+number of key-value pairs:</FONT></FONT></P><P><A NAME="@default915"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default916"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; len(eng2sp)
+3
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator works on dictionaries; it tells you whether
+something appears as a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>key</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> in the dictionary (appearing
+as a value is not good enough).</FONT></FONT></P><P><A NAME="@default917"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default918"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default919"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 'one' in eng2sp
+True
+&gt;&gt;&gt; 'uno' in eng2sp
+False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To see whether something appears as a value in a dictionary, you
+can use the method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>values</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which returns the values as
+a list, and then use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator:</FONT></FONT></P><P><A NAME="@default920"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default921"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; vals = eng2sp.values()
+&gt;&gt;&gt; 'uno' in vals
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator uses different algorithms for lists and
+dictionaries. For lists, it uses a search algorithm, as in
+Section&#XA0;</FONT></FONT><A HREF="book009.html#find"><FONT COLOR=black><FONT SIZE=3>8.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>. As the list gets longer, the search time gets
+longer in direct proportion. For dictionaries, Python uses an
+algorithm called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>hashtable</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that has a remarkable property: the
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator takes about the same amount of time no matter how
+many items there are in a dictionary. I won&#X2019;t explain how that&#X2019;s
+possible, but you can read more about it at
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/Hash_table</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default922"></A></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="wordlist2"></A><P><A NAME="@default923"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default924"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function that reads the words in </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>words.txt</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and
+stores them as keys in a dictionary. It doesn&#X2019;t matter what the
+values are. Then you can use the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>in</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> operator
+as a fast way to check whether a string is in
+the dictionary.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>If you did Exercise&#XA0;</EM></FONT></FONT><A HREF="book011.html#wordlist1"><FONT COLOR=black><FONT SIZE=3><EM>10.8</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>, you can compare the speed
+of this implementation with the list </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>in</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> operator and the
+bisection search.</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc120"></A><A NAME="htoc133"><FONT COLOR=black><FONT SIZE=3>11.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Dictionary as a set of counters</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="histogram"></A></P><P><A NAME="@default925"></A></P><P><FONT COLOR=black><FONT SIZE=3>Suppose you are given a string and you want to count how many
+times each letter appears. There are several ways you could do it:</FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>You could create 26 variables, one for each letter of the
+alphabet. Then you could traverse the string and, for each
+character, increment the corresponding counter, probably using
+a chained conditional.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>You could create a list with 26 elements. Then you could
+convert each character to a number (using the built-in function
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ord</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>), use the number as an index into the list, and increment
+the appropriate counter.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>You could create a dictionary with characters as keys
+and counters as the corresponding values. The first time you
+see a character, you would add an item to the dictionary. After
+that you would increment the value of an existing item.</FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3>Each of these options performs the same computation, but each
+of them implements that computation in a different way.</FONT></FONT></P><P><A NAME="@default926"></A></P><P><FONT COLOR=black><FONT SIZE=3>An </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>implementation</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a way of performing a computation;
+some implementations are better than others. For example,
+an advantage of the dictionary implementation is that we don&#X2019;t
+have to know ahead of time which letters appear in the string
+and we only have to make room for the letters that do appear.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is what the code might look like:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def histogram(s):
+    d = dict()
+    for c in s:
+        if c not in d:
+            d[c] = 1
+        else:
+            d[c] += 1
+    return d
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The name of the function is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>histogram</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is a statistical
+term for a set of counters (or frequencies).</FONT></FONT></P><P><A NAME="@default927"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default928"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default929"></A></P><P><FONT COLOR=black><FONT SIZE=3>The first line of the
+function creates an empty dictionary. The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop traverses
+the string. Each time through the loop, if the character </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>c</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+not in the dictionary, we create a new item with key </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>c</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and the
+initial value 1 (since we have seen this letter once). If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>c</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+already in the dictionary we increment </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d[c]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default930"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s how it works:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; h = histogram('brontosaurus')
+&gt;&gt;&gt; print h
+{'a': 1, 'b': 1, 'o': 2, 'n': 1, 's': 2, 'r': 2, 'u': 2, 't': 1}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The histogram indicates that the letters </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;a&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;b&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+appear once; </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;o&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> appears twice, and so on.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default931"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default932"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Dictionaries have a method called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>get</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that takes a key
+and a default value. If the key appears in the dictionary,
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>get</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> returns the corresponding value; otherwise it returns
+the default value. For example:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; h = histogram('a')
+&gt;&gt;&gt; print h
+{'a': 1}
+&gt;&gt;&gt; h.get('a', 0)
+1
+&gt;&gt;&gt; h.get('b', 0)
+0
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>Use </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>get</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> to write </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>histogram</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> more concisely. You
+should be able to eliminate the </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> statement.
+</FONT></FONT></EM></P></DIV><H2 CLASS="section"><A NAME="toc121"></A><A NAME="htoc134"><FONT COLOR=black><FONT SIZE=3>11.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Looping and dictionaries</FONT></FONT></H2><P><A NAME="@default933"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default934"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default935"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you use a dictionary in a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement, it traverses
+the keys of the dictionary. For example, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_hist</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+prints each key and the corresponding value:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def print_hist(h):
+    for c in h:
+        print c, h[c]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s what the output looks like:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; h = histogram('parrot')
+&gt;&gt;&gt; print_hist(h)
+a 1
+p 1
+r 2
+t 1
+o 1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Again, the keys are in no particular order.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default936"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default937"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Dictionaries have a method called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>keys</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that returns
+the keys of the dictionary, in no particular order, as a list.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Modify </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>print_hist</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> to print the keys and their values
+in alphabetical order.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc122"></A><A NAME="htoc135"><FONT COLOR=black><FONT SIZE=3>11.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Reverse lookup</FONT></FONT></H2><P><A NAME="@default938"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default939"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default940"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default941"></A></P><P><FONT COLOR=black><FONT SIZE=3>Given a dictionary </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and a key </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>k</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, it is easy to
+find the corresponding value </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>v = d[k]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. This operation
+is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>lookup</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But what if you have </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>v</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and you want to find </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>k</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>?
+You have two problems: first, there might be more than one
+key that maps to the value </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>v</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Depending on the application,
+you might be able to pick one, or you might have to make
+a list that contains all of them. Second, there is no
+simple syntax to do a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>reverse lookup</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; you have to search.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is a function that takes a value and returns the first
+key that maps to that value:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def reverse_lookup(d, v):
+    for k in d:
+        if d[k] == v:
+            return k
+    raise ValueError
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This function is yet another example of the search pattern, but it
+uses a feature we haven&#X2019;t seen before, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>raise</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>raise</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+statement causes an exception; in this case it causes a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ValueError</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which generally indicates that there is something wrong
+with the value of a parameter.</FONT></FONT></P><P><A NAME="@default942"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default943"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default944"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default945"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default946"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default947"></A></P><P><FONT COLOR=black><FONT SIZE=3>If we get to the end of the loop, that means </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>v</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+doesn&#X2019;t appear in the dictionary as a value, so we raise an
+exception.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is an example of a successful reverse lookup:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; h = histogram('parrot')
+&gt;&gt;&gt; k = reverse_lookup(h, 2)
+&gt;&gt;&gt; print k
+r
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And an unsuccessful one:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; k = reverse_lookup(h, 3)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "&lt;stdin&gt;", line 5, in reverse_lookup
+ValueError
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The result when you raise an exception is the same as when
+Python raises one: it prints a traceback and an error message.</FONT></FONT></P><P><A NAME="@default948"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default949"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default950"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>raise</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement takes a detailed error message as an
+optional argument. For example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; raise ValueError, 'value does not appear in the dictionary'
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+ValueError: value does not appear in the dictionary
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>A reverse lookup is much slower than a forward lookup; if you
+have to do it often, or if the dictionary gets big, the performance
+of your program will suffer.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Modify </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>reverse_lookup</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> so that it builds and returns a list
+of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>all</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> keys that map to </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>v</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, or an empty list if there
+are none.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc123"></A><A NAME="htoc136"><FONT COLOR=black><FONT SIZE=3>11.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Dictionaries and lists</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>Lists can appear as values in a dictionary. For example, if you
+were given a dictionary that maps from letters to frequencies, you
+might want to invert it; that is, create a dictionary that maps
+from frequencies to letters. Since there might be several letters
+with the same frequency, each value in the inverted dictionary
+should be a list of letters.</FONT></FONT></P><P><A NAME="@default951"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default952"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here is a function that inverts a dictionary:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def invert_dict(d):
+    inv = dict()
+    for key in d:
+        val = d[key]
+        if val not in inv:
+            inv[val] = [key]
+        else:
+            inv[val].append(key)
+    return inv
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Each time through the loop, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>key</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets a key from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and 
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>val</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets the corresponding value. If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>val</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>inv</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+that means we haven&#X2019;t seen it before, so we create a new item and
+initialize it with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>singleton</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (a list that contains a
+single element). Otherwise we have seen this value before, so we
+append the corresponding key to the list.</FONT></FONT></P><P><A NAME="@default953"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here is an example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; hist = histogram('parrot')
+&gt;&gt;&gt; print hist
+{'a': 1, 'p': 1, 'r': 2, 't': 1, 'o': 1}
+&gt;&gt;&gt; inv = invert_dict(hist)
+&gt;&gt;&gt; print inv
+{1: ['a', 'p', 't', 'o'], 2: ['r']}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And here is a diagram showing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hist</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>inv</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default954"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default955"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book018.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>A dictionary is represented as a box with the type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dict</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> above it
+and the key-value pairs inside. If the values are integers, floats or
+strings, I usually draw them inside the box, but I usually draw lists
+outside the box, just to keep the diagram simple.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Lists can be values in a dictionary, as this example shows, but they
+cannot be keys. Here&#X2019;s what happens if you try:</FONT></FONT></P><P><A NAME="@default956"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default957"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = [1, 2, 3]
+&gt;&gt;&gt; d = dict()
+&gt;&gt;&gt; d[t] = 'oops'
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: list objects are unhashable
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>I mentioned earlier that a dictionary is implemented using
+a hashtable and that means that the keys have to be </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>hashable</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default958"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default959"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>hash</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a function that takes a value (of any kind)
+and returns an integer. Dictionaries use these integers,
+called hash values, to store and look up key-value pairs.</FONT></FONT></P><P><A NAME="@default960"></A></P><P><FONT COLOR=black><FONT SIZE=3>This system works fine if the keys are immutable. But if the
+keys are mutable, like lists, bad things happen. For example,
+when you create a key-value pair, Python hashes the key and 
+stores it in the corresponding location. If you modify the
+key and then hash it again, it would go to a different location.
+In that case you might have two entries for the same key,
+or you might not be able to find a key. Either way, the
+dictionary wouldn&#X2019;t work correctly.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>That&#X2019;s why the keys have to be hashable, and why mutable types like
+lists aren&#X2019;t. The simplest way to get around this limitation is to
+use tuples, which we will see in the next chapter.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Since dictionaries are mutable, they can&#X2019;t be used as keys,
+but they </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>can</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> be used as values.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Read the documentation of the dictionary method </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>setdefault</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+and use it to write a more concise version of </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>invert_dict</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT><P><A NAME="@default961"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default962"></A></P></DIV><H2 CLASS="section"><A NAME="toc124"></A><A NAME="htoc137"><FONT COLOR=black><FONT SIZE=3>11.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Memos</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>If you played with the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> function from
+Section&#XA0;</FONT></FONT><A HREF="book007.html#one more example"><FONT COLOR=black><FONT SIZE=3>6.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>, you might have noticed that the bigger
+the argument you provide, the longer the function takes to run.
+Furthermore, the run time increases very quickly.</FONT></FONT></P><P><A NAME="@default963"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default964"></A></P><P><FONT COLOR=black><FONT SIZE=3>To understand why, consider this </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>call graph</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> for
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=4</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book019.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>A call graph shows a set function frames, with lines connecting each
+frame to the frames of the functions it calls. At the top of the
+graph, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=4</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> calls </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. In turn, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> calls
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n=1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. And so on.</FONT></FONT></P><P><A NAME="@default965"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default966"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default967"></A></P><P><FONT COLOR=black><FONT SIZE=3>Count how many times </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci(0)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci(1)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are
+called. This is an inefficient solution to the problem, and it gets
+worse as the argument gets bigger.</FONT></FONT></P><P><A NAME="@default968"></A></P><P><FONT COLOR=black><FONT SIZE=3>One solution is to keep track of values that have already been
+computed by storing them in a dictionary. A previously computed value
+that is stored for later use is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>memo</B></FONT></FONT><SUP><A NAME="text20" HREF="#note20"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>. Here is an
+implementation of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> using memos:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>known = {0:0, 1:1}
+
+def fibonacci(n):
+    if n in known:
+        return known[n]
+
+    res = fibonacci(n-1) + fibonacci(n-2)
+    known[n] = res
+    return res
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>known</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a dictionary that keeps track of the Fibonacci
+numbers we already know. It starts with
+two items: 0 maps to 0 and 1 maps to 1.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Whenever </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is called, it checks </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>known</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+If the result is already there, it can return
+immediately. Otherwise it has to 
+compute the new value, add it to the dictionary, and return it.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Run this version of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>fibonacci</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and the original with
+a range of parameters and compare their run times.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc125"></A><A NAME="htoc138"><FONT COLOR=black><FONT SIZE=3>11.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Global variables</FONT></FONT></H2><P><A NAME="@default969"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default970"></A></P><P><FONT COLOR=black><FONT SIZE=3>In the previous example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>known</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is created outside the function,
+so it belongs to the special frame called </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__main__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>.
+Variables in </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__main__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> are sometimes called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>global</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+because they can be accessed from any function. Unlike local
+variables, which disappear when their function ends, global variables
+persist from one function call to the next.</FONT></FONT></P><P><A NAME="@default971"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is common to use global variables for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>flags</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; that is, 
+boolean variables that indicate (&#X201C;flag&#X201D;) whether a condition
+is true. For example, some programs use
+a flag named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>verbose</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to control the level of detail in the
+output:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>verbose = True
+
+def example1():
+    if verbose:
+        print 'Running example1'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you try to reassign a global variable, you might be surprised.
+The following example is supposed to keep track of whether the
+function has been called:</FONT></FONT></P><P><A NAME="@default972"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default973"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>been_called = False
+
+def example2():
+    been_called = True         # WRONG
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But if you run it you will see that the value of </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>been_called</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+doesn&#X2019;t change. The problem is that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>example2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a new local
+variable named </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>been_called</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. The local variable goes away when
+the function ends, and has no effect on the global variable.</FONT></FONT></P><P><A NAME="@default974"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default975"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default976"></A></P><P><FONT COLOR=black><FONT SIZE=3>To reassign a global variable inside a function you have to
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>declare</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the global variable before you use it:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>been_called = False
+
+def example2():
+    global been_called 
+    been_called = True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>global</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement tells the interpreter
+something like, &#X201C;In this function, when I say </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>been_called</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, I
+mean the global variable; don&#X2019;t create a local one.&#X201D;</FONT></FONT></P><P><A NAME="@default977"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default978"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s an example that tries to update a global variable:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>count = 0
+
+def example3():
+    count = count + 1          # WRONG
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you run it you get:</FONT></FONT></P><P><A NAME="@default979"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default980"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>UnboundLocalError: local variable 'count' referenced before assignment
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Python assumes that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>count</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is local, which means
+that you are reading it before writing it. The solution, again,
+is to declare </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>count</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> global.</FONT></FONT></P><P><A NAME="@default981"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def example3():
+    global count
+    count += 1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If the global value is mutable, you can modify it without
+declaring it:</FONT></FONT></P><P><A NAME="@default982"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>known = {0:0, 1:1}
+
+def example4():
+    known[2] = 1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>So you can add, remove and replace elements of a global list or
+dictionary, but if you want to reassign the variable, you
+have to declare it:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def example5():
+    global known
+    known = dict()
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc126"></A><A NAME="htoc139"><FONT COLOR=black><FONT SIZE=3>11.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Long integers</FONT></FONT></H2><P><A NAME="@default983"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default984"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default985"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you compute </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fibonacci(50)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you get:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fibonacci(50)
+12586269025L
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>L</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> at the end indicates that the result is a long
+integer</FONT></FONT><SUP><A NAME="text21" HREF="#note21"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>, or type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>long</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default986"></A></P><P><FONT COLOR=black><FONT SIZE=3>Values with type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>int</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> have a limited range;
+long integers can be arbitrarily big, but as they get bigger
+they consume more space and time.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The mathematical operators work on long integers, and the functions
+in the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>math</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module, too, so in general any code that
+works with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>int</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> will also work with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>long</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Any time the result of a computation is too big to be represented with
+an integer, Python converts the result as a long integer:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 1000 * 1000
+1000000
+&gt;&gt;&gt; 100000 * 100000
+10000000000L
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In the first case the result has type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>int</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; in the
+second case it is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>long</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default987"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default988"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default989"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Exponentiation of large integers is the basis of common
+algorithms for public-key encryption. Read the Wikipedia
+page on the RSA algorithm</EM></FONT></FONT><SUP><A NAME="text22" HREF="#note22"><FONT COLOR=black><FONT SIZE=3><EM>3</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>
+and write functions to encode and decode messages.</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc127"></A><A NAME="htoc140"><FONT COLOR=black><FONT SIZE=3>11.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default990"></A></P><P><FONT COLOR=black><FONT SIZE=3>As you work with bigger datasets it can become unwieldy to
+debug by printing and checking data by hand. Here are some
+suggestions for debugging large datasets:</FONT></FONT></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Scale down the input:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> If possible, reduce the size of the
+dataset. For example if the program reads a text file, start with
+just the first 10 lines, or with the smallest example you can find.
+You can either edit the files themselves, or (better) modify the
+program so it reads only the first </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> lines.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>If there is an error, you can reduce </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to the smallest
+value that manifests the error, and then increase it gradually
+as you find and correct errors.</FONT></FONT></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Check summaries and types:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Instead of printing and checking the
+entire dataset, consider printing summaries of the data: for example,
+the number of items in a dictionary or the total of a list of numbers.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>A common cause of runtime errors is a value that is not the right
+type. For debugging this kind of error, it is often enough to print
+the type of a value.</FONT></FONT></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Write self-checks:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Sometimes you can write code to check
+for errors automatically. For example, if you are computing the
+average of a list of numbers, you could check that the result is
+not greater than the largest element in the list or less than
+the smallest. This is called a &#X201C;sanity check&#X201D; because it detects
+results that are &#X201C;insane.&#X201D;</FONT></FONT><P><A NAME="@default991"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default992"></A></P><P><FONT COLOR=black><FONT SIZE=3>Another kind of check compares the results of two different
+computations to see if they are consistent. This is called a
+&#X201C;consistency check.&#X201D;</FONT></FONT></P></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Pretty print the output:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Formatting debugging output
+can make it easier to spot an error. We saw an example in
+Section&#XA0;</FONT></FONT><A HREF="book007.html#factdebug"><FONT COLOR=black><FONT SIZE=3>6.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>. The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pprint</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module provides
+a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pprint</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> function that displays built-in types in
+a more human-readable format.</FONT></FONT><P><A NAME="@default993"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default994"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default995"></A></P></DD></DL><P><FONT COLOR=black><FONT SIZE=3>Again, time you spend building scaffolding can reduce
+the time you spend debugging.</FONT></FONT></P><P><A NAME="@default996"></A></P><H2 CLASS="section"><A NAME="toc128"></A><A NAME="htoc141"><FONT COLOR=black><FONT SIZE=3>11.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>dictionary:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A mapping from a set of keys to their
+corresponding values.
+</FONT></FONT><A NAME="@default997"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>key-value pair:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The representation of the mapping from
+a key to a value.
+</FONT></FONT><A NAME="@default998"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>item:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Another name for a key-value pair.
+</FONT></FONT><A NAME="@default999"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>key:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An object that appears in a dictionary as the
+first part of a key-value pair.
+</FONT></FONT><A NAME="@default1000"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>value:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An object that appears in a dictionary as the
+second part of a key-value pair. This is more specific than
+our previous use of the word &#X201C;value.&#X201D;
+</FONT></FONT><A NAME="@default1001"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>implementation:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A way of performing a computation.
+</FONT></FONT><A NAME="@default1002"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>hashtable:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The algorithm used to implement Python
+dictionaries.
+</FONT></FONT><A NAME="@default1003"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>hash function:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function used by a hashtable to compute the
+location for a key.
+</FONT></FONT><A NAME="@default1004"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>hashable:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A type that has a hash function. Immutable
+types like integers,
+floats and strings are hashable; mutable types like lists and
+dictionaries are not.
+</FONT></FONT><A NAME="@default1005"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>lookup:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A dictionary operation that takes a key and finds
+the corresponding value.
+</FONT></FONT><A NAME="@default1006"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>reverse lookup:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A dictionary operation that takes a value and finds
+one or more keys that map to it.
+</FONT></FONT><A NAME="@default1007"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>singleton:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A list (or other sequence) with a single element.
+</FONT></FONT><A NAME="@default1008"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>call graph:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A diagram that shows every frame created during
+the execution of a program, with an arrow from each caller to
+each callee. 
+</FONT></FONT><A NAME="@default1009"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1010"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>histogram:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A set of counters.
+</FONT></FONT><A NAME="@default1011"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>memo:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A computed value stored to avoid unnecessary future 
+computation.
+</FONT></FONT><A NAME="@default1012"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>global variable:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A variable defined outside a function. Global
+variables can be accessed from any function.
+</FONT></FONT><A NAME="@default1013"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>flag:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A boolean variable used to indicate whether a condition
+is true.
+</FONT></FONT><A NAME="@default1014"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>declaration:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A statement like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>global</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that tells the
+interpreter something about a variable.
+</FONT></FONT><A NAME="@default1015"></A></DD></DL><H2 CLASS="section"><A NAME="toc129"></A><A NAME="htoc142"><FONT COLOR=black><FONT SIZE=3>11.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;8</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default1016"></A><P><FONT COLOR=black><FONT SIZE=3><EM>If you did Exercise&#XA0;</EM></FONT></FONT><A HREF="book011.html#duplicates"><FONT COLOR=black><FONT SIZE=3><EM>10.6</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>, you already have
+a function named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>has_duplicates</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes a list
+as a parameter and returns </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>True</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> if there is any object
+that appears more than once in the list.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Use a dictionary to write a faster, simpler version of
+</EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>has_duplicates</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;9</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="exrotatepairs"></A><P><A NAME="@default1017"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1018"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Two words are &#X201C;rotate pairs&#X201D; if you can rotate one of them
+and get the other (see </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>rotate_word</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> in Exercise&#XA0;</EM></FONT></FONT><A HREF="book009.html#exrotate"><FONT COLOR=black><FONT SIZE=3><EM>8.12</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>).</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a program that reads a wordlist and finds all the rotate
+pairs.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;10</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default1019"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1020"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Here&#X2019;s another Puzzler from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>Car
+Talk</FONT></FONT><SUP><A NAME="text23" HREF="#note23"><FONT COLOR=black><FONT SIZE=3><EM>4</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>:</EM></FONT></FONT></P><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3><EM>
+This was sent in by a fellow named Dan O&#X2019;Leary. He came upon a common
+one-syllable, five-letter word recently that has the following unique
+property. When you remove the first letter, the remaining letters form
+a homophone of the original word, that is a word that sounds exactly
+the same. Replace the first letter, that is, put it back and remove
+the second letter and the result is yet another homophone of the
+original word. And the question is, what&#X2019;s the word?</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Now I&#X2019;m going to give you an example that doesn&#X2019;t work. Let&#X2019;s look at
+the five-letter word, &#X2018;wrack.&#X2019; W-R-A-C-K, you know like to &#X2018;wrack with
+pain.&#X2019; If I remove the first letter, I am left with a four-letter
+word, &#X2019;R-A-C-K.&#X2019; As in, &#X2018;Holy cow, did you see the rack on that buck!
+It must have been a nine-pointer!&#X2019; It&#X2019;s a perfect homophone. If you
+put the &#X2018;w&#X2019; back, and remove the &#X2018;r,&#X2019; instead, you&#X2019;re left with the
+word, &#X2018;wack,&#X2019; which is a real word, it&#X2019;s just not a homophone of the
+other two words.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>But there is, however, at least one word that Dan and we know of,
+which will yield two homophones if you remove either of the first two
+letters to make two, new four-letter words. The question is, what&#X2019;s
+the word?
+</EM></FONT></FONT></P></BLOCKQUOTE><P><A NAME="@default1021"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1022"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1023"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>You can use the dictionary from Exercise&#XA0;</EM></FONT></FONT><A HREF="#wordlist2"><FONT COLOR=black><FONT SIZE=3><EM>11.1</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM> to check
+whether a string is in the word list.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>To check whether two words are homophones, you can use the CMU
+Pronouncing Dictionary. You can download it from
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>www.speech.cs.cmu.edu/cgi-bin/cmudict</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> or from
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/c06d</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and you can also download
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/pronounce.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, which provides a function
+named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>read_dictionary</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that reads the pronouncing dictionary and
+returns a Python dictionary that maps from each word to a string that
+describes its primary pronunciation.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a program that lists all the words that solve the Puzzler.
+You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/homophone.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note20" HREF="#text20"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See
+<TT>wikipedia.org/wiki/Memoization</TT>
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note21" HREF="#text21"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>In Python 3.0, type <TT>long</TT> is gone; all integers,
+even really big ones, are type <TT>int</TT>.
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note22" HREF="#text22"><FONT COLOR=black><FONT SIZE=3>3</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/RSA</TT>
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note23" HREF="#text23"><FONT COLOR=black><FONT SIZE=3>4</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3><TT>www.cartalk.com/content/puzzler/transcripts/200717</TT>
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book011.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book013.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

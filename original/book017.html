@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Classes and functions</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book016.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book018.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc191"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;16</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Classes and functions</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="time"></A></P><H2 CLASS="section"><A NAME="toc174"></A><A NAME="htoc192"><FONT COLOR=black><FONT SIZE=3>16.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Time</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>As another example of a user-defined type, we&#X2019;ll define a class called
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that records the time of day. The class definition looks
+like this:</FONT></FONT></P><P><A NAME="@default1436"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1437"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1438"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1439"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>class Time(object):
+    """represents the time of day.
+       attributes: hour, minute, second"""
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>We can create a new </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> object and assign
+attributes for hours, minutes, and seconds:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>time = Time()
+time.hour = 11
+time.minute = 59
+time.second = 30
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The state diagram for the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> object looks like this:</FONT></FONT></P><P><A NAME="@default1440"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1441"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1442"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1443"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book025.png"></FONT></FONT></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="printtime"></A><FONT COLOR=black><FONT SIZE=3><EM>
+Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>print_time</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes a 
+Time object and prints it in the form </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>hour:minute:second</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+Hint: the format sequence </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>'%.2d'</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> prints an integer using
+at least two digits, including a leading zero if necessary.
+</EM></FONT></FONT></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="is_after"></A><P><A NAME="@default1444"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a boolean function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>is_after</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that
+takes two Time objects, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>t1</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>t2</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and
+returns </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>True</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> if </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>t1</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> follows </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>t2</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> chronologically and
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>False</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> otherwise. Challenge: don&#X2019;t use an </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>if</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> statement.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc175"></A><A NAME="htoc193"><FONT COLOR=black><FONT SIZE=3>16.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Pure functions</FONT></FONT></H2><P><A NAME="@default1445"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1446"></A></P><P><FONT COLOR=black><FONT SIZE=3>In the next few sections, we&#X2019;ll write two functions that add time
+values. They demonstrate two kinds of functions: pure functions and
+modifiers. They also demonstrate a development plan I&#X2019;ll call </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>prototype and patch</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is a way of tackling a complex problem
+by starting with a simple prototype and incrementally dealing with the
+complications.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is a simple prototype of </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>add_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def add_time(t1, t2):
+    sum = Time()
+    sum.hour = t1.hour + t2.hour
+    sum.minute = t1.minute + t2.minute
+    sum.second = t1.second + t2.second
+    return sum
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The function creates a new </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> object, initializes its
+attributes, and returns a reference to the new object. This is called
+a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>pure function</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because it does not modify any of the objects
+passed to it as arguments and it has no effect,
+like displaying a value or getting user input, 
+other than returning a value.</FONT></FONT></P><P><A NAME="@default1447"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1448"></A></P><P><FONT COLOR=black><FONT SIZE=3>To test this function, I&#X2019;ll create two Time objects: </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>start</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+contains the start time of a movie, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>Monty Python and the
+Holy Grail</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>duration</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> contains the run time of the movie,
+which is one hour 35 minutes.</FONT></FONT></P><P><A NAME="@default1449"></A></P><P><CODE><FONT COLOR=black><FONT SIZE=3>add_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> figures out when the movie will be done.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; start = Time()
+&gt;&gt;&gt; start.hour = 9
+&gt;&gt;&gt; start.minute = 45
+&gt;&gt;&gt; start.second =  0
+
+&gt;&gt;&gt; duration = Time()
+&gt;&gt;&gt; duration.hour = 1
+&gt;&gt;&gt; duration.minute = 35
+&gt;&gt;&gt; duration.second = 0
+
+&gt;&gt;&gt; done = add_time(start, duration)
+&gt;&gt;&gt; print_time(done)
+10:80:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The result, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>10:80:00</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> might not be what you were hoping
+for. The problem is that this function does not deal with cases where the
+number of seconds or minutes adds up to more than sixty. When that
+happens, we have to &#X201C;carry&#X201D; the extra seconds into the minute column
+or the extra minutes into the hour column.</FONT></FONT></P><P><A NAME="@default1450"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s an improved version:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def add_time(t1, t2):
+    sum = Time()
+    sum.hour = t1.hour + t2.hour
+    sum.minute = t1.minute + t2.minute
+    sum.second = t1.second + t2.second
+
+    if sum.second &gt;= 60:
+        sum.second -= 60
+        sum.minute += 1
+
+    if sum.minute &gt;= 60:
+        sum.minute -= 60
+        sum.hour += 1
+
+    return sum
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Although this function is correct, it is starting to get big.
+We will see a shorter alternative later.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc176"></A><A NAME="htoc194"><FONT COLOR=black><FONT SIZE=3>16.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Modifiers</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="increment"></A></P><P><A NAME="@default1451"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1452"></A></P><P><FONT COLOR=black><FONT SIZE=3>Sometimes it is useful for a function to modify the objects it gets as
+parameters. In that case, the changes are visible to the caller.
+Functions that work this way are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>modifiers</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1453"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which adds a given number of seconds to a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+object, can be written naturally as a
+modifier. Here is a rough draft:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def increment(time, seconds):
+    time.second += seconds
+
+    if time.second &gt;= 60:
+        time.second -= 60
+        time.minute += 1
+
+    if time.minute &gt;= 60:
+        time.minute -= 60
+        time.hour += 1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first line performs the basic operation; the remainder deals
+with the special cases we saw before.</FONT></FONT></P><P><A NAME="@default1454"></A></P><P><FONT COLOR=black><FONT SIZE=3>Is this function correct? What happens if the parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>seconds</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+is much greater than sixty? </FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>In that case, it is not enough to carry
+once; we have to keep doing it until </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>time.second</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is less than sixty.
+One solution is to replace the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+statements. That would make the function correct, but not
+very efficient.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a correct version of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>increment</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that
+doesn&#X2019;t contain any loops.
+</EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>Anything that can be done with modifiers can also be done with pure
+functions. In fact, some programming languages only allow pure
+functions. There is some evidence that programs that use pure
+functions are faster to develop and less error-prone than programs
+that use modifiers. But modifiers are convenient at times,
+and functional programs tend to be less efficient.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>In general, I recommend that you write pure functions whenever it is
+reasonable and resort to modifiers only if there is a compelling
+advantage. This approach might be called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>functional
+programming style</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1455"></A></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a &#X201C;pure&#X201D; version of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>increment</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that creates and returns
+a new Time object rather than modifying the parameter.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc177"></A><A NAME="htoc195"><FONT COLOR=black><FONT SIZE=3>16.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Prototyping versus planning</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="prototype"></A></P><P><A NAME="@default1456"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1457"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1458"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1459"></A></P><P><FONT COLOR=black><FONT SIZE=3>The development plan I am demonstrating is called &#X201C;prototype and
+patch.&#X201D; For each function, I wrote a prototype that performed the
+basic calculation and then tested it, patching errors along the
+way.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This approach can be effective, especially if you don&#X2019;t yet have a
+deep understanding of the problem. But incremental corrections can
+generate code that is unnecessarily complicated&#X2014;since it deals with
+many special cases&#X2014;and unreliable&#X2014;since it is hard to know if you
+have found all the errors.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>An alternative is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>planned development</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, in which high-level
+insight into the problem can make the programming much easier. In
+this case, the insight is that a Time object is really a three-digit
+number in base 60 (see </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/Sexagesimal</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>)! The
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>second</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> attribute is the &#X201C;ones column,&#X201D; the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>minute</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+attribute is the &#X201C;sixties column,&#X201D; and the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hour</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> attribute is
+the &#X201C;thirty-six hundreds column.&#X201D;</FONT></FONT></P><P><A NAME="@default1460"></A></P><P><FONT COLOR=black><FONT SIZE=3>When we wrote </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>add_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we were effectively
+doing addition in base 60, which is why we had to carry from one
+column to the next.</FONT></FONT></P><P><A NAME="@default1461"></A></P><P><FONT COLOR=black><FONT SIZE=3>This observation suggests another approach to the whole problem&#X2014;we
+can convert Time objects to integers and take advantage of the fact
+that the computer knows how to do integer arithmetic. </FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is a function that converts Times to integers:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def time_to_int(time):
+    minutes = time.hour * 60 + time.minute
+    seconds = minutes * 60 + time.second
+    return seconds
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And here is the function that converts integers to Times
+(recall that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>divmod</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> divides the first argument by the second
+and returns the quotient and remainder as a tuple).</FONT></FONT></P><P><A NAME="@default1462"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def int_to_time(seconds):
+    time = Time()
+    minutes, time.second = divmod(seconds, 60)
+    time.hour, time.minute = divmod(minutes, 60)
+    return time
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You might have to think a bit, and run some tests, to convince
+yourself that these functions are correct. One way to test them is to
+check that </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>time_to_int(int_to_time(x)) == x</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> for many values of
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. This is an example of a consistency check.</FONT></FONT></P><P><A NAME="@default1463"></A></P><P><FONT COLOR=black><FONT SIZE=3>Once you are convinced they are correct, you can use them to 
+rewrite </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>add_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def add_time(t1, t2):
+    seconds = time_to_int(t1) + time_to_int(t2)
+    return int_to_time(seconds)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This version is shorter than the original, and easier to verify.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Rewrite </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>increment</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> using </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>time_to_int</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>int_to_time</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>In some ways, converting from base 60 to base 10 and back is harder
+than just dealing with times. Base conversion is more abstract; our
+intuition for dealing with time values is better.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But if we have the insight to treat times as base 60 numbers and make
+the investment of writing the conversion functions (</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>time_to_int</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>int_to_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>), we get a program that is shorter, easier to
+read and debug, and more reliable.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>It is also easier to add features later. For example, imagine
+subtracting two Times to find the duration between them. The
+na&#XEF;ve approach would be to implement subtraction with borrowing.
+Using the conversion functions would be easier and more likely to be
+correct.</FONT></FONT></P><P><A NAME="@default1464"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1465"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1466"></A></P><P><FONT COLOR=black><FONT SIZE=3>Ironically, sometimes making a problem harder (or more general) makes it
+easier (because there are fewer special cases and fewer opportunities
+for error).</FONT></FONT></P><H2 CLASS="section"><A NAME="toc178"></A><A NAME="htoc196"><FONT COLOR=black><FONT SIZE=3>16.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1467"></A></P><P><FONT COLOR=black><FONT SIZE=3>A Time object is well-formed if the values of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>minutes</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>seconds</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are between 0 and 60 (including 0 but not 60) and if 
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hours</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is positive. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hours</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>minutes</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> should be
+integral values, but we might allow </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>seconds</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to have a
+fraction part.</FONT></FONT></P><P><A NAME="@default1468"></A></P><P><FONT COLOR=black><FONT SIZE=3>These kind of requirements are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>invariants</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because
+they should always be true. To put it a different way, if they
+are not true, then something has gone wrong.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Writing code to check your invariants can help you detect errors
+and find their causes. For example, you might have a function
+like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>valid_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> that takes a Time object and returns
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if it violates an invariant:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def valid_time(time):
+    if time.hours &lt; 0 or time.minutes &lt; 0 or time.seconds &lt; 0:
+        return False
+    if time.minutes &gt;= 60 or time.seconds &gt;= 60:
+        return False
+    return True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Then at the beginning of each function you could check the
+arguments to make sure they are valid:</FONT></FONT></P><P><A NAME="@default1469"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1470"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def add_time(t1, t2):
+    if not valid_time(t1) or not valid_time(t2):
+        raise ValueError, 'invalid Time object in add_time'
+    seconds = time_to_int(t1) + time_to_int(t2)
+    return int_to_time(seconds)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Or you could use an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>assert</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement, which checks a given invariant
+and raises an exception if it fails:</FONT></FONT></P><P><A NAME="@default1471"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1472"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def add_time(t1, t2):
+    assert valid_time(t1) and valid_time(t2)
+    seconds = time_to_int(t1) + time_to_int(t2)
+    return int_to_time(seconds)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>assert</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements are useful because they distinguish
+code that deals with normal conditions from code
+that checks for errors.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc179"></A><A NAME="htoc197"><FONT COLOR=black><FONT SIZE=3>16.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>prototype and patch:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A development plan that involves
+writing a rough draft of a program, testing, and correcting errors as
+they are found.
+</FONT></FONT><A NAME="@default1473"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>planned development:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A development plan that involves
+high-level insight into the problem and more planning than incremental
+development or prototype development.
+</FONT></FONT><A NAME="@default1474"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>pure function:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function that does not modify any of the objects it
+receives as arguments. Most pure functions are fruitful.
+</FONT></FONT><A NAME="@default1475"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>modifier:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function that changes one or more of the objects it
+receives as arguments. Most modifiers are fruitless.
+</FONT></FONT><A NAME="@default1476"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>functional programming style:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A style of program design in which the
+majority of functions are pure.
+</FONT></FONT><A NAME="@default1477"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>invariant:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A condition that should always be true during the
+execution of a program.
+</FONT></FONT><A NAME="@default1478"></A></DD></DL><H2 CLASS="section"><A NAME="toc180"></A><A NAME="htoc198"><FONT COLOR=black><FONT SIZE=3>16.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>mul_time</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes a Time object
+and a number and returns a new Time object that contains
+the product of the original Time and the number.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Then use </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>mul_time</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> to write a function that takes a Time
+object that represents the finishing time in a race, and a number
+that represents the distance, and returns a Time object that represents
+the average pace (time per mile).</EM></FONT></FONT></P><P><A NAME="@default1479"></A></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1480"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1481"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a class definition for a Date object that has attributes </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>day</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>month</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>year</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Write a function called
+</EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>increment_date</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes a Date object, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>date</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and an
+integer, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>n</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and returns a new Date object that
+represents the day </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>n</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> days after </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>date</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Hint:
+&#X201C;Thirty days hath September...&#X201D; Challenge: does your function
+deal with leap years correctly? See </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>wikipedia.org/wiki/Leap_year</TT></EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;8</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1482"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1483"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>datetime</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module provides </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>date</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>time</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> objects
+that are similar to the Date and Time objects in this chapter, but
+they provide a rich set of methods and operators. Read the
+documentation at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>docs.python.org/lib/datetime-date.html</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Use the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>datetime</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module to write a program that
+gets the current date and prints the day of the week.</EM></FONT></FONT><P><A NAME="@default1484"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a program that takes a birthday as input
+and prints the user&#X2019;s age and the number of days, hours,
+minutes and seconds until their next birthday.
+</EM></FONT></FONT></LI></OL></DIV><HR>
+<A HREF="book016.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book018.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Variables, expressions and statements</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book002.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book004.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc15"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Variables, expressions and statements</FONT></FONT></H1><H2 CLASS="section"><A NAME="toc12"></A><A NAME="htoc16"><FONT COLOR=black><FONT SIZE=3>2.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Values and types</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default104"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default105"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default106"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>value</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is one of the basic things a program works with,
+like a letter or a
+number. The values we have seen so far
+are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>'Hello, World!'</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>These values belong to different </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>types</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an integer, and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>'Hello, World!'</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>string</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+so-called because it contains a &#X201C;string&#X201D; of letters.
+You (and the interpreter) can identify
+strings because they are enclosed in quotation marks.</FONT></FONT></P><P><A NAME="@default107"></A></P><P><FONT COLOR=black><FONT SIZE=3>The print statement also works for integers.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print 4
+4
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you are not sure what type a value has, the interpreter can tell you.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; type('Hello, World!')
+&lt;type 'str'&gt;
+&gt;&gt;&gt; type(17)
+&lt;type 'int'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Not surprisingly, strings belong to the type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>str</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+integers belong to the type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>int</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Less obviously, numbers
+with a decimal point belong to a type called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>float</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+because these numbers are represented in a
+format called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>floating-point</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default108"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default109"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default110"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default111"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default112"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default113"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default114"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; type(3.2)
+&lt;type 'float'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>What about values like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>'17'</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>'3.2'</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>?
+They look like numbers, but they are in quotation marks like
+strings.</FONT></FONT></P><P><A NAME="@default115"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; type('17')
+&lt;type 'str'&gt;
+&gt;&gt;&gt; type('3.2')
+&lt;type 'str'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>They&#X2019;re strings.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>When you type a large integer, you might be tempted to use commas
+between groups of three digits, as in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1,000,000</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. This is not a
+legal integer in Python, but it is legal:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print 1,000,000
+1 0 0
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Well, that&#X2019;s not what we expected at all! Python interprets </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1,000,000</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a comma-separated sequence of integers, which it
+prints with spaces between.</FONT></FONT></P><P><A NAME="@default116"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default117"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default118"></A></P><P><FONT COLOR=black><FONT SIZE=3>This is the first example we have seen of a semantic error: the code
+runs without producing an error message, but it doesn&#X2019;t do the
+&#X201C;right&#X201D; thing.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc13"></A><A NAME="htoc17"><FONT COLOR=black><FONT SIZE=3>2.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Variables</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default119"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default120"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default121"></A></P><P><FONT COLOR=black><FONT SIZE=3>One of the most powerful features of a programming language is the
+ability to manipulate </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>variables</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. A variable is a name that
+refers to a value.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>An </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>assignment statement</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates new variables and gives
+them values:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; message = 'And now for something completely different'
+&gt;&gt;&gt; n = 17
+&gt;&gt;&gt; pi = 3.1415926535897931
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This example makes three assignments. The first assigns a string
+to a new variable named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>message</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>;
+the second gives the integer </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>17</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; the third
+assigns the (approximate) value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X3C0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3> to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pi</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default122"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default123"></A></P><P><FONT COLOR=black><FONT SIZE=3>A common way to represent variables on paper is to write the name with
+an arrow pointing to the variable&#X2019;s value. This kind of figure is
+called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>state diagram</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because it shows what state each of the
+variables is in (think of it as the variable&#X2019;s state of mind).
+This diagram shows the result of the previous example:</FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book003.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>To display the value of a variable, you can use a print statement:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print n
+17
+&gt;&gt;&gt; print pi
+3.14159265359
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The type of a variable is the type of the value it refers to.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; type(message)
+&lt;type 'str'&gt;
+&gt;&gt;&gt; type(n)
+&lt;type 'int'&gt;
+&gt;&gt;&gt; type(pi)
+&lt;type 'float'&gt;
+</FONT></FONT></PRE><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+If you type an integer with a leading zero, you might get
+a confusing error:</EM></FONT></FONT><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; zipcode = 02492
+                  ^
+SyntaxError: invalid token
+</FONT></FONT></EM></PRE><P><EM><EM><FONT COLOR=black><FONT SIZE=3>Other number seem to work, but the results are bizarre:</FONT></FONT></EM></EM></P><PRE CLASS="verbatim"><EM><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; zipcode = 02132
+&gt;&gt;&gt; print zipcode
+1114
+</FONT></FONT></EM></EM></PRE><P><EM><EM><FONT COLOR=black><FONT SIZE=3>Can you figure out what is going on? Hint: print the
+values </FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3><TT>01</TT></FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3><TT>010</TT></FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3><TT>0100</TT></FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3><TT>01000</TT></FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></EM></P><P><A NAME="@default124"></A></P></DIV><H2 CLASS="section"><A NAME="toc14"></A><A NAME="htoc18"><FONT COLOR=black><FONT SIZE=3>2.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Variable names and keywords</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default125"></A></P><P><FONT COLOR=black><FONT SIZE=3>Programmers generally choose names for their variables that
+are meaningful&#X2014;they document what the variable is used for.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Variable names can be arbitrarily long. They can contain
+both letters and numbers, but they have to begin with a letter.
+It is legal to use uppercase letters, but it is a good idea
+to begin variable names with a lowercase letter (you&#X2019;ll
+see why later).</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The underscore character (</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>_</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>) can appear in a name.
+It is often used in names with multiple words, such as
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>my_name</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>airspeed_of_unladen_swallow</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default126"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you give a variable an illegal name, you get a syntax error:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 76trombones = 'big parade'
+SyntaxError: invalid syntax
+&gt;&gt;&gt; more@ = 1000000
+SyntaxError: invalid syntax
+&gt;&gt;&gt; class = 'Advanced Theoretical Zymurgy'
+SyntaxError: invalid syntax
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>76trombones</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is illegal because it does not begin with a letter.
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>more@</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is illegal because it contains an illegal character, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>@</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. But what&#X2019;s wrong with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>class</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>?</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>It turns out that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>class</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is one of Python&#X2019;s </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>keywords</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The
+interpreter uses keywords to recognize the structure of the program,
+and they cannot be used as variable names.</FONT></FONT></P><P><A NAME="@default127"></A></P><P><FONT COLOR=black><FONT SIZE=3>Python has 31 keywords:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>and       del       from      not       while    
+as        elif      global    or        with     
+assert    else      if        pass      yield    
+break     except    import    print              
+class     exec      in        raise              
+continue  finally   is        return             
+def       for       lambda    try
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You might want to keep this list handy. If the interpreter complains
+about one of your variable names and you don&#X2019;t know why, see if it
+is on this list.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc15"></A><A NAME="htoc19"><FONT COLOR=black><FONT SIZE=3>2.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Statements</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>A statement is a unit of code that the Python interpreter can
+execute. We have seen two kinds of statements: print
+and assignment.</FONT></FONT></P><P><A NAME="@default128"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default129"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default130"></A></P><P><FONT COLOR=black><FONT SIZE=3>When you type a statement in interactive mode, the interpreter
+executes it and displays the result, if there is one.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>A script usually contains a sequence of statements. If there
+is more than one statement, the results appear one at a time
+as the statements execute.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, the script</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>print 1
+x = 2
+print x
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>produces the output</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>1
+2
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The assignment statement produces no output.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc16"></A><A NAME="htoc20"><FONT COLOR=black><FONT SIZE=3>2.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Operators and operands</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default131"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default132"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default133"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default134"></A></P><P><FONT COLOR=black><FONT SIZE=3><B>Operators</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are special symbols that represent computations like
+addition and multiplication. The values the operator is applied to
+are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>operands</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The operators </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>-</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>*</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>/</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>**</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+perform addition, subtraction, multiplication, division and
+exponentiation, as in the following examples:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>20+32   hour-1   hour*60+minute   minute/60   5**2   (5+9)*(15-7)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In some other languages, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>^</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is used for exponentiation, but
+in Python it is a bitwise operator called XOR. I won&#X2019;t cover
+bitwise operators in this book, but you can read about
+them at </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>wiki.python.org/moin/BitwiseOperators</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default135"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default136"></A></P><P><FONT COLOR=black><FONT SIZE=3>The division operator might not do what you expect:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; minute = 59
+&gt;&gt;&gt; minute/60
+0
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>minute</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 59, and in conventional arithmetic 59
+divided by 60 is 0.98333, not 0. The reason for the discrepancy is
+that Python is performing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>floor division</B></FONT></FONT><SUP><A NAME="text4" HREF="#note4"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default137"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default138"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default139"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default140"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default141"></A></P><P><FONT COLOR=black><FONT SIZE=3>When both of the operands are integers, the result is also an
+integer; floor division chops off the fraction
+part, so in this example it rounds down to zero.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If either of the operands is a floating-point number, Python performs
+floating-point division, and the result is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>float</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; minute/60.0
+0.98333333333333328
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc17"></A><A NAME="htoc21"><FONT COLOR=black><FONT SIZE=3>2.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Expressions</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>An </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>expression</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a combination of values, variables, and operators.
+A value all by itself is considered an expression, and so is
+a variable, so the following are all legal expressions
+(assuming that the variable </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> has been assigned a value):</FONT></FONT></P><P><A NAME="@default142"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default143"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>17
+x
+x + 17
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you type an expression in interactive mode, the interpreter
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>evaluates</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> it and displays the result:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 1 + 1
+2
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But in a script, an expression all by itself doesn&#X2019;t
+do anything! This is a common
+source of confusion for beginners.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Type the following statements in the Python interpreter to see
+what they do:</EM></FONT></FONT><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>5
+x = 5
+x + 1
+</FONT></FONT></EM></PRE><P><EM><EM><FONT COLOR=black><FONT SIZE=3>Now put the same statements into a script and run it. What
+is the output? Modify the script by transforming each
+expression into a print statement and then run it again.
+</FONT></FONT></EM></EM></P></DIV><H2 CLASS="section"><A NAME="toc18"></A><A NAME="htoc22"><FONT COLOR=black><FONT SIZE=3>2.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Order of operations</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default144"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default145"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default146"></A></P><P><FONT COLOR=black><FONT SIZE=3>When more than one operator appears in an expression, the order of
+evaluation depends on the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>rules of precedence</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. For
+mathematical operators, Python follows mathematical convention.
+The acronym </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>PEMDAS</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a useful way to
+remember the rules:</FONT></FONT></P><P><A NAME="@default147"></A></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3><B>P</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>arentheses have the highest precedence and can be used 
+to force an expression to evaluate in the order you want. Since
+expressions in parentheses are evaluated first, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2 * (3-1)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 4,
+and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>(1+1)**(5-2)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 8. You can also use parentheses to make an
+expression easier to read, as in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>(minute * 100) / 60</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, even
+if it doesn&#X2019;t change the result.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3><B>E</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>xponentiation has the next highest precedence, so
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2**1+1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 3, not 4, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>3*1**3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 3, not 27.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3><B>M</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>ultiplication and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>D</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>ivision have the same precedence,
+which is higher than </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>A</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>ddition and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>S</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>ubtraction, which also
+have the same precedence. So </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2*3-1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 5, not 4, and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>6+4/2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 8, not 5.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Operators with the same precedence are evaluated from left to 
+right. So in the expression </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>degrees / 2 * pi</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the division
+happens first and the result is multiplied by </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pi</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. 
+To divide by </FONT></FONT><FONT COLOR=black><FONT SIZE=3>2 &#X3C0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you can reorder the operands or use parentheses.</FONT></FONT></LI></UL><H2 CLASS="section"><A NAME="toc19"></A><A NAME="htoc23"><FONT COLOR=black><FONT SIZE=3>2.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;String operations</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default148"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default149"></A></P><P><FONT COLOR=black><FONT SIZE=3>In general, you cannot perform mathematical operations on strings, even
+if the strings look like numbers, so the following are illegal:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>'2'-'1'    'eggs'/'easy'    'third'*'a charm'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator works with strings, but it
+might not do what you expect: it performs
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>concatenation</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which means joining the strings by
+linking them end-to-end. For example:</FONT></FONT></P><P><A NAME="@default150"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>first = 'throat'
+second = 'warbler'
+print first + second
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The output of this program is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>throatwarbler</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>*</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator also works on strings; it performs repetition.
+For example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;Spam&#X2019;*3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;SpamSpamSpam&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If one of the operands
+is a string, the other has to be an integer.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This use of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>*</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> makes sense by
+analogy with addition and multiplication. Just as </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>4*3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+equivalent to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>4+4+4</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we expect </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;Spam&#X2019;*3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to be the same as
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;Spam&#X2019;+&#X2019;Spam&#X2019;+&#X2019;Spam&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and it is. On the other hand, there is a
+significant way in which string concatenation and repetition are
+different from integer addition and multiplication.
+Can you think of a property that addition has
+that string concatenation does not?</FONT></FONT></P><P><A NAME="@default151"></A></P><H2 CLASS="section"><A NAME="toc20"></A><A NAME="htoc24"><FONT COLOR=black><FONT SIZE=3>2.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Comments</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default152"></A></P><P><FONT COLOR=black><FONT SIZE=3>As programs get bigger and more complicated, they get more difficult
+to read. Formal languages are dense, and it is often difficult to
+look at a piece of code and figure out what it is doing, or why.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For this reason, it is a good idea to add notes to your programs to explain
+in natural language what the program is doing. These notes are called
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>comments</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and they start with the </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>#</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> symbol:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># compute the percentage of the hour that has elapsed
+percentage = (minute * 100) / 60
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this case, the comment appears on a line by itself. You can also put
+comments at the end of a line:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>percentage = (minute * 100) / 60     # percentage of an hour
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Everything from the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>#</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to the end of the line is ignored&#X2014;it
+has no effect on the program.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Comments are most useful when they document non-obvious features of
+the code. It is reasonable to assume that the reader can figure out
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>what</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the code does; it is much more useful to explain </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>why</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This comment is redundant with the code and useless:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>v = 5     # assign 5 to v
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This comment contains useful information that is not in the code:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>v = 5     # velocity in meters/second. 
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Good variable names can reduce the need for comments, but
+long names can make complex expressions hard to read, so there is
+a tradeoff.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc21"></A><A NAME="htoc25"><FONT COLOR=black><FONT SIZE=3>2.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default153"></A></P><P><FONT COLOR=black><FONT SIZE=3>At this point the syntax error you are most likely to make is
+an illegal variable name, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>class</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>yield</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which
+are keywords, or </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>odd~job</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>US$</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, which contain
+illegal characters.</FONT></FONT></P><P><A NAME="@default154"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default155"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you put a space in a variable name, Python thinks it is two
+operands without an operator:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; bad name = 5
+SyntaxError: invalid syntax
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>For syntax errors, the error messages don&#X2019;t help much.
+The most common messages are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>SyntaxError: invalid syntax</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>SyntaxError: invalid token</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, neither of which is very informative.</FONT></FONT></P><P><A NAME="@default156"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default157"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default158"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default159"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default160"></A></P><P><FONT COLOR=black><FONT SIZE=3>The runtime error you are most likely to make is a &#X201C;use before
+def;&#X201D; that is, trying to use a variable before you have assigned
+a value. This can happen if you spell a variable name wrong:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; principal = 327.68
+&gt;&gt;&gt; interest = principle * rate
+NameError: name 'principle' is not defined
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Variables names are case sensitive, so </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>LaTeX</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not the
+same as </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>latex</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default161"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default162"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default163"></A></P><P><FONT COLOR=black><FONT SIZE=3>At this point the most likely cause of a semantic error is
+the order of operations. For example, to evaluate </FONT></FONT><FONT COLOR=black><FONT SIZE=3>1/2 &#X3C0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+you might be tempted to write</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 1.0 / 2.0 * pi
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But the division happens first, so you would get </FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X3C0; / 2</FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which
+is not the same thing! There is no way for Python
+to know what you meant to write, so in this case you don&#X2019;t
+get an error message; you just get the wrong answer.</FONT></FONT></P><P><A NAME="@default164"></A></P><H2 CLASS="section"><A NAME="toc22"></A><A NAME="htoc26"><FONT COLOR=black><FONT SIZE=3>2.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>value:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the basic units of data, like a number or string, 
+that a program manipulates.
+</FONT></FONT><A NAME="@default165"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>type:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A category of values. The types we have seen so far
+are integers (type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>int</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>), floating-point numbers (type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>float</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>), and strings (type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>str</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>).
+</FONT></FONT><A NAME="@default166"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>integer:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A type that represents whole numbers.
+</FONT></FONT><A NAME="@default167"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>floating-point:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A type that represents numbers with fractional
+parts.
+</FONT></FONT><A NAME="@default168"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>string:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A type that represents sequences of characters.
+</FONT></FONT><A NAME="@default169"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>variable:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A name that refers to a value.
+</FONT></FONT><A NAME="@default170"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>statement:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A section of code that represents a command or action. So
+far, the statements we have seen are assignments and print statements.
+</FONT></FONT><A NAME="@default171"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>assignment:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A statement that assigns a value to a variable.
+</FONT></FONT><A NAME="@default172"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>state diagram:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A graphical representation of a set of variables and the
+values they refer to.
+</FONT></FONT><A NAME="@default173"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>keyword:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A reserved word that is used by the compiler to parse a
+program; you cannot use keywords like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>def</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as
+variable names.
+</FONT></FONT><A NAME="@default174"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>operator:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A special symbol that represents a simple computation like
+addition, multiplication, or string concatenation.
+</FONT></FONT><A NAME="@default175"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>operand:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the values on which an operator operates.
+</FONT></FONT><A NAME="@default176"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>floor division:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The operation that divides two numbers and chops off
+the fraction part.
+</FONT></FONT><A NAME="@default177"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>expression:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A combination of variables, operators, and values that
+represents a single result value.
+</FONT></FONT><A NAME="@default178"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>evaluate:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To simplify an expression by performing the operations
+in order to yield a single value.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>rules of precedence:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The set of rules governing the order in which
+expressions involving multiple operators and operands are evaluated.
+</FONT></FONT><A NAME="@default179"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default180"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>concatenate:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To join two operands end-to-end.
+</FONT></FONT><A NAME="@default181"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>comment:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Information in a program that is meant for other
+programmers (or anyone reading the source code) and has no effect on the
+execution of the program.
+</FONT></FONT><A NAME="@default182"></A></DD></DL><H2 CLASS="section"><A NAME="toc23"></A><A NAME="htoc27"><FONT COLOR=black><FONT SIZE=3>2.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Assume that we execute the following assignment statements:</EM></FONT></FONT><PRE CLASS="verbatim"><FONT COLOR=black><FONT SIZE=3><EM>width = 17
+height = 12.0
+delimiter = '.'
+</EM></FONT></FONT></PRE><P><EM><FONT COLOR=black><FONT SIZE=3><EM>For each of the following expressions, write the value of the
+expression and the type (of the value of the expression).</EM></FONT></FONT></EM></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>width/2</TT></EM></FONT></FONT></EM></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>width/2.0</TT></EM></FONT></FONT></EM></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>height/3</TT></EM></FONT></FONT></EM></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>1 + 2 * 5</TT></EM></FONT></FONT></EM></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>delimiter * 5</TT></EM></FONT></FONT></EM></LI></OL><P><EM><FONT COLOR=black><FONT SIZE=3><EM>Use the Python interpreter to check your answers.
+</EM></FONT></FONT></EM></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Practice using the Python interpreter as a calculator: 
+</EM></FONT></FONT><A NAME="@default183"></A><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>The volume of a sphere with radius </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>r</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>4/3</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> &#X3C0; <I>r</I></EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM>3</EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>.
+What is the volume of a sphere with radius 5? Hint: 392.6 is wrong!</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Suppose the cover price of a book is $24.95, but bookstores get a
+40% discount. Shipping costs $3 for the first copy and 75 cents
+for each additional copy. What is the total wholesale cost for
+60 copies?</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>If I leave my house at 6:52 am and run 1 mile at an easy pace
+(8:15 per mile), then 3 miles at tempo (7:12 per mile) and 1 mile at
+easy pace again, what time do I get home for breakfast?</EM></FONT></FONT><P><A NAME="@default184"></A></P></LI></OL></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note4" HREF="#text4"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>In Python 3.0,
+the result of this division is a <TT>float</TT>. The new operator
+<TT>//</TT> performs integer division.
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book002.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book004.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

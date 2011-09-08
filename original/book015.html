@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Files</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book014.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book016.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc168"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;14</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Files</FONT></FONT></H1><P><A NAME="@default1229"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1230"></A></P><H2 CLASS="section"><A NAME="toc153"></A><A NAME="htoc169"><FONT COLOR=black><FONT SIZE=3>14.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Persistence</FONT></FONT></H2><P><A NAME="@default1231"></A></P><P><FONT COLOR=black><FONT SIZE=3>Most of the programs we have seen so far are transient in the
+sense that they run for a short time and produce some output,
+but when they end, their data disappears. If you run the program
+again, it starts with a clean slate.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Other programs are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>persistent</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>: they run for a long time
+(or all the time); they keep at least some of their data
+in permanent storage (a hard drive, for example); and
+if they shut down and restart, they pick up where they left off.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Examples of persistent programs are operating systems, which
+run pretty much whenever a computer is on, and web servers,
+which run all the time, waiting for requests to come in on
+the network.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>One of the simplest ways for programs to maintain their data
+is by reading and writing text files. We have already seen
+programs that read text files; in this chapters we will see programs
+that write them.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>An alternative is to store the state of the program in a database.
+In this chapter I will present a simple database and a module,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pickle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, that makes it easy to store program data.</FONT></FONT></P><P><A NAME="@default1232"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1233"></A></P><H2 CLASS="section"><A NAME="toc154"></A><A NAME="htoc170"><FONT COLOR=black><FONT SIZE=3>14.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Reading and writing</FONT></FONT></H2><P><A NAME="@default1234"></A></P><P><FONT COLOR=black><FONT SIZE=3>A text file is a sequence of characters stored on a permanent
+medium like a hard drive, flash memory, or CD-ROM. We saw how
+to open and read a file in Section&#XA0;</FONT></FONT><A HREF="book010.html#wordlist"><FONT COLOR=black><FONT SIZE=3>9.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1235"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1236"></A></P><P><FONT COLOR=black><FONT SIZE=3>To write a file, you have to open it with mode
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;w&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a second parameter:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fout = open('output.txt', 'w')
+&gt;&gt;&gt; print fout
+&lt;open file 'output.txt', mode 'w' at 0xb7eb2410&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If the file already exists, opening it in write mode clears out
+the old data and starts fresh, so be careful!
+If the file doesn&#X2019;t exist, a new one is created.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>write</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method puts data into the file.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; line1 = "This here's the wattle,\n"
+&gt;&gt;&gt; fout.write(line1)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Again, the file object keeps track of where it is, so if
+you call </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>write</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> again, it adds the new data to the end.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; line2 = "the emblem of our land.\n"
+&gt;&gt;&gt; fout.write(line2)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you are done writing, you have to close the file.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fout.close()
+</FONT></FONT></PRE><P><A NAME="@default1237"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1238"></A></P><H2 CLASS="section"><A NAME="toc155"></A><A NAME="htoc171"><FONT COLOR=black><FONT SIZE=3>14.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Format operator</FONT></FONT></H2><P><A NAME="@default1239"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1240"></A></P><P><FONT COLOR=black><FONT SIZE=3>The argument of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>write</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> has to be a string, so if we want
+to put other values in a file, we have to convert them to
+strings. The easiest way to do that is with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>str</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = 52
+&gt;&gt;&gt; f.write(str(x))
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>An alternative is to use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>format operator</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>%</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. When
+applied to integers, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>%</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the modulus operator. But
+when the first operand is a string, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>%</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the format operator.</FONT></FONT></P><P><A NAME="@default1241"></A></P><P><FONT COLOR=black><FONT SIZE=3>The first operand is the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>format string</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and the second operand
+is a tuple of expressions. The result is a string that contains
+the values of the expressions, formatted according to the format
+string.</FONT></FONT></P><P><A NAME="@default1242"></A></P><P><FONT COLOR=black><FONT SIZE=3>As an example, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>format sequence</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;%d&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> means that
+the first expression in the tuple should be formatted as an
+integer (</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> stands for &#X201C;decimal&#X201D;):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; camels = 42
+&gt;&gt;&gt; '%d' % camels
+'42'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The result is the string </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;42&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is not to be confused
+with the integer value </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>42</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>A format sequence can appear anywhere in the format string,
+so you can embed a value in a sentence:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; camels = 42
+&gt;&gt;&gt; 'I have spotted %d camels.' % camels
+'I have spotted 42 camels.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The format sequence </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;%g&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> formats the next element in the tuple
+as a floating-point number (don&#X2019;t ask why), and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;%s&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> formats
+the next item as a string:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 'In %d years I have spotted %g %s.' % (3, 0.1, 'camels')
+'In 3 years I have spotted 0.1 camels.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The number of elements in the tuple has to match the number
+of format sequences in the string. Also, the types of the
+elements have to match the format sequences:</FONT></FONT></P><P><A NAME="@default1243"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1244"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; '%d %d %d' % (1, 2)
+TypeError: not enough arguments for format string
+&gt;&gt;&gt; '%d' % 'dollars'
+TypeError: illegal argument type for built-in operation
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In the first example, there aren&#X2019;t enough elements; in the
+second, the element is the wrong type.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The format operator is powerful but difficult to use. You can
+read more about it at </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>docs.python.org/lib/typesseq-strings.html</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc156"></A><A NAME="htoc172"><FONT COLOR=black><FONT SIZE=3>14.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Filenames and paths</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="paths"></A></P><P><A NAME="@default1245"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1246"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1247"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1248"></A></P><P><FONT COLOR=black><FONT SIZE=3>Files are organized into </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>directories</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (also called &#X201C;folders&#X201D;).
+Every running program has a &#X201C;current directory,&#X201D; which is the
+default directory for most operations. 
+For example, when you open a file for reading, Python looks for it in the
+current directory.</FONT></FONT></P><P><A NAME="@default1249"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1250"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module provides functions for working with files and
+directories (&#X201C;os&#X201D; stands for &#X201C;operating system&#X201D;). </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.getcwd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+returns the name of the current directory:</FONT></FONT></P><P><A NAME="@default1251"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1252"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; import os
+&gt;&gt;&gt; cwd = os.getcwd()
+&gt;&gt;&gt; print cwd
+/home/dinsdale
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>cwd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> stands for &#X201C;current working directory.&#X201D; The result in
+this example is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>/home/dinsdale</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is the home directory of a
+user named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dinsdale</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1253"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1254"></A></P><P><FONT COLOR=black><FONT SIZE=3>A string like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>cwd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that identifies a file is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>path</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>relative path</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> starts from the current directory;
+an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>absolute path</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> starts from the topmost directory in the
+file system.</FONT></FONT></P><P><A NAME="@default1255"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1256"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1257"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1258"></A></P><P><FONT COLOR=black><FONT SIZE=3>The paths we have seen so far are simple filenames, so they are
+relative to the current directory. To find the absolute path to
+a file, you can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.path.abspath</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; os.path.abspath('memo.txt')
+'/home/dinsdale/memo.txt'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>os.path.exists</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> checks
+whether a file or directory exists:</FONT></FONT></P><P><A NAME="@default1259"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1260"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; os.path.exists('memo.txt')
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If it exists, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.path.isdir</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> checks whether it&#X2019;s a directory:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; os.path.isdir('memo.txt')
+False
+&gt;&gt;&gt; os.path.isdir('music')
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Similarly, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.path.isfile</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> checks whether it&#X2019;s a file.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>os.listdir</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns a list of the files (and other directories)
+in the given directory:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; os.listdir(cwd)
+['music', 'photos', 'memo.txt']
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To demonstrate these functions, the following example
+&#X201C;walks&#X201D; through a directory, prints
+the names of all the files, and calls itself recursively on
+all the directories.</FONT></FONT></P><P><A NAME="@default1261"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1262"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def walk(dir):
+    for name in os.listdir(dir):
+        path = os.path.join(dir, name)
+
+        if os.path.isfile(path):
+            print path
+        else:
+            walk(path)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>os.path.join</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a directory and a file name and joins
+them into a complete path. </FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Modify </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>walk</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> so that instead of printing the names of
+the files, it returns a list of names.
+</EM></FONT></FONT></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+The </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>os</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module provides a function called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>walk</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+that is similar to this one but more versatile. Read
+the documentation and use it to print the names of the
+files in a given directory and its subdirectories.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc157"></A><A NAME="htoc173"><FONT COLOR=black><FONT SIZE=3>14.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Catching exceptions</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="catch"></A></P><P><FONT COLOR=black><FONT SIZE=3>A lot of things can go wrong when you try to read and write
+files. If you try to open a file that doesn&#X2019;t exist, you get an
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>IOError</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1263"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1264"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1265"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1266"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fin = open('bad_file')
+IOError: [Errno 2] No such file or directory: 'bad_file'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you don&#X2019;t have permission to access a file:</FONT></FONT></P><P><A NAME="@default1267"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1268"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fout = open('/etc/passwd', 'w')
+IOError: [Errno 13] Permission denied: '/etc/passwd'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And if you try to open a directory for reading, you get</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fin = open('/home')
+IOError: [Errno 21] Is a directory
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To avoid these errors, you could use functions like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.path.exists</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.path.isfile</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, but it would take a lot of time and code
+to check all the possibilities (if &#X201C;</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Errno 21</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X201D; is any
+indication, there are at least 21 things that can go wrong).</FONT></FONT></P><P><A NAME="@default1269"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1270"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1271"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is better to go ahead and try, and deal with problems if they
+happen, which is exactly what the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>try</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement does. The
+syntax is similar to an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>try:    
+    fin = open('bad_file')
+    for line in fin:
+        print line
+    fin.close()
+except:
+    print 'Something went wrong.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Python starts by executing the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>try</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> clause. If all goes
+well, it skips the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>except</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> clause and proceeds. If an
+exception occurs, it jumps out of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>try</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> clause and
+executes the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>except</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> clause.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Handling an exception with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>try</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>catching</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> an exception. In this example, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>except</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> clause
+prints an error message that is not very helpful. In general,
+catching an exception gives you a chance to fix the problem, or try
+again, or at least end the program gracefully.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc158"></A><A NAME="htoc174"><FONT COLOR=black><FONT SIZE=3>14.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Databases</FONT></FONT></H2><P><A NAME="@default1272"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>database</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a file that is organized for storing data.
+Most databases are organized like a dictionary in the sense
+that they map from keys to values. The biggest difference
+is that the database is on disk (or other permanent storage),
+so it persists after the program ends.</FONT></FONT></P><P><A NAME="@default1273"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1274"></A></P><P><FONT COLOR=black><FONT SIZE=3>The module </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>anydbm</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> provides an interface for creating
+and updating database files. As an example, I&#X2019;ll create a database
+that contains captions for image files.</FONT></FONT></P><P><A NAME="@default1275"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1276"></A></P><P><FONT COLOR=black><FONT SIZE=3>Opening a database is similar
+to opening other files:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; import anydbm
+&gt;&gt;&gt; db = anydbm.open('captions.db', 'c')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The mode </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;c&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> means that the database should be created if
+it doesn&#X2019;t already exist. The result is a database object
+that can be used (for most operations) like a dictionary.
+If you create a new item, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>anydbm</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> updates the database file.</FONT></FONT></P><P><A NAME="@default1277"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; db['cleese.png'] = 'Photo of John Cleese.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you access one of the items, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>anydbm</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> reads the file:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print db['cleese.png']
+Photo of John Cleese.
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you make another assignment to an existing key, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>anydbm</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> replaces
+the old value:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; db['cleese.png'] = 'Photo of John Cleese doing a silly walk.'
+&gt;&gt;&gt; print db['cleese.png']
+Photo of John Cleese doing a silly walk.
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Many dictionary methods, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>keys</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>items</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, also
+work with database objects. So does iteration with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+statement.</FONT></FONT></P><P><A NAME="@default1278"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for key in db:
+     print key
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>As with other files, you should close the database when you are
+done:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; db.close()
+</FONT></FONT></PRE><P><A NAME="@default1279"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1280"></A></P><H2 CLASS="section"><A NAME="toc159"></A><A NAME="htoc175"><FONT COLOR=black><FONT SIZE=3>14.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Pickling</FONT></FONT></H2><P><A NAME="@default1281"></A></P><P><FONT COLOR=black><FONT SIZE=3>A limitation of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>anydbm</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is that the keys and values have
+to be strings. If you try to use any other type, you get an
+error.</FONT></FONT></P><P><A NAME="@default1282"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1283"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pickle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module can help. It translates
+almost any type of object into a string suitable for storage in a
+database, and then translates strings back into objects.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>pickle.dumps</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes an object as a parameter and returns
+a string representation (</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dumps</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is short for &#X201C;dump string&#X201D;):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; import pickle
+&gt;&gt;&gt; t = [1, 2, 3]
+&gt;&gt;&gt; pickle.dumps(t)
+'(lp0\nI1\naI2\naI3\na.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The format isn&#X2019;t obvious to human readers; it is meant to be
+easy for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pickle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to interpret. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pickle.loads</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+(&#X201C;load string&#X201D;) reconstitutes the object:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t1 = [1, 2, 3]
+&gt;&gt;&gt; s = pickle.dumps(t1)
+&gt;&gt;&gt; t2 = pickle.loads(s)
+&gt;&gt;&gt; print t2
+[1, 2, 3]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Although the new object has the same value as the old, it is
+not (in general) the same object:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t == t2
+True
+&gt;&gt;&gt; t is t2
+False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In other words, pickling and then unpickling has the same effect
+as copying the object.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>You can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pickle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to store non-strings in a database.
+In fact, this combination is so common that it has been
+encapsulated in a module called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>shelve</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. </FONT></FONT></P><P><A NAME="@default1284"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1285"></A></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1286"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1287"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>If you did Exercise&#XA0;</EM></FONT></FONT><A HREF="book013.html#anagrams"><FONT COLOR=black><FONT SIZE=3><EM>12.4</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>, modify your solution so that
+it creates a database that maps from each word in the list to
+a list of words that use the same set of letters.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a different program that opens the database and prints
+the contents in a human-readable format.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc160"></A><A NAME="htoc176"><FONT COLOR=black><FONT SIZE=3>14.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Pipes</FONT></FONT></H2><P><A NAME="@default1288"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1289"></A></P><P><FONT COLOR=black><FONT SIZE=3>Most operating systems provide a command-line interface,
+also known as a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>shell</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Shells usually provide commands
+to navigate the file system and launch applications. For
+example, in Unix, you can change directories with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>cd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+display the contents of a directory with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ls</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and launch
+a web browser by typing (for example) </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>firefox</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1290"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1291"></A></P><P><FONT COLOR=black><FONT SIZE=3>Any program that you can launch from the shell can also be
+launched from Python using a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>pipe</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. A pipe is an object
+that represents a running process.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, the Unix command </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ls -l</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> normally displays the
+contents of the current directory (in long format). You can
+launch </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ls</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>os.popen</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1292"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1293"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; cmd = 'ls -l'
+&gt;&gt;&gt; fp = os.popen(cmd)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The argument is a string that contains a shell command. The
+return value is a file pointer that behaves just like an open
+file. You can read the output from the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ls</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> process one
+line at a time with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>readline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or get the whole thing at
+once with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>read</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1294"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1295"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1296"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1297"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; res = fp.read()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you are done, you close the pipe like a file:</FONT></FONT></P><P><A NAME="@default1298"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1299"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; stat = fp.close()
+&gt;&gt;&gt; print stat
+None
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The return value is the final status of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ls</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> process;
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> means that it ended normally (with no errors).</FONT></FONT></P><P><A NAME="@default1300"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1301"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1302"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1303"></A></P><P><FONT COLOR=black><FONT SIZE=3>A common use of pipes is to read a compressed file incrementally;
+that is, without uncompressing the whole thing at once. The
+following function takes the name of a compressed file as a
+parameter and returns a pipe that uses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>gzip</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to decompress
+the contents:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def open_gzip(filename):
+    cmd = 'gunzip -c ' + filename
+    fp = os.popen(cmd)
+    return fp
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you read lines from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fp</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> one at a time, you never have
+to store the uncompressed file in memory or on disk.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc161"></A><A NAME="htoc177"><FONT COLOR=black><FONT SIZE=3>14.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Writing modules</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="modules"></A></P><P><A NAME="@default1304"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1305"></A></P><P><FONT COLOR=black><FONT SIZE=3>Any file that contains Python code can be imported as a module.
+For example, suppose you have a file named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>wc.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with the following
+code:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def linecount(filename):
+    count = 0
+    for line in open(filename):
+        count += 1
+    return count
+
+print linecount('wc.py')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you run this program, it reads itself and prints the number
+of lines in the file, which is 7.
+You can also import it like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; import wc
+7
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now you have a module object </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>wc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1306"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1307"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print wc
+&lt;module 'wc' from 'wc.py'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>That provides a function called </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>linecount</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; wc.linecount('wc.py')
+7
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>So that&#X2019;s how you write modules in Python.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The only problem with this example is that when you import
+the module it executes the test code at the bottom. Normally
+when you import a module, it defines new functions but it
+doesn&#X2019;t execute them.</FONT></FONT></P><P><A NAME="@default1308"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1309"></A></P><P><FONT COLOR=black><FONT SIZE=3>Programs that will be imported as modules often
+use the following idiom:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if __name__ == '__main__':
+    print linecount('wc.py')
+</FONT></FONT></PRE><P><CODE><FONT COLOR=black><FONT SIZE=3>__name__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is a built-in variable that is set when the
+program starts. If the program is running as a script,
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__name__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> has the value </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__main__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>; in that
+case, the test code is executed. Otherwise,
+if the module is being imported, the test code is skipped.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Type this example into a file named </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>wc.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and run
+it as a script. Then run the Python interpreter and
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>import wc</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. What is the value of </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>__name__</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>
+when the module is being imported?</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Warning: If you import a module that has already been imported,
+Python does nothing. It does not re-read the file, even if it has
+changed.</EM></FONT></FONT></P><P><A NAME="@default1310"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1311"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1312"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>If you want to reload a module, you can use the built-in function 
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>reload</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, but it can be tricky, so the safest thing to do is
+restart the interpreter and then import the module again.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc162"></A><A NAME="htoc178"><FONT COLOR=black><FONT SIZE=3>14.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><A NAME="@default1313"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1314"></A></P><P><FONT COLOR=black><FONT SIZE=3>When you are reading and writing files, you might run into problems
+with whitespace. These errors can be hard to debug because spaces,
+tabs and newlines are normally invisible:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = '1 2\t 3\n 4'
+&gt;&gt;&gt; print s
+1 2  3
+ 4
+</FONT></FONT></PRE><P><A NAME="@default1315"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1316"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1317"></A></P><P><FONT COLOR=black><FONT SIZE=3>The built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>repr</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> can help. It takes any object as an
+argument and returns a string representation of the object. For
+strings, it represents whitespace
+characters with backslash sequences:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print repr(s)
+'1 2\t 3\n 4'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This can be helpful for debugging.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>One other problem you might run into is that different systems
+use different characters to indicate the end of a line. Some
+systems use a newline, represented </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>\n</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. Others use
+a return character, represented </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>\r</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. Some use both.
+If you move files between different systems, these inconsistencies
+might cause problems.</FONT></FONT></P><P><A NAME="@default1318"></A></P><P><FONT COLOR=black><FONT SIZE=3>For most systems, there are applications to convert from one
+format to another. You can find them (and read more about this
+issue) at </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/Newline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Or, of course, you
+could write one yourself.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc163"></A><A NAME="htoc179"><FONT COLOR=black><FONT SIZE=3>14.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>persistent:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Pertaining to a program that runs indefinitely
+and keeps at least some of its data in permanent storage.
+</FONT></FONT><A NAME="@default1319"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>format operator:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An operator, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>%</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, that takes a format
+string and a tuple and generates a string that includes
+the elements of the tuple formatted as specified by the format string.
+</FONT></FONT><A NAME="@default1320"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1321"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>format string:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A string, used with the format operator, that
+contains format sequences. 
+</FONT></FONT><A NAME="@default1322"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>format sequence:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A sequence of characters in a format string,
+like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>%d</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, that specifies how a value should be formatted.
+</FONT></FONT><A NAME="@default1323"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>text file:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A sequence of characters stored in permanent
+storage like a hard drive.
+</FONT></FONT><A NAME="@default1324"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>directory:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A named collection of files, also called a folder.
+</FONT></FONT><A NAME="@default1325"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>path:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A string that identifies a file.
+</FONT></FONT><A NAME="@default1326"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>relative path:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A path that starts from the current directory.
+</FONT></FONT><A NAME="@default1327"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>absolute path:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A path that starts from the topmost directory
+in the file system.
+</FONT></FONT><A NAME="@default1328"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>catch:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To prevent an exception from terminating
+a program using the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>try</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>except</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements.
+</FONT></FONT><A NAME="@default1329"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>database:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A file whose contents are organized like a dictionary
+with keys that correspond to values.
+</FONT></FONT><A NAME="@default1330"></A></DD></DL><H2 CLASS="section"><A NAME="toc164"></A><A NAME="htoc180"><FONT COLOR=black><FONT SIZE=3>14.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="urllib"></A><P><A NAME="@default1331"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1332"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1333"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>urllib</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module provides methods for manipulating URLs
+and downloading information from the web. The following example
+downloads and prints a secret message from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>import urllib
+
+conn = urllib.urlopen('http://thinkpython.com/secret.html')
+for line in conn.fp:
+    print line.strip()
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>Run this code and follow the instructions you see there.</FONT></FONT></EM></P><P><A NAME="@default1334"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1335"></A></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="checksum"></A><P><A NAME="@default1336"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>In a large collection of MP3 files, there may be more than one
+copy of the same song, stored in different directories or with
+different file names. The goal of this exercise is to search for
+these duplicates.</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a program that searches a directory and all of its
+subdirectories, recursively, and returns a list of complete paths
+for all files with a given suffix (like </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>.mp3</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>).
+Hint: </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>os.path</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> provides several useful functions for
+manipulating file and path names.</EM></FONT></FONT><P><A NAME="@default1337"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1338"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1339"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1340"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>To recognize duplicates, you can use a hash function that
+reads the file and generates a short summary
+of the contents. For example,
+MD5 (Message-Digest algorithm 5) takes an arbitrarily-long
+&#X201C;message&#X201D; and returns a 128-bit &#X201C;checksum.&#X201D; The probability
+is very small that two files with different contents will
+return the same checksum.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>You can read about MD5 at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>wikipedia.org/wiki/Md5</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. On
+a Unix system you can use the program </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>md5sum</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and a pipe to
+compute checksums from Python.</EM></FONT></FONT></P><P><A NAME="@default1341"></A></P></LI></OL></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1342"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1343"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1344"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The Internet Movie Database (IMDb) is an online collection of
+information about movies. Their database is available
+in plain text format, so it is reasonably easy to read from
+Python. For this exercise, the files you need
+are </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>actors.list.gz</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>actresses.list.gz</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>; you
+can download them from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>www.imdb.com/interfaces#plain</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><A NAME="@default1345"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1346"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1347"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>I have written a program that parses these files and
+splits them into actor names, movie titles, etc. You can
+download it from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/imdb.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>If you run </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>imdb.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> as a script, it reads </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>actors.list.gz</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+and prints one actor-movie pair per line. Or, if you </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>import
+imdb</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> you can use the function </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>process_file</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> to, well,
+process the file. The arguments are a filename, a function
+object and an optional number of lines to process. Here is
+an example:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>import imdb
+
+def print_info(actor, date, title, role):
+    print actor, date, title, role
+
+imdb.process_file('actors.list.gz', print_info)
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>When you call </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>process_file</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3>, it opens </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>filename</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>, reads the
+contents, and calls </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>print_info</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> once for each line in the file.
+</FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>print_info</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> takes an actor, date, movie title and role as
+arguments and prints them.</FONT></FONT></EM></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Write a program that reads </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>actors.list.gz</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>actresses.list.gz</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and uses </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>shelve</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> to build a database
+that maps from each actor to a list of his or her films.</FONT></FONT></EM><P><A NAME="@default1348"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1349"></A></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Two actors are &#X201C;costars&#X201D; if they have been in at least one
+movie together. Process the database you built in the previous step
+and build a second database that maps from each actor to a list of
+his or her costars.</FONT></FONT></EM><P><A NAME="@default1350"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1351"></A></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Write a program that can play the &#X201C;Six Degrees of Kevin
+Bacon,&#X201D; which you can read about at
+</FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>. This
+problem is challenging because it requires you to find the shortest
+path in a graph. You can read about shortest path algorithms
+at </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/Shortest_path_problem</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></LI></OL></DIV><HR>
+<A HREF="book014.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book016.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

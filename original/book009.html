@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Strings</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book008.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book010.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc94"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Strings</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="strings"></A></P><H2 CLASS="section"><A NAME="toc85"></A><A NAME="htoc95"><FONT COLOR=black><FONT SIZE=3>8.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;A string is a sequence</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default568"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default569"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default570"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default571"></A></P><P><FONT COLOR=black><FONT SIZE=3>A string is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>sequence</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> of characters. 
+You can access the characters one at a time with the
+bracket operator:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fruit = 'banana'
+&gt;&gt;&gt; letter = fruit[1]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The second statement selects character number 1 from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fruit</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and assigns it to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>letter</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. </FONT></FONT></P><P><A NAME="@default572"></A></P><P><FONT COLOR=black><FONT SIZE=3>The expression in brackets is called an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>index</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. 
+The index indicates which character in the sequence you
+want (hence the name).</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But you might not get what you expect:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print letter
+a
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>For most people, the first letter of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;banana&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, not
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. But for computer scientists, the index is an offset from the
+beginning of the string, and the offset of the first letter is zero.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; letter = fruit[0]
+&gt;&gt;&gt; print letter
+b
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>So </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the 0th letter (&#X201C;zero-eth&#X201D;) of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;banana&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+is the 1th letter (&#X201C;one-eth&#X201D;), and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the 2th (&#X201C;two-eth&#X201D;)
+letter.</FONT></FONT></P><P><A NAME="@default573"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default574"></A></P><P><FONT COLOR=black><FONT SIZE=3>You can use any expression, including variables and operators, as an
+index, but the value of the index has to be an integer. Otherwise you
+get:</FONT></FONT></P><P><A NAME="@default575"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default576"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default577"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; letter = fruit[1.5]
+TypeError: string indices must be integers
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc86"></A><A NAME="htoc96"><FONT COLOR=black><FONT SIZE=3>8.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>len</TT></FONT></FONT></H2><P><A NAME="@default578"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default579"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>len</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a built-in function that returns the number of characters
+in a string:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fruit = 'banana'
+&gt;&gt;&gt; len(fruit)
+6
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To get the last letter of a string, you might be tempted to try something
+like this:</FONT></FONT></P><P><A NAME="@default580"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default581"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; length = len(fruit)
+&gt;&gt;&gt; last = fruit[length]
+IndexError: string index out of range
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The reason for the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>IndexError</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is that there is no letter in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;banana&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with the index 6. Since we started counting at zero, the
+six letters are numbered 0 to 5. To get the last character, you have
+to subtract 1 from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; last = fruit[length-1]
+&gt;&gt;&gt; print last
+a
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Alternatively, you can use negative indices, which count backward from
+the end of the string. The expression </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fruit[-1]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> yields the last
+letter, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fruit[-2]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> yields the second to last, and so on.</FONT></FONT></P><P><A NAME="@default582"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default583"></A></P><H2 CLASS="section"><A NAME="toc87"></A><A NAME="htoc97"><FONT COLOR=black><FONT SIZE=3>8.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Traversal with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="for"></A></P><P><A NAME="@default584"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default585"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default586"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default587"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default588"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default589"></A></P><P><FONT COLOR=black><FONT SIZE=3>A lot of computations involve processing a string one character at a
+time. Often they start at the beginning, select each character in
+turn, do something to it, and continue until the end. This pattern of
+processing is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>traversal</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. One way to write a traversal
+is with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>index = 0
+while index &lt; len(fruit):
+    letter = fruit[index]
+    print letter
+    index = index + 1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This loop traverses the string and displays each letter on a line by
+itself. The loop condition is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>index &lt; len(fruit)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, so
+when </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>index</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is equal to the length of the string, the
+condition is false, and the body of the loop is not executed. The
+last character accessed is the one with the index </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>len(fruit)-1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+which is the last character in the string.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a function that takes a string as an argument
+and displays the letters backward, one per line.
+</EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>Another way to write a traversal is with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for char in fruit:
+    print char
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Each time through the loop, the next character in the string is assigned
+to the variable </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>char</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The loop continues until no characters are
+left.</FONT></FONT></P><P><A NAME="@default590"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default591"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default592"></A></P><P><FONT COLOR=black><FONT SIZE=3>The following example shows how to use concatenation (string addition)
+and a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop to generate an abecedarian series (that is, in
+alphabetical order). In Robert McCloskey&#X2019;s book </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>Make
+Way for Ducklings</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the names of the ducklings are Jack, Kack, Lack,
+Mack, Nack, Ouack, Pack, and Quack. This loop outputs these names in
+order:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>prefixes = 'JKLMNOPQ'
+suffix = 'ack'
+
+for letter in prefixes:
+    print letter + suffix
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The output is:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>Jack
+Kack
+Lack
+Mack
+Nack
+Oack
+Pack
+Qack
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Of course, that&#X2019;s not quite right because &#X201C;Ouack&#X201D; and
+&#X201C;Quack&#X201D; are misspelled.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Modify the program to fix this error.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc88"></A><A NAME="htoc98"><FONT COLOR=black><FONT SIZE=3>8.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;String slices</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="slice"></A></P><P><A NAME="@default593"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default594"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default595"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default596"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default597"></A></P><P><FONT COLOR=black><FONT SIZE=3>A segment of a string is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>slice</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Selecting a slice is
+similar to selecting a character:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = 'Monty Python'
+&gt;&gt;&gt; print s[0:5]
+Monty
+&gt;&gt;&gt; print s[6:13]
+Python
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The operator </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[n:m]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns the part of the string from the 
+&#X201C;n-eth&#X201D; character to the &#X201C;m-eth&#X201D; character, including the first but
+excluding the last. This behavior is counterintuitive, but it might
+help to imagine the indices pointing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>between</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the
+characters, as in the following diagram:</FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book011.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>If you omit the first index (before the colon), the slice starts at
+the beginning of the string. If you omit the second index, the slice
+goes to the end of the string:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fruit = 'banana'
+&gt;&gt;&gt; fruit[:3]
+'ban'
+&gt;&gt;&gt; fruit[3:]
+'ana'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If the first index is greater than or equal to the second the result
+is an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>empty string</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, represented by two quotation marks:</FONT></FONT></P><P><A NAME="@default598"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fruit = 'banana'
+&gt;&gt;&gt; fruit[3:3]
+''
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>An empty string contains no characters and has length 0, but other
+than that, it is the same as any other string.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Given that </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>fruit</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is a string, what does
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>fruit[:]</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> mean?</EM></FONT></FONT><P><A NAME="@default599"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default600"></A></P></DIV><H2 CLASS="section"><A NAME="toc89"></A><A NAME="htoc99"><FONT COLOR=black><FONT SIZE=3>8.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Strings are immutable</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default601"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default602"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default603"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is tempting to use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator on the left side of an
+assignment, with the intention of changing a character in a string.
+For example:</FONT></FONT></P><P><A NAME="@default604"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default605"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; greeting = 'Hello, world!'
+&gt;&gt;&gt; greeting[0] = 'J'
+TypeError: object does not support item assignment
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The &#X201C;object&#X201D; in this case is the string and the &#X201C;item&#X201D; is
+the character you tried to assign. For now, an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>object</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+the same thing as a value, but we will refine that definition
+later. An </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>item</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is one of the values in a sequence.</FONT></FONT></P><P><A NAME="@default606"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default607"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default608"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default609"></A></P><P><FONT COLOR=black><FONT SIZE=3>The reason for the error is that
+strings are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>immutable</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which means you can&#X2019;t change an
+existing string. The best you can do is create a new string
+that is a variation on the original:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; greeting = 'Hello, world!'
+&gt;&gt;&gt; new_greeting = 'J' + greeting[1:]
+&gt;&gt;&gt; print new_greeting
+Jello, world!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This example concatenates a new first letter onto
+a slice of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>greeting</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. It has no effect on
+the original string.</FONT></FONT></P><P><A NAME="@default610"></A></P><H2 CLASS="section"><A NAME="toc90"></A><A NAME="htoc100"><FONT COLOR=black><FONT SIZE=3>8.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Searching</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="find"></A></P><P><FONT COLOR=black><FONT SIZE=3>What does the following function do?</FONT></FONT></P><P><A NAME="@default611"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default612"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def find(word, letter):
+    index = 0
+    while index &lt; len(word):
+        if word[index] == letter:
+            return index
+        index = index + 1
+    return -1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In a sense, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>find</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the opposite of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator.
+Instead of taking an index and extracting the corresponding character,
+it takes a character and finds the index where that character
+appears. If the character is not found, the function returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>-1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This is the first example we have seen of a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>return</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement
+inside a loop. If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word[index] == letter</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the function breaks
+out of the loop and returns immediately.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If the character doesn&#X2019;t appear in the string, the program
+exits the loop normally and returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>-1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This pattern of computation&#X2014;traversing a sequence and returning
+when we find what we are looking for&#X2014;is a called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>search</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default613"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default614"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default615"></A></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Modify </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>find</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> so that it has a
+third parameter, the index in </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>word</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> where it should start
+looking.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc91"></A><A NAME="htoc101"><FONT COLOR=black><FONT SIZE=3>8.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Looping and counting</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="counter"></A></P><P><A NAME="@default616"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default617"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default618"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default619"></A></P><P><FONT COLOR=black><FONT SIZE=3>The following program counts the number of times the letter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+appears in a string:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>word = 'banana'
+count = 0
+for letter in word:
+    if letter == 'a':
+        count = count + 1
+print count
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This program demonstrates another pattern of computation called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>counter</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The variable </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>count</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is initialized to 0 and then
+incremented each time an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is found.
+When the loop exits, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>count</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+contains the result&#X2014;the total number of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X2019;s.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default620"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Encapsulate this code in a function named </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>count</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and generalize it so that it accepts the string and the
+letter as arguments.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Rewrite this function so that instead of
+traversing the string, it uses the three-parameter version of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>find</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> from the previous section.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc92"></A><A NAME="htoc102"><FONT COLOR=black><FONT SIZE=3>8.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>string</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> methods</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>method</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is similar to a function&#X2014;it takes arguments and
+returns a value&#X2014;but the syntax is different. For example, the
+method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>upper</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a string and returns a new string with
+all uppercase letters:</FONT></FONT></P><P><A NAME="@default621"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default622"></A></P><P><FONT COLOR=black><FONT SIZE=3>Instead of the function syntax </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>upper(word)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, it uses
+the method syntax </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word.upper()</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default623"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; word = 'banana'
+&gt;&gt;&gt; new_word = word.upper()
+&gt;&gt;&gt; print new_word
+BANANA
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This form of dot notation specifies the name of the method, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>upper</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and the name of the string to apply the method to, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The empty parentheses indicate that this method takes no
+argument.</FONT></FONT></P><P><A NAME="@default624"></A></P><P><FONT COLOR=black><FONT SIZE=3>A method call is called an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>invocation</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; in this case, we would
+say that we are invoking </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>upper</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> on the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default625"></A></P><P><FONT COLOR=black><FONT SIZE=3>As it turns out, there is a string method named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>find</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that
+is remarkably similar to the function we wrote:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; word = 'banana'
+&gt;&gt;&gt; index = word.find('a')
+&gt;&gt;&gt; print index
+1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this example, we invoke </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>find</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> on </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and pass
+the letter we are looking for as a parameter.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Actually, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>find</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method is more general than our function;
+it can find substrings, not just characters:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; word.find('na')
+2
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>It can take as a second argument the index where it should start:</FONT></FONT></P><P><A NAME="@default626"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default627"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; word.find('na', 3)
+4
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And as a third argument the index where it should stop:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; name = 'bob'
+&gt;&gt;&gt; name.find('b', 1, 2)
+-1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This search fails because </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> does not
+appear in the index range from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (not including </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>).</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default628"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default629"></A><P><FONT COLOR=black><FONT SIZE=3><EM>There is a string method called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>count</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that is similar
+to the function in the previous exercise. Read the documentation
+of this method
+and write an invocation that counts the number of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>a</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>s
+in </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>&#X2019;banana&#X2019;</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc93"></A><A NAME="htoc103"><FONT COLOR=black><FONT SIZE=3>8.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="inboth"></A></P><P><A NAME="@default630"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default631"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default632"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default633"></A></P><P><FONT COLOR=black><FONT SIZE=3>The word </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a boolean operator that takes two strings and
+returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if the first appears as a substring in the second:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 'a' in 'banana'
+True
+&gt;&gt;&gt; 'seed' in 'banana'
+False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>For example, the following function prints all the
+letters from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that also appear in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def in_both(word1, word2):
+    for letter in word1:
+        if letter in word2:
+            print letter
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>With well-chosen variable names,
+Python sometimes reads like English. You could read
+this loop, &#X201C;for (each) letter in (the first) word, if (the) letter 
+(appears) in (the second) word, print (the) letter.&#X201D;</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s what you get if you compare apples and oranges:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; in_both('apples', 'oranges')
+a
+e
+s
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc94"></A><A NAME="htoc104"><FONT COLOR=black><FONT SIZE=3>8.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;String comparison</FONT></FONT></H2><P><A NAME="@default634"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default635"></A></P><P><FONT COLOR=black><FONT SIZE=3>The comparison operators work on strings. To see if two strings are equal:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if word == 'banana':
+    print  'All right, bananas.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Other comparison operations are useful for putting words in alphabetical
+order:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>if word &lt; 'banana':
+    print 'Your word,' + word + ', comes before banana.'
+elif word &gt; 'banana':
+    print 'Your word,' + word + ', comes after banana.'
+else:
+    print 'All right, bananas.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Python does not handle uppercase and lowercase letters the same way
+that people do. All the uppercase letters come before all the
+lowercase letters, so:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>Your word, Pineapple, comes before banana.
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>A common way to address this problem is to convert strings to a
+standard format, such as all lowercase, before performing the
+comparison. Keep that in mind in case you have to defend yourself
+against a man armed with a Pineapple.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc95"></A><A NAME="htoc105"><FONT COLOR=black><FONT SIZE=3>8.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default636"></A></P><P><A NAME="@default637"></A></P><P><FONT COLOR=black><FONT SIZE=3>When you use indices to traverse the values in a sequence,
+it is tricky to get the beginning and end of the traversal
+right. Here is a function that is supposed to compare two
+words and return </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if one of the words is the reverse
+of the other, but it contains two errors:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def is_reverse(word1, word2):
+    if len(word1) != len(word2):
+        return False
+    
+    i = 0
+    j = len(word2)
+
+    while j &gt; 0:
+        if word1[i] != word2[j]:
+            return False
+        i = i+1
+        j = j-1
+
+    return True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>if</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement checks whether the words are the
+same length. If not, we can return </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> immediately
+and then, for the rest of the function, we can assume that the words
+are the same length. This is an example of the guardian pattern
+in Section&#XA0;</FONT></FONT><A HREF="book007.html#guardian"><FONT COLOR=black><FONT SIZE=3>6.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default638"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default639"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default640"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>i</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>j</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are indices: </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>i</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> traverses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+forward while </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>j</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> traverses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> backward. If we find
+two letters that don&#X2019;t match, we can return </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> immediately.
+If we get through the whole loop and all the letters match, we
+return </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If we test this function with the words &#X201C;pots&#X201D; and &#X201C;stop&#X201D;, we
+expect the return value </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, but we get an IndexError:</FONT></FONT></P><P><A NAME="@default641"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default642"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; is_reverse('pots', 'stop')
+...
+  File "reverse.py", line 15, in is_reverse
+    if word1[i] != word2[j]:
+IndexError: string index out of range
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>For debugging this kind of error, my first move is to
+print the values of the indices immediately before the line
+where the error appears.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    while j &gt; 0:
+        print i, j        # print here
+        
+        if word1[i] != word2[j]:
+            return False
+        i = i+1
+        j = j-1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now when I run the program again, I get more information:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; is_reverse('pots', 'stop')
+0 4
+...
+IndexError: string index out of range
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first time through the loop, the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>j</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 4,
+which is out of range for the string </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;pots&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+The index of the last character is 3, so the
+initial value for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>j</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> should be </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>len(word2)-1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default643"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default644"></A></P><P><FONT COLOR=black><FONT SIZE=3>If I fix that error and run the program again, I get:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; is_reverse('pots', 'stop')
+0 3
+1 2
+2 1
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This time we get the right answer, but it looks like the loop only ran
+three times, which is suspicious. To get a better idea of what is
+happening, it is useful to draw a state diagram. During the first
+iteration, the frame for </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>is_reverse</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> looks like this:</FONT></FONT></P><P><A NAME="@default645"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default646"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book012.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>I took a little license by arranging the variables in the frame
+and adding dotted lines to show that the values of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>i</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>j</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> indicate characters in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;8</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="is_reverse"></A><FONT COLOR=black><FONT SIZE=3><EM>
+Starting with this diagram, execute the program on paper, changing the
+values of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>i</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>j</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> during each iteration. Find and fix the
+second error in this function.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc96"></A><A NAME="htoc106"><FONT COLOR=black><FONT SIZE=3>8.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>object:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Something a variable can refer to. For now,
+you can use &#X201C;object&#X201D; and &#X201C;value&#X201D; interchangeably.
+</FONT></FONT><A NAME="@default647"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>sequence:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An ordered set; that is, a set of
+values where each value is identified by an integer index.
+</FONT></FONT><A NAME="@default648"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>item:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the values in a sequence.
+</FONT></FONT><A NAME="@default649"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>index:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An integer value used to select an item in
+a sequence, such as a character in a string.
+</FONT></FONT><A NAME="@default650"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>slice:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A part of a string specified by a range of indices.
+</FONT></FONT><A NAME="@default651"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>empty string:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A string with no characters and length 0, represented
+by two quotation marks.
+</FONT></FONT><A NAME="@default652"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>immutable:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The property of a sequence whose items cannot
+be assigned.
+</FONT></FONT><A NAME="@default653"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>traverse:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To iterate through the items in a sequence,
+performing a similar operation on each.
+</FONT></FONT><A NAME="@default654"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>search:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A pattern of traversal that stops
+when it finds what it is looking for.
+</FONT></FONT><A NAME="@default655"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default656"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>counter:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A variable used to count something, usually initialized
+to zero and then incremented.
+</FONT></FONT><A NAME="@default657"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>method:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function that is associated with an object and called
+using dot notation.
+</FONT></FONT><A NAME="@default658"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>invocation:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A statement that calls a method.
+</FONT></FONT><A NAME="@default659"></A></DD></DL><H2 CLASS="section"><A NAME="toc97"></A><A NAME="htoc107"><FONT COLOR=black><FONT SIZE=3>8.13</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;9</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default660"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default661"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default662"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>A string slice can take a third index that specifies the &#X201C;step
+size;&#X201D; that is, the number of spaces between successive characters.
+A step size of 2 means every other character; 3 means every third,
+etc.</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; fruit = 'banana'
+&gt;&gt;&gt; fruit[0:5:2]
+'bnn'
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>A step size of -1 goes through the word backwards, so
+the slice </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>[::-1]</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> generates a reversed string.</FONT></FONT></EM></P><P><A NAME="@default663"></A></P><P><EM><FONT COLOR=black><FONT SIZE=3>Use this idiom to write a one-line version of </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>is_palindrome</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3>
+from Exercise&#XA0;</FONT></FONT></EM><A HREF="book007.html#palindrome"><EM><FONT COLOR=black><FONT SIZE=3>6.6</FONT></FONT></EM></A><EM><FONT COLOR=black><FONT SIZE=3>.
+</FONT></FONT></EM></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;10</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default664"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default665"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Read the documentation of the string methods at
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>docs.python.org/lib/string-methods.html</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. You
+might want to experiment with some of them to make sure
+you understand how they work. </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>strip</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>replace</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> are particularly useful.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>The documentation uses a syntax that might be confusing.
+For example, in </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>find(sub[, start[, end]])</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>, the brackets
+indicate optional arguments. So </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>sub</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is required, but
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>start</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is optional, and if you include </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>start</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>,
+then </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>end</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is optional.
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;11</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+The following functions are all </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>intended</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> to check whether a
+string contains any lowercase letters, but at least some of them are
+wrong. For each function, describe what the function actually does.</EM></FONT></FONT><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>def any_lowercase1(s):
+    for c in s:
+        if c.islower():
+            return True
+        else:
+            return False
+
+def any_lowercase2(s):
+    for c in s:
+        if 'c'.islower():
+            return 'True'
+        else:
+            return 'False'
+
+def any_lowercase3(s):
+    for c in s:
+        flag = c.islower()
+    return flag
+
+def any_lowercase4(s):
+    flag = False
+    for c in s:
+        flag = flag or c.islower()
+    return flag
+
+def any_lowercase5(s):
+    for c in s:
+        if not c.islower():
+            return False
+    return True
+</FONT></FONT></EM></PRE></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;12</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default666"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default667"></A><P><A NAME="exrotate"></A><FONT COLOR=black><FONT SIZE=3><EM>
+ROT13 is a weak form of encryption that involves &#X201C;rotating&#X201D; each
+letter in a word by 13 places</EM></FONT></FONT><SUP><A NAME="text14" HREF="#note14"><FONT COLOR=black><FONT SIZE=3><EM>1</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>. To rotate a letter means
+to shift it through the alphabet, wrapping around to the beginning if
+necessary, so &#X2019;A&#X2019; shifted by 3 is &#X2019;D&#X2019; and &#X2019;Z&#X2019; shifted by 1 is &#X2019;A&#X2019;.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>rotate_word</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>
+that takes a string and an integer as parameters, and that returns
+a new string that contains the letters from the original string
+&#X201C;rotated&#X201D; by the given amount. </EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>For example, &#X201C;cheer&#X201D; rotated by 7 is &#X201C;jolly&#X201D; and &#X201C;melon&#X201D; rotated
+by -10 is &#X201C;cubed&#X201D;. </EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>You might want to use the built-in functions </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>ord</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, which converts
+a character to a numeric code, and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>chr</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, which converts numeric
+codes to characters.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Potentially offensive jokes on the Internet are sometimes encoded
+in ROT13. If you are not easily offended, find and decode some
+of them.
+</EM></FONT></FONT></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note14" HREF="#text14"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See
+<TT>wikipedia.org/wiki/ROT13</TT>
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book008.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book010.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

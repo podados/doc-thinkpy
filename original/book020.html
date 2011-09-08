@@ -1,0 +1,508 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Case study: Tkinter</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book019.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book021.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc224"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;19</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Case study: Tkinter</FONT></FONT></H1><H2 CLASS="section"><A NAME="toc204"></A><A NAME="htoc225"><FONT COLOR=black><FONT SIZE=3>19.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;GUI</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>Most of the programs we have seen so far are text-based, but
+many programs use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>graphical user interfaces</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, also
+known as </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>GUIs</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1673"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1674"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1675"></A></P><P><FONT COLOR=black><FONT SIZE=3>Python provides several choices for writing GUI-based programs,
+including wxPython, Tkinter, and Qt. Each has pros and cons, which
+is why Python has not converged on a standard.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The one I will present in this chapter is Tkinter because I think
+it is the easiest to get started with. Most of the concepts
+in this chapter apply to the other GUI modules, too.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>There are several books and web pages about Tkinter. One of
+the best online resources is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>An Introduction to Tkinter</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+by Fredrik Lundh.</FONT></FONT></P><P><A NAME="@default1676"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1677"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1678"></A></P><P><FONT COLOR=black><FONT SIZE=3>I have written a module called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Gui.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that comes with
+Swampy. It provides a simplified interface to the functions
+and classes in Tkinter. The examples in this chapter are
+based on this module.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is a simple example that creates and displays a Gui:</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>To create a GUI, you have to import </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Gui</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and instantiate
+a Gui object:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>from Gui import *
+
+g = Gui()
+g.title('Gui')
+g.mainloop()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you run this code, a window should appear with an empty gray
+square and the title </FONT></FONT><FONT SIZE=3><FONT COLOR=purple>Gui</FONT></FONT><FONT COLOR=black><FONT SIZE=3>. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>mainloop</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> runs the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>event
+loop</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which waits for the user to do something and responds
+accordingly. It is an infinite loop; it runs until the user closes
+the window, or presses Control-C, or does something that causes the
+program to quit.</FONT></FONT></P><P><A NAME="@default1679"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1680"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1681"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1682"></A></P><P><FONT COLOR=black><FONT SIZE=3>This Gui doesn&#X2019;t do much because it doesn&#X2019;t have any
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>widgets</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Widgets are the elements that make up a
+GUI; they include:</FONT></FONT></P><P><A NAME="@default1683"></A></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Button:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A widget, containing text or an image, that
+performs an action when pressed.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Canvas:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A region that can display lines, rectangles,
+circles and other shapes.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Entry:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A region where users can type text.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Scrollbar:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A widget that controls the visible part of another
+widget.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Frame:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A container, often invisible, that contains other
+widgets.</FONT></FONT></DD></DL><P><FONT COLOR=black><FONT SIZE=3>The empty gray square you see when you create a Gui is
+a Frame. When you create a new widget, it is added to this Frame.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc205"></A><A NAME="htoc226"><FONT COLOR=black><FONT SIZE=3>19.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Buttons and callbacks</FONT></FONT></H2><P><A NAME="@default1684"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1685"></A></P><P><FONT COLOR=black><FONT SIZE=3>The method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bu</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a Button widget:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>button = g.bu(text='Press me.')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The return value from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bu</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a Button object. The button
+that appears in the Frame is a graphical representation of this
+object; you can control the button by invoking methods on it.</FONT></FONT></P><P><A NAME="@default1686"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>bu</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes up to 32 parameters that control the appearance
+and function of the button. These parameters are called
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>options</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Instead of providing values for all 32 options,
+you can use keyword arguments, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>text=&#X2019;Press me.&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+to specify only the options you need and use the default
+values for the rest.</FONT></FONT></P><P><A NAME="@default1687"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1688"></A></P><P><FONT COLOR=black><FONT SIZE=3>When you add a widget to the Frame, it gets &#X201C;shrink-wrapped;&#X201D;
+that is, the Frame shrinks to the size of the Button. If you
+add more widgets, the Frame grows to accommodate them.</FONT></FONT></P><P><A NAME="@default1689"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1690"></A></P><P><FONT COLOR=black><FONT SIZE=3>The method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>la</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a Label widget:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>label = g.la(text='Press the button.')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>By default, Tkinter stacks the widgets top-to-bottom and centers
+them. We&#X2019;ll see how to override that behavior soon.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If you press the button, you will see that it doesn&#X2019;t do much.
+That&#X2019;s because you haven&#X2019;t &#X201C;wired it up;&#X201D; that is, you haven&#X2019;t
+told it what to do!</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The option that controls the behavior of a button is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>command</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+The value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>command</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a function that gets executed when
+the button is pressed. For example, here is a function that creates
+a new Label:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def make_label():
+    g.la(text='Thank you.')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now we can create a button with this function as its command:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>button2 = g.bu(text='No, press me!', command=make_label)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you press this button, it should execute </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>make_label</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+and a new label should appear.</FONT></FONT></P><P><A NAME="@default1691"></A></P><P><FONT COLOR=black><FONT SIZE=3>The value of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>command</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> option
+is a function object, which is known as a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>callback</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because
+after you call </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bu</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to create the button, the flow of execution
+&#X201C;calls back&#X201D; when the user presses the button.</FONT></FONT></P><P><A NAME="@default1692"></A></P><P><FONT COLOR=black><FONT SIZE=3>This kind of flow is characteristic of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>event-driven programming</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+User actions, like button presses and key strokes, are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>events</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. In event-driven programming, the flow of execution is
+determined by user actions rather than by the programmer. </FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The challenge of event-driven programming is to construct a set of
+widgets and callbacks that work correctly (or at least generate
+appropriate error messages) for any sequence of user actions.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a program that creates a GUI with a single button. When the
+button is pressed it should create a second button. When
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>that</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> button is pressed, it should create a label that
+says, &#X201C;Nice job!&#X201D;.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>What happens if you press the buttons more than once?
+You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/button_demo.py</TT></EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc206"></A><A NAME="htoc227"><FONT COLOR=black><FONT SIZE=3>19.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Canvas widgets</FONT></FONT></H2><P><A NAME="@default1693"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1694"></A></P><P><FONT COLOR=black><FONT SIZE=3>One of the most versatile widgets is the Canvas, which creates
+a region for drawing lines, circles and other shapes. If you
+did Exercise&#XA0;</FONT></FONT><A HREF="book016.html#canvas"><FONT COLOR=black><FONT SIZE=3>15.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3> you are already familiar with canvases.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ca</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a new Canvas:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>canvas = g.ca(width=500, height=500)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>width</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>height</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are the dimensions of the canvas
+in pixels. </FONT></FONT></P><P><A NAME="@default1695"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1696"></A></P><P><FONT COLOR=black><FONT SIZE=3>After you create a widget, you can still change the values of
+the options with the
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>config</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method. For example, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bg</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> option changes
+the background color:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>canvas.config(bg='white')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bg</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a string
+that names a color. The set of legal color names is different
+for different implementations of Python, but all implementations
+provide at least:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>white   black
+red     green    blue   
+cyan    yellow   magenta
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Shapes on a Canvas are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>items</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. For example,
+the Canvas method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> draws (you guessed it) a circle:</FONT></FONT></P><P><A NAME="@default1697"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1698"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>item = canvas.circle([0,0], 100, fill='red')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first argument is a coordinate pair that specifies the
+center of the circle; the second is the radius.</FONT></FONT></P><P><A NAME="@default1699"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1700"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>Gui.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> provides a standard Cartesian coordinate system with
+the origin at the center of the Canvas and the positive </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>y</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> axis
+pointing up. This is different from some other graphics systems
+where the the origin is in the upper left with the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>y</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> axis
+pointing down.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fill</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> option specifies that the circle should be filled
+in with red.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The return value from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an Item object that
+provides methods for modifying the item on the canvas. For
+example, you can use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>config</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to change any of the circle&#X2019;s
+options:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>item.config(fill='yellow', outline='orange', width=10)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>width</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the thickness of the outline in pixels;
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>outline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the color.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="circle"></A><FONT COLOR=black><FONT SIZE=3><EM>
+Write a program that creates a Canvas and a Button. When the
+user presses the Button, it should draw a circle on the canvas.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc207"></A><A NAME="htoc228"><FONT COLOR=black><FONT SIZE=3>19.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Coordinate sequences</FONT></FONT></H2><P><A NAME="@default1701"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1702"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>rectangle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method takes a sequence of coordinates that
+specify opposite corners of the rectangle. This example
+draws a green rectangle with the lower left corner at the origin
+and the upper right corner at </FONT></FONT><FONT COLOR=black><FONT SIZE=3>(200, 100)</FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>canvas.rectangle([[0, 0], [200, 100]], 
+                 fill='blue', outline='orange', width=10)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This way of specifying corners is called
+a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>bounding box</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because the two points
+bound the rectangle.</FONT></FONT></P><P><A NAME="@default1703"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>oval</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a bounding box and draws an oval
+within the specified rectangle:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>canvas.oval([[0, 0], [200, 100]], outline='orange', width=10)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>line</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a sequence of coordinates and draws
+a line that connects the points. This example draws two legs
+of a triangle:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>canvas.line([[0, 100], [100, 200], [200, 100]], width=10)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes the same arguments, but it draws the last
+leg of the polygon (if necessary) and fills it in:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>canvas.polygon([[0, 100], [100, 200], [200, 100]],
+               fill='red', outline='orange', width=10)
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc208"></A><A NAME="htoc229"><FONT COLOR=black><FONT SIZE=3>19.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;More widgets</FONT></FONT></H2><P><A NAME="@default1704"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1705"></A></P><P><FONT COLOR=black><FONT SIZE=3>Tkinter provides two widgets that let users type text: an
+Entry, which is a single line, and a Text widget, which has
+multiple lines.</FONT></FONT></P><P><A NAME="@default1706"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1707"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>en</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a new Entry:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>entry = g.en(text='Default text.')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>text</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> option allows you to put text into the entry
+when it is created. The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>get</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method returns the contents
+of the Entry (which may have been changed by the user):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; entry.get()
+'Default text.'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>te</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a Text widget:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>text = g.te(width=100, height=5)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>width</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>height</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are the dimensions of the
+widget in characters and lines.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>insert</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> puts text into the Text widget:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>text.insert(END, 'A line of text.')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>END</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a special index that indicates the last character in the
+Text widget.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>You can also specify a character using a dotted index, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1.1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+which has the line number before the dot and the column number after.
+The following example adds the letters </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;nother&#X2019;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> after the first
+character of the first line.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; text.insert(1.1, 'nother')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>get</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method reads the text in the widget; it takes a start
+and end index as arguments. The following example returns all the
+text in the widget, including the newline character:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; text.get(0.0, END)
+'Another line of text.\n'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>delete</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method removes text from the widget;
+the following example deletes all but the first two characters:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; text.delete(1.2, END)
+&gt;&gt;&gt; text.get(0.0, END)
+'An\n'
+</FONT></FONT></PRE><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="circle2"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Modify your solution to Exercise&#XA0;</EM></FONT></FONT><A HREF="#circle"><FONT COLOR=black><FONT SIZE=3><EM>19.2</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM> by adding an
+Entry widget and a second button. When the user presses the
+second button, it should read a color name from the Entry and
+use it to change the fill color of the circle. Use </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>config</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+to modify the existing circle; don&#X2019;t create a new one.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Your program should handle the case where the user tries to
+change the color of a circle that hasn&#X2019;t been created, and
+the case where the color name is invalid.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/circle_demo.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc209"></A><A NAME="htoc230"><FONT COLOR=black><FONT SIZE=3>19.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Packing widgets</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>So far we have been stacking widgets in a single column, but in most
+GUIs the layout is more complicated. For example, here is a slightly
+simplified version of TurtleWorld (see
+Chapter&#XA0;</FONT></FONT><A HREF="book005.html#turtlechap"><FONT COLOR=black><FONT SIZE=3>4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>).</FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3>
+<IMG SRC="book028.png">
+</FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>This section presents the code that creates this GUI, broken into a
+series of steps. You can download the complete example
+from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/SimpleTurtleWorld.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>At the top level, this GUI contains two widgets&#X2014;a Canvas and a
+Frame&#X2014;arranged in a row. So the first step is to create the row.</FONT></FONT></P><P><A NAME="@default1708"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1709"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>class SimpleTurtleWorld(TurtleWorld):
+    """This class is identical to TurtleWorld, but the code that
+    lays out the GUI is simplified for explanatory purposes."""
+
+    def setup(self):
+        self.row()
+        ...
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>setup</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the function that creates and arranges the widgets.
+Arranging widgets in a GUI is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>packing</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1710"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1711"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1712"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1713"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>row</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a row Frame and makes it the &#X201C;current Frame.&#X201D;
+Until this Frame is closed or another Frame is created, all
+subsequent widgets are packed in a row.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is the code that creates the Canvas and the column Frame
+that hold the other widgets:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>        self.canvas = self.ca(width=400, height=400, bg='white')
+        self.col()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first widget in the column is a grid Frame, which contains
+four buttons arranged two-by-two:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>        self.gr(cols=2)
+        self.bu(text='Print canvas', command=self.canvas.dump)
+        self.bu(text='Quit', command=self.quit)
+        self.bu(text='Make Turtle', command=self.make_turtle)
+        self.bu(text='Clear', command=self.clear)
+        self.endfr()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>gr</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates the grid; the argument is the number of
+columns. Widgets in the grid are
+layed out left-to-right, top-to-bottom.</FONT></FONT></P><P><A NAME="@default1714"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1715"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1716"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1717"></A></P><P><FONT COLOR=black><FONT SIZE=3>The first button uses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self.canvas.dump</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a callback; the second
+uses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self.quit</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. These are </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>bound methods</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which means they
+are associated with a particular object. When they are invoked, they
+are invoked on the object.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The next widget in the column is a row Frame that contains
+a Button and an Entry:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>        self.row([0,1], pady=30)
+        self.bu(text='Run file', command=self.run_file)
+        self.en_file = self.en(text='snowflake.py', width=5)
+        self.endrow()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first argument to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>row</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a list of weights that
+determines how extra space is allocated between widgets. 
+The list </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[0,1]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> means that all extra space is allocated
+to the second widget, which is the Entry. If you run this code
+and resize the window, you will see that the Entry grows and
+the Button doesn&#X2019;t.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The option </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pady</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> &#X201C;pads&#X201D; this row in the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>y</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> direction,
+adding 30 pixels of space above and below.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>endrow</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> ends this row of widgets, so subsequent widgets are
+packed in the column Frame. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Gui.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> keeps a stack of Frames:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>When you use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>row</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>col</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>gr</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to create a Frame,
+it goes on top of the stack and becomes the current Frame.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>When you use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>endrow</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>endcol</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>endgr</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to close
+a Frame, it gets popped off the stack and the previous Frame on the
+stack becomes the current Frame.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>The method </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>run_file</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> reads the contents of the Entry,
+uses it as a filename, reads the contents
+and passes it to </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>run_code</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self.inter</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an
+Interpreter object that knows how to take a string and
+execute it as Python code.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    def run_file(self):
+        filename = self.en_file.get()
+        fp = open(filename)
+        source = fp.read()
+        self.inter.run_code(source, filename)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The last two widgets are a Text widget and a Button:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>        self.te_code = self.te(width=25, height=10)
+        self.te_code.insert(END, 'world.clear()\n')
+        self.te_code.insert(END, 'bob = Turtle(world)\n')
+
+        self.bu(text='Run code', command=self.run_text)
+</FONT></FONT></PRE><P><CODE><FONT COLOR=black><FONT SIZE=3>run_text</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is similar to </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>run_file</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> except that it takes
+the code from the Text widget instead of from a file:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    def run_text(self):
+        source = self.te_code.get(1.0, END)
+        self.inter.run_code(source, '&lt;user-provided code&gt;')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Unfortunately, the details of widget layout are different in
+other languages, and in different Python modules.
+Tkinter alone provides three different mechanisms for arranging
+widgets. These mechanisms are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>geometry managers</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+The one I demonstrated in this section is the &#X201C;grid&#X201D; geometry
+manager; the others are called &#X201C;pack&#X201D; and &#X201C;place&#X201D;.</FONT></FONT></P><P><A NAME="@default1718"></A></P><P><FONT COLOR=black><FONT SIZE=3>Fortunately, most of the concepts in this section apply to
+other GUI modules and other languages.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc210"></A><A NAME="htoc231"><FONT COLOR=black><FONT SIZE=3>19.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Menus and Callables</FONT></FONT></H2><P><A NAME="@default1719"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1720"></A></P><P><FONT COLOR=black><FONT SIZE=3>A Menubutton is a widget that looks like a button, but when pressed
+it pops up a menu. After the user selects an item, the menu
+disappears.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is code that creates a color selection Menubutton
+(you can download it from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/menubutton_demo.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>g = Gui()
+g.la('Select a color:')
+colors = ['red', 'green', 'blue']
+mb = g.mb(text=colors[0])
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>mb</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates the Menubutton. Initially, the text on the button is
+the name of the default color. The following loop creates one menu
+item for each color:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for color in colors:
+    g.mi(mb, text=color, command=Callable(set_color, color))
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first argument of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>mi</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the Menubutton these items are
+associated with.</FONT></FONT></P><P><A NAME="@default1721"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1722"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1723"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>command</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> option is a Callable object, which is something new.
+So far we have seen functions and bound methods used as callbacks,
+which works fine if you don&#X2019;t have to pass any arguments to
+the function. Otherwise you have to construct a Callable object
+that contains a function, like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>set_color</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, and its arguments,
+like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>color</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The Callable object stores a reference to the function and the
+arguments as attributes. Later, when the user clicks on a menu
+item, the callback calls the function and passes the stored
+arguments.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is what </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>set_color</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> might look like:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def set_color(color):
+    mb.config(text=color)
+    print color
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When the user selects a menu item and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>set_color</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is called,
+it configures the Menubutton to display the newly-selected color.
+It also print the color; if you try this example, you can confirm that
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>set_color</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is called when you select an item (and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>not</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+called when you create the Callable object).</FONT></FONT></P><H2 CLASS="section"><A NAME="toc211"></A><A NAME="htoc232"><FONT COLOR=black><FONT SIZE=3>19.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Binding</FONT></FONT></H2><P><A NAME="@default1724"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1725"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>binding</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is an association between a widget, an event and a
+callback: when an event (like a button press) happens on a widget, the
+callback is invoked.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Many widgets have default bindings. For example, when you press
+a button, the default binding changes the relief of the button
+to make it look depressed. When you release the button, the
+binding restores the appearance of the button and invokes the
+callback specified with the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>command</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> option.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>You can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bind</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method to override these default
+bindings or to add new ones. For example, this code creates a
+binding for a canvas (you can download the code in this
+section from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/draggable_demo.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>ca.bind('&lt;ButtonPress-1&gt;', make_circle)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first argument is an event string; this event is triggered
+when the user presses the left mouse button. Other mouse
+events include </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ButtonMotion</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>ButtonRelease</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Double-Button</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1726"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1727"></A></P><P><FONT COLOR=black><FONT SIZE=3>The second argument is an event handler. An event handler
+is a function or bound method, like a callback, but an important
+difference is that an event handler takes an Event object as a
+parameter. Here is an example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def make_circle(event):
+    pos = ca.canvas_coords([event.x, event.y])
+    item = ca.circle(pos, 5, fill='red')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The Event object contains information about the type of event and
+details like the coordinates of the mouse pointer. In this example
+the information we need is
+the location of the mouse click. These
+values are in &#X201C;pixel coordinates,&#X201D; which are defined by the
+underlying graphical system. The method </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>canvas_coords</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+translates them to &#X201C;Canvas coordinates,&#X201D; which are compatible with
+Canvas methods like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1728"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1729"></A></P><P><FONT COLOR=black><FONT SIZE=3>For Entry widgets, it is common to bind the </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>&lt;Return&gt;</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> event,
+which is triggered when the use presses the </FONT></FONT><FONT SIZE=3><FONT COLOR=purple>Return</FONT></FONT><FONT COLOR=black><FONT SIZE=3> or
+</FONT></FONT><FONT SIZE=3><FONT COLOR=purple>Enter</FONT></FONT><FONT COLOR=black><FONT SIZE=3> key. For example, the following code creates a Button
+and an Entry.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>bu = g.bu('Make text item:', make_text)
+en = g.en()
+en.bind('&lt;Return&gt;', make_text)
+</FONT></FONT></PRE><P><CODE><FONT COLOR=black><FONT SIZE=3>make_text</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is called when the Button is pressed or when
+the user hits </FONT></FONT><FONT SIZE=3><FONT COLOR=purple>Return</FONT></FONT><FONT COLOR=black><FONT SIZE=3> while typing in the Entry. To make
+this work, we need a function that can be called as a command
+(with no arguments) or as an event handler (with an Event
+as an argument):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def make_text(event=None):
+    text = en.get()
+    item = ca.text([0,0], text)
+</FONT></FONT></PRE><P><CODE><FONT COLOR=black><FONT SIZE=3>make_text</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> gets the contents of the Entry and displays
+it as a Text item in the Canvas.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>It is also possible to create bindings for Canvas items.
+The following is a class definition for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Draggable</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+which is a child class of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Item</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that provides bindings
+that implement drag-and-drop capability.</FONT></FONT></P><P><A NAME="@default1730"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>class Draggable(Item):
+
+    def __init__(self, item):
+        self.canvas = item.canvas
+        self.tag = item.tag
+        self.bind('&lt;Button-3&gt;', self.select)
+        self.bind('&lt;B3-Motion&gt;', self.drag)
+        self.bind('&lt;Release-3&gt;', self.drop)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The init method takes an Item as a parameter. It copies
+the attributes of the Item and then creates bindings for
+three events: a button press, button motion, and button release.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The event handler </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>select</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> stores the coordinates
+of the current event and the original color of the item, then
+changes the color to yellow:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    def select(self, event):
+        self.dragx = event.x
+        self.dragy = event.y
+
+        self.fill = self.cget('fill')
+        self.config(fill='yellow')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>cget</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> stands for &#X201C;get configuration;&#X201D; it takes the name of an
+option as a string and returns the current value of that option.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>drag</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> computes how far the object has moved relative to the
+starting place, updates the stored coordinates, and then moves the
+item.</FONT></FONT></P><P><A NAME="@default1731"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    def drag(self, event):
+        dx = event.x - self.dragx
+        dy = event.y - self.dragy
+
+        self.dragx = event.x
+        self.dragy = event.y
+
+        self.move(dx, dy)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This computation is done in pixel coordinates; there is no need to
+convert to Canvas coordinates.</FONT></FONT></P><P><A NAME="@default1732"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1733"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1734"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1735"></A></P><P><FONT COLOR=black><FONT SIZE=3>Finally, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>drop</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> restores the original color of the item:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    def drop(self, event):
+        self.config(fill=self.fill)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Draggable</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> class to add drag-and-drop
+capability to an existing item. For example, here is a modified
+version of </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>make_circle</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> that uses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to create
+an Item and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Draggable</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to make it draggable:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def make_circle(event):
+    pos = ca.canvas_coords([event.x, event.y])
+    item = ca.circle(pos, 5, fill='red')
+    item = Draggable(item)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This example demonstrates one of the benefits of inheritance: you can
+modify the capabilities of a parent class without modifying its
+definition. This is particularly useful if you want to change
+behavior defined in a module you did not write.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc212"></A><A NAME="htoc233"><FONT COLOR=black><FONT SIZE=3>19.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1736"></A></P><P><FONT COLOR=black><FONT SIZE=3>One of the challenges of GUI programming is keeping track of
+which things happen while the GUI is being built and which
+things happen later in response to user events.</FONT></FONT></P><P><A NAME="@default1737"></A></P><P><FONT COLOR=black><FONT SIZE=3>For example, when you are setting up a callback, it is a common error
+to call the function rather than passing a reference to it:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def the_callback():
+    print 'Called.'
+
+g.bu(text='This is wrong!', command=the_callback())
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you run this code, you will see that it calls </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>the_callback</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+immediately, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>then</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates the button. When you press the
+button, it does nothing because the return value from 
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>the_callback</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>None</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+Usually you do not want to invoke a callback while you are
+setting up the GUI; it should only be invoked later in response to
+a user event.</FONT></FONT></P><P><A NAME="@default1738"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1739"></A></P><P><FONT COLOR=black><FONT SIZE=3>Another challenge of GUI programming is that you don&#X2019;t have control
+of the flow of execution. Which parts of the program execute
+and their order are determined by user actions.
+That means that you have to design your program to work correctly
+for any possible sequence of events.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, the GUI in Exercise&#XA0;</FONT></FONT><A HREF="#circle2"><FONT COLOR=black><FONT SIZE=3>19.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3> has two widgets:
+one creates a Circle item and the other changes the color of the
+Circle. If the user creates the circle and then changes its color,
+there&#X2019;s no problem. But what if the user changes the color of
+a circle that doesn&#X2019;t exist yet? Or creates more than one circle?</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>As the number of widgets grows, it is increasingly difficult to
+imagine all possible sequences of events. One way to manage this 
+complexity is to encapsulate the state of the system in an object
+and then consider:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>What are the possible states? In the Circle example, we
+might consider two states: before and after the user creates the
+first circle.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>In each state, what events can occur? In the example,
+the user can press either of the buttons, or quit.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>For each state-event pair, what is the desired outcome?
+Since there are two states and two buttons, there are four
+state-event pairs to consider.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>What can cause a transition from one state to another?
+In this case, there is a transition when the user creates
+the first circle.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>You might also find it useful to define, and check, invariants that
+should hold regardless of the sequence of events.</FONT></FONT></P><P><A NAME="@default1740"></A></P><P><FONT COLOR=black><FONT SIZE=3>This approach to GUI programming can help you write correct
+code without taking the time to test every possible sequence
+of user events!</FONT></FONT></P><H2 CLASS="section"><A NAME="toc213"></A><A NAME="htoc234"><FONT COLOR=black><FONT SIZE=3>19.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>GUI:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A graphical user interface.
+</FONT></FONT><A NAME="@default1741"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>widget:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the elements that makes up a GUI, including
+buttons, menus, text entry fields, etc. 
+</FONT></FONT><A NAME="@default1742"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>option:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A value that controls the appearance or function of
+a widget.
+</FONT></FONT><A NAME="@default1743"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>keyword argument:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An argument that indicates the parameter
+name as part of the function call.
+</FONT></FONT><A NAME="@default1744"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>callback:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function associated with a widget that is
+called when the user performs an action.
+</FONT></FONT><A NAME="@default1745"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>bound method:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A method associated with a particular instance.
+</FONT></FONT><A NAME="@default1746"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>event-driven programming:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A style of programming in which
+the flow of execution is determined by user actions.
+</FONT></FONT><A NAME="@default1747"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>event:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A user action, like a mouse click or key press, that
+causes a GUI to respond.
+</FONT></FONT><A NAME="@default1748"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>event loop:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An infinite loop that waits for user actions
+and responds.
+</FONT></FONT><A NAME="@default1749"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>item:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A graphical element on a Canvas widget.
+</FONT></FONT><A NAME="@default1750"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>bounding box:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A rectangle that encloses a set of items,
+usually specified by two opposing corners.
+</FONT></FONT><A NAME="@default1751"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>pack:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To arrange and display the elements of a GUI.
+</FONT></FONT><A NAME="@default1752"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>geometry manager:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A system for packing widgets.
+</FONT></FONT><A NAME="@default1753"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>binding:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An association between a widget, an event, and
+an event handler. The event handler is called when the the event
+occurs in the widget.
+</FONT></FONT><A NAME="@default1754"></A></DD></DL><H2 CLASS="section"><A NAME="toc214"></A><A NAME="htoc235"><FONT COLOR=black><FONT SIZE=3>19.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default1755"></A><P><FONT COLOR=black><FONT SIZE=3><EM>For this exercise, you will write an image viewer. Here is
+a simple example:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>g = Gui()
+canvas = g.ca(width=300)
+photo = PhotoImage(file='danger.gif')
+canvas.image([0,0], image=photo)
+g.mainloop()
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3><TT>PhotoImage</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> reads a file and returns a </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>PhotoImage</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> object
+that Tkinter can display. </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>Canvas.image</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> puts the image on the
+canvas, centered on the given coordinates. You can also put images on
+labels, buttons, and some other widgets:</FONT></FONT></EM></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>g.la(image=photo)
+g.bu(image=photo)
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>PhotoImage can only handle a few image formats, like GIF and PPM, 
+but we can use the Python Imaging Library (PIL) to read other
+files.</FONT></FONT></EM></P><P><A NAME="@default1756"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1757"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1758"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1759"></A></P><P><EM><FONT COLOR=black><FONT SIZE=3>The name of the PIL module is </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>Image</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>, but Tkinter defines an
+object with the same name. To avoid the conflict, you can use </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>import...as</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> like this:</FONT></FONT></EM></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>import Image as PIL
+import ImageTk
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>The first line imports </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>Image</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and
+gives it the local name </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>PIL</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>. The second
+line imports </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>ImageTk</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>, which can translate a PIL
+image into a Tkinter PhotoImage. Here&#X2019;s an example:</FONT></FONT></EM></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>image = PIL.open('allen.png')
+photo2 = ImageTk.PhotoImage(image)
+g.la(image=photo2)
+</FONT></FONT></EM></PRE><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Download </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>image_demo.py</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>danger.gif</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>allen.png</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3>
+from </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>. Run </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>image_demo.py</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3>. You
+might have to install </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>PIL</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>ImageTk</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>. 
+They are probably in your software repository, but if not
+you can get them from </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>pythonware.com/products/pil/</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>In </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>image_demo.py</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> change the name of the second
+PhotoImage from </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>photo2</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> to </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>photo</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and run the program
+again. You should see the second PhotoImage but not the first.</FONT></FONT></EM><P><EM><FONT COLOR=black><FONT SIZE=3>The problem is that when you reassign </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>photo</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> it overwrites
+the reference to the first PhotoImage, which then disappears. The
+same thing happens if you assign a PhotoImage to a local
+variable; it disappears when the function ends.</FONT></FONT></EM></P><P><EM><FONT COLOR=black><FONT SIZE=3>To avoid this problem, you have to store a reference to each
+PhotoImage you want to keep. You can use a global variable, or
+store PhotoImages in a data structure or as an attribute of
+an object.</FONT></FONT></EM></P><P><EM><FONT COLOR=black><FONT SIZE=3>This behavior can be frustrating, which is why I am warning
+you (and why the example image says &#X201C;Danger!&#X201D;).</FONT></FONT></EM></P><P><A NAME="@default1760"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1761"></A></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Starting with this example, write a program that takes
+the name of a directory and loops through all the files, displaying
+any files that PIL recognizes as images. You can use a </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>try</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>
+statement to catch the files PIL doesn&#X2019;t recognize.</FONT></FONT></EM><P><EM><FONT COLOR=black><FONT SIZE=3>When the user clicks on the image, the program should display the next one.</FONT></FONT></EM></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>PIL provides a variety of methods for manipulating images.
+You can read about them at </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>pythonware.com/library/pil/handbook</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.
+As a challenge, choose a few of these methods and provide a
+GUI for applying them to images.</FONT></FONT></EM></LI></OL><P><EM><FONT COLOR=black><FONT SIZE=3>You can download a simple solution from
+</FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/ImageBrowser.py</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1762"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1763"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>A vector graphics editor is a program that allows users to draw and
+edit shapes on the screen and generate output files in vector graphics
+formats like Postscript and SVG</EM></FONT></FONT><SUP><A NAME="text30" HREF="#note30"><FONT COLOR=black><FONT SIZE=3><EM>1</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a simple vector graphics editor using Tkinter. At a
+minimum, it should allow users to draw lines, circles and
+rectangles, and it should use </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>Canvas.dump</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> to
+generate a Postscript description of the contents of the
+Canvas.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>As a challenge, you could allow users to select and resize
+items on the Canvas.</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Use Tkinter to write a basic web browser. It
+should have a Text widget where the user can enter a URL
+and a Canvas to display the contents of the page.</EM></FONT></FONT></P><P><A NAME="@default1764"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1765"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1766"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1767"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1768"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>You can use the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>urllib</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module to download files
+(see Exercise&#XA0;</EM></FONT></FONT><A HREF="book015.html#urllib"><FONT COLOR=black><FONT SIZE=3><EM>14.5</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>) and
+the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>HTMLParser</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module to parse the HTML
+tags (see </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>docs.python.org/lib/module-HTMLParser.html</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>).</EM></FONT></FONT></P><P><A NAME="@default1769"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1770"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1771"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>At a minimum your browser should handle plain text and hyperlinks. As
+a challenge you could handle background colors, text
+formatting tags and images.</EM></FONT></FONT></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note30" HREF="#text30"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See
+<TT>wikipedia.org/wiki/Vector_graphics_editor</TT>.
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book019.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book021.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

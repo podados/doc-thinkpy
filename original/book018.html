@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Classes and methods</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book017.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book019.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc199"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;17</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Classes and methods</FONT></FONT></H1><H2 CLASS="section"><A NAME="toc181"></A><A NAME="htoc200"><FONT COLOR=black><FONT SIZE=3>17.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Object-oriented features</FONT></FONT></H2><P><A NAME="@default1485"></A></P><P><FONT COLOR=black><FONT SIZE=3>Python is an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>object-oriented programming language</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which means
+that it provides features that support object-oriented
+programming.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>It is not easy to define object-oriented programming, but we have
+already seen some of its characteristics:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Programs are made up of object definitions and function
+definitions, and most of the computation is expressed in terms
+of operations on objects.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Each object definition corresponds to some object or concept
+in the real world, and the functions that operate on that object
+correspond to the ways real-world objects interact.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>For example, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> class defined in Chapter&#XA0;</FONT></FONT><A HREF="book017.html#time"><FONT COLOR=black><FONT SIZE=3>16</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>
+corresponds to the way people record the time of day, and the
+functions we defined correspond to the kinds of things people do with
+times. Similarly, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Point</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Rectangle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> classes
+correspond to the mathematical concepts of a point and a rectangle.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>So far, we have not taken advantage of the features Python provides to
+support object-oriented programming. These
+features are not strictly necessary; most of them provide
+alternative syntax for things we have already done. But in many cases,
+the alternative is more concise and more accurately conveys the
+structure of the program.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, in the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> program, there is no obvious
+connection between the class definition and the function definitions
+that follow. With some examination, it is apparent that every function
+takes at least one </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> object as an argument.</FONT></FONT></P><P><A NAME="@default1486"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1487"></A></P><P><FONT COLOR=black><FONT SIZE=3>This observation is the motivation for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>methods</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; a method is
+a function that is associated with a particular class.
+We have seen methods for strings, lists, dictionaries and tuples.
+In this chapter, we will define methods for user-defined types.</FONT></FONT></P><P><A NAME="@default1488"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1489"></A></P><P><FONT COLOR=black><FONT SIZE=3>Methods are semantically the same as functions, but there are
+two syntactic differences:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>Methods are defined inside a class definition in order
+to make the relationship between the class and the method explicit.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>The syntax for invoking a method is different from the
+syntax for calling a function.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>In the next few sections, we will take the functions from the previous
+two chapters and transform them into methods. This transformation is
+purely mechanical; you can do it simply by following a sequence of
+steps. If you are comfortable converting from one form to another,
+you will be able to choose the best form for whatever you are doing.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc182"></A><A NAME="htoc201"><FONT COLOR=black><FONT SIZE=3>17.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Printing objects</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="print_time"></A></P><P><A NAME="@default1490"></A></P><P><FONT COLOR=black><FONT SIZE=3>In Chapter&#XA0;</FONT></FONT><A HREF="book017.html#time"><FONT COLOR=black><FONT SIZE=3>16</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>, we defined a class named
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and in Exercise&#XA0;</FONT></FONT><A HREF="book017.html#printtime"><FONT COLOR=black><FONT SIZE=3>16.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>, you 
+wrote a function named </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>class Time(object):
+    """represents the time of day.
+       attributes: hour, minute, second"""
+
+def print_time(time):
+    print '%.2d:%.2d:%.2d' % (time.hour, time.minute, time.second)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To call this function, you have to pass a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> object as an
+argument:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; start = Time()
+&gt;&gt;&gt; start.hour = 9
+&gt;&gt;&gt; start.minute = 45
+&gt;&gt;&gt; start.second = 00
+&gt;&gt;&gt; print_time(start)
+09:45:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To make </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> a method, all we have to do is
+move the function definition inside the class definition. Notice
+the change in indentation.</FONT></FONT></P><P><A NAME="@default1491"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>class Time(object):
+    def print_time(time):
+        print '%.2d:%.2d:%.2d' % (time.hour, time.minute, time.second)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now there are two ways to call </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. The first
+(and less common) way is to use function syntax:</FONT></FONT></P><P><A NAME="@default1492"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1493"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; Time.print_time(start)
+09:45:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this use of dot notation, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the name of the class,
+and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is the name of the method. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>start</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+passed as a parameter.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The second (and more concise) way is to use method syntax:</FONT></FONT></P><P><A NAME="@default1494"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; start.print_time()
+09:45:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In this use of dot notation, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is the name of the
+method (again), and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>start</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the object the method is
+invoked on, which is called the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>subject</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Just as the
+subject of a sentence is what the sentence is about, the subject
+of a method invocation is what the method is about.</FONT></FONT></P><P><A NAME="@default1495"></A></P><P><FONT COLOR=black><FONT SIZE=3>Inside the method, the subject is assigned to the first
+parameter, so in this case </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>start</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is assigned
+to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1496"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1497"></A></P><P><FONT COLOR=black><FONT SIZE=3>By convention, the first parameter of a method is
+called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, so it would be more common to write
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>class Time(object):
+    def print_time(self):
+        print '%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The reason for this convention is an implicit metaphor:</FONT></FONT></P><P><A NAME="@default1498"></A></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>The syntax for a function call, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time(start)</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>,
+suggests that the function is the active agent. It says something
+like, &#X201C;Hey </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>! Here&#X2019;s an object for you to print.&#X201D;</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>In object-oriented programming, the objects are the active
+agents. A method invocation like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>start.print_time()</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> says
+&#X201C;Hey </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>start</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>! Please print yourself.&#X201D;</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>This change in perspective might be more polite, but it is not obvious
+that it is useful. In the examples we have seen so far, it may not
+be. But sometimes shifting responsibility from the functions onto the
+objects makes it possible to write more versatile functions, and makes
+it easier to maintain and reuse code.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="convert"></A><FONT COLOR=black><FONT SIZE=3><EM>
+Rewrite </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>time_to_int</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>
+(from Section&#XA0;</EM></FONT></FONT><A HREF="book017.html#prototype"><FONT COLOR=black><FONT SIZE=3><EM>16.4</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>) as a method. It is probably not
+appropriate to rewrite </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>int_to_time</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> as a method; it&#X2019;s not
+clear what object you would invoke it on!
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc183"></A><A NAME="htoc202"><FONT COLOR=black><FONT SIZE=3>17.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Another example</FONT></FONT></H2><P><A NAME="@default1499"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s a version of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (from Section&#XA0;</FONT></FONT><A HREF="book017.html#increment"><FONT COLOR=black><FONT SIZE=3>16.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>)
+rewritten as a method:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def increment(self, seconds):
+        seconds += self.time_to_int()
+        return int_to_time(seconds)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This version assumes that </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>time_to_int</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is written
+as a method, as in Exercise&#XA0;</FONT></FONT><A HREF="#convert"><FONT COLOR=black><FONT SIZE=3>17.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>. Also, note that
+it is a pure function, not a modifier.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s how you would invoke </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; start.print_time()
+09:45:00
+&gt;&gt;&gt; end = start.increment(1337)
+&gt;&gt;&gt; end.print_time()
+10:07:17
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The subject, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>start</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, gets assigned to the first parameter,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The argument, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1337</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, gets assigned to the
+second parameter, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>seconds</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This mechanism can be confusing, especially if you make an error.
+For example, if you invoke </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with two arguments, you
+get:</FONT></FONT></P><P><A NAME="@default1500"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1501"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; end = start.increment(1337, 460)
+TypeError: increment() takes exactly 2 arguments (3 given)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The error message is initially confusing, because there are
+only two arguments in parentheses. But the subject is also
+considered an argument, so all together that&#X2019;s three.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc184"></A><A NAME="htoc203"><FONT COLOR=black><FONT SIZE=3>17.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;A more complicated example</FONT></FONT></H2><P><CODE><FONT COLOR=black><FONT SIZE=3>is_after</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> (from Exercise&#XA0;</FONT></FONT><A HREF="book017.html#is_after"><FONT COLOR=black><FONT SIZE=3>16.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>) is slightly more complicated
+because it takes two Time objects as parameters. In this case it is
+conventional to name the first parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and the second
+parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>other</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1502"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1503"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def is_after(self, other):
+        return self.time_to_int() &gt; other.time_to_int()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To use this method, you have to invoke it on one object and pass
+the other as an argument:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; end.is_after(start)
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>One nice thing about this syntax is that it almost reads
+like English: &#X201C;end is after start?&#X201D;</FONT></FONT></P><H2 CLASS="section"><A NAME="toc185"></A><A NAME="htoc204"><FONT COLOR=black><FONT SIZE=3>17.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;The init method</FONT></FONT></H2><P><A NAME="@default1504"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1505"></A></P><P><FONT COLOR=black><FONT SIZE=3>The init method (short for &#X201C;initialization&#X201D;) is
+a special method that gets invoked when an object is instantiated. 
+Its full name is </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__init__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> (two underscore characters,
+followed by </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>init</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and then two more underscores). An
+init method for the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> class might look like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def __init__(self, hour=0, minute=0, second=0):
+        self.hour = hour
+        self.minute = minute
+        self.second = second
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>It is common for the parameters of </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__init__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+to have the same names as the attributes. The statement</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>        self.hour = hour
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>stores the value of the parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hour</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as an attribute
+of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>self</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default1506"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1507"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1508"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1509"></A></P><P><FONT COLOR=black><FONT SIZE=3>The parameters are optional, so if you call </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with
+no arguments, you get the default values.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; time = Time()
+&gt;&gt;&gt; time.print_time()
+00:00:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you provide one argument, it overrides </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hour</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; time = Time (9)
+&gt;&gt;&gt; time.print_time()
+09:00:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you provide two arguments, they override </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hour</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>minute</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; time = Time(9, 45)
+&gt;&gt;&gt; time.print_time()
+09:45:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And if you provide three arguments, they override all three
+default values.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default1510"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1511"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Write an init method for the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>Point</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> class that takes
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>x</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>y</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> as optional parameters and assigns
+them to the corresponding attributes.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc186"></A><A NAME="htoc205"><FONT COLOR=black><FONT SIZE=3>17.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>__str__</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method</FONT></FONT></H2><P><A NAME="@default1512"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1513"></A></P><P><CODE><FONT COLOR=black><FONT SIZE=3>__str__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is a special method, like </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__init__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>,
+that is supposed to return a string representation of an object.</FONT></FONT></P><P><A NAME="@default1514"></A></P><P><FONT COLOR=black><FONT SIZE=3>For example, here is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>str</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method for Time objects:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def __str__(self):
+        return '%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> an object, Python invokes the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>str</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method:</FONT></FONT></P><P><A NAME="@default1515"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1516"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; time = Time(9, 45)
+&gt;&gt;&gt; print time
+09:45:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When I write a new class, I almost always start by writing 
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__init__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, which makes it easier to instantiate objects, and 
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__str__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, which is useful for debugging.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>str</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> method for the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>Point</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> class. Create
+a Point object and print it.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc187"></A><A NAME="htoc206"><FONT COLOR=black><FONT SIZE=3>17.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Operator overloading</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="operator overloading"></A></P><P><FONT COLOR=black><FONT SIZE=3>By defining other special methods, you can specify the behavior
+of operators on user-defined types. For example, if you define
+an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>add</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method for the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Time</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> class, you can use the
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator on Time objects.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is what the definition might look like:</FONT></FONT></P><P><A NAME="@default1517"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1518"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def __add__(self, other):
+        seconds = self.time_to_int() + other.time_to_int()
+        return int_to_time(seconds)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And here is how you could use it:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; start = Time(9, 45)
+&gt;&gt;&gt; duration = Time(1, 35)
+&gt;&gt;&gt; print start + duration
+11:20:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When you apply the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator to Time objects, Python invokes
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__add__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. When you print the result, Python invokes 
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__str__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. So there is quite a lot happening behind the scenes!</FONT></FONT></P><P><A NAME="@default1519"></A></P><P><FONT COLOR=black><FONT SIZE=3>Changing the behavior of an operator so that it works with
+user-defined types is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>operator overloading</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. For every
+operator in Python there is a corresponding special method, like 
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__add__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. For more details, see
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>docs.python.org/ref/specialnames.html</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write an </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>add</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> method for the Point class. 
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc188"></A><A NAME="htoc207"><FONT COLOR=black><FONT SIZE=3>17.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Type-based dispatch</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>In the previous section we added two Time objects, but you
+also might want to add an integer to a Time object. The
+following is a version of </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__add__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+that checks the type of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>other</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and invokes either
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>add_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def __add__(self, other):
+        if isinstance(other, Time):
+            return self.add_time(other)
+        else:
+            return self.increment(other)
+
+    def add_time(self, other):
+        seconds = self.time_to_int() + other.time_to_int()
+        return int_to_time(seconds)
+
+    def increment(self, seconds):
+        seconds += self.time_to_int()
+        return int_to_time(seconds)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>isinstance</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a value and a
+class object, and returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if the value is an instance
+of the class.</FONT></FONT></P><P><A NAME="@default1520"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1521"></A></P><P><FONT COLOR=black><FONT SIZE=3>If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>other</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a Time object, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__add__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> invokes
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>add_time</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. Otherwise it assumes that the parameter
+is a number and invokes </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>increment</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. This operation is
+called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>type-based dispatch</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because it dispatches the
+computation to different methods based on the type of the
+arguments.</FONT></FONT></P><P><A NAME="@default1522"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1523"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here are examples that use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator with different
+types:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; start = Time(9, 45)
+&gt;&gt;&gt; duration = Time(1, 35)
+&gt;&gt;&gt; print start + duration
+11:20:00
+&gt;&gt;&gt; print start + 1337
+10:07:17
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Unfortunately, this implementation of addition is not commutative.
+If the integer is the first operand, you get</FONT></FONT></P><P><A NAME="@default1524"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print 1337 + start
+TypeError: unsupported operand type(s) for +: 'int' and 'instance'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The problem is, instead of asking the Time object to add an integer,
+Python is asking an integer to add a Time object, and it doesn&#X2019;t know
+how to do that. But there is a clever solution for this problem,
+the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>radd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method, which stands for &#X201C;right-side add.&#X201D; This
+method is invoked when a Time object appears on the right side of
+the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator. Here&#X2019;s the definition:</FONT></FONT></P><P><A NAME="@default1525"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1526"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4># inside class Time:
+
+    def __radd__(self, other):
+        return self.__add__(other)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And here&#X2019;s how it&#X2019;s used:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print 1337 + start
+10:07:17
+</FONT></FONT></PRE><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write an </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>add</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> method for Points that works with either a
+Point object or a tuple: </EM></FONT></FONT><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3><EM>If the second operand is a Point, the method should return a new
+Point whose </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> coordinate is the sum of the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> coordinates of the
+operands, and likewise for the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>y</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> coordinates.</EM></FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3><EM>If the second operand is a tuple, the method should add the
+first element of the tuple to the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>x</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> coordinate and the second
+element to the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>y</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> coordinate, and return a new Point with the result. </EM></FONT></FONT></LI></UL></DIV><H2 CLASS="section"><A NAME="toc189"></A><A NAME="htoc208"><FONT COLOR=black><FONT SIZE=3>17.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Polymorphism</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>Type-based dispatch is useful when it is necessary, but (fortunately)
+it is not always necessary. Often you can avoid it by writing functions
+that work correctly for arguments with different types.</FONT></FONT></P><P><A NAME="@default1527"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1528"></A></P><P><FONT COLOR=black><FONT SIZE=3>Many of the functions we wrote for strings will actually
+work for any kind of sequence.
+For example, in Section&#XA0;</FONT></FONT><A HREF="book012.html#histogram"><FONT COLOR=black><FONT SIZE=3>11.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>
+we used </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>histogram</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to count the number of times each letter
+appears in a word.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def histogram(s):
+    d = dict()
+    for c in s:
+        if c not in d:
+            d[c] = 1
+        else:
+            d[c] = d[c]+1
+    return d
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This function also works for lists, tuples, and even dictionaries,
+as long as the elements of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>s</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are hashable, so they can be used
+as keys in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['spam', 'egg', 'spam', 'spam', 'bacon', 'spam']
+&gt;&gt;&gt; histogram(t)
+{'bacon': 1, 'egg': 1, 'spam': 4}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Functions that can work with several types are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>polymorphic</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+Polymorphism can facilitate code reuse. For example, the built-in
+function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sum</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which adds the elements of a sequence, works
+as long as the elements of the sequence support addition.</FONT></FONT></P><P><A NAME="@default1529"></A></P><P><FONT COLOR=black><FONT SIZE=3>Since Time objects provide an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>add</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> method, they work
+with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sum</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t1 = Time(7, 43)
+&gt;&gt;&gt; t2 = Time(7, 41)
+&gt;&gt;&gt; t3 = Time(7, 37)
+&gt;&gt;&gt; total = sum([t1, t2, t3])
+&gt;&gt;&gt; print total
+23:01:00
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In general, if all of the operations inside a function 
+work with a given type, then the function works with that type.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The best kind of polymorphism is the unintentional kind, where
+you discover that a function you already wrote can be
+applied to a type you never planned for.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc190"></A><A NAME="htoc209"><FONT COLOR=black><FONT SIZE=3>17.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1530"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is legal to add attributes to objects at any point in the execution
+of a program, but if you are a stickler for type theory, it is a
+dubious practice to have objects of the same type with different
+attribute sets. It is usually a good idea to
+initialize all of an objects attributes in the init method.</FONT></FONT></P><P><A NAME="@default1531"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1532"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you are not sure whether an object has a particular attribute, you
+can use the built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>hasattr</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (see Section&#XA0;</FONT></FONT><A HREF="book016.html#hasattr"><FONT COLOR=black><FONT SIZE=3>15.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>).</FONT></FONT></P><P><A NAME="@default1533"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1534"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1535"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1536"></A></P><P><FONT COLOR=black><FONT SIZE=3>Another way to access the attributes of an object is through the
+special attribute </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>__dict__</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, which is a dictionary that maps
+attribute names (as strings) and values:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; p = Point(3, 4)
+&gt;&gt;&gt; print p.__dict__
+{'y': 4, 'x': 3}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>For purposes of debugging, you might find it useful to keep this
+function handy:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def print_attributes(obj):
+    for attr in obj.__dict__:
+        print attr, getattr(obj, attr)
+</FONT></FONT></PRE><P><CODE><FONT COLOR=black><FONT SIZE=3>print_attributes</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> traverses the items in the object&#X2019;s dictionary
+and prints each attribute name and its corresponding value.</FONT></FONT></P><P><A NAME="@default1537"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1538"></A></P><P><FONT COLOR=black><FONT SIZE=3>The built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>getattr</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes an object and an attribute
+name (as a string) and returns the attribute&#X2019;s value.</FONT></FONT></P><P><A NAME="@default1539"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1540"></A></P><H2 CLASS="section"><A NAME="toc191"></A><A NAME="htoc210"><FONT COLOR=black><FONT SIZE=3>17.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>object-oriented language:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A language that provides features,
+such as user-defined classes and method syntax, that facilitate
+object-oriented programming.
+</FONT></FONT><A NAME="@default1541"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>object-oriented programming:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A style of programming in which
+data and the operations that manipulate it are organized into classes
+and methods.
+</FONT></FONT><A NAME="@default1542"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>method:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A function that is defined inside a class definition and
+is invoked on instances of that class.
+</FONT></FONT><A NAME="@default1543"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>subject:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The object a method is invoked on.
+</FONT></FONT><A NAME="@default1544"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>operator overloading:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Changing the behavior of an operator like
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>+</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> so it works with a user-defined type.
+</FONT></FONT><A NAME="@default1545"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1546"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>type-based dispatch:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A programming pattern that checks the type
+of an operand and invokes different functions for different types.
+</FONT></FONT><A NAME="@default1547"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>polymorphic:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Pertaining to a function that can work with more than one
+type.
+</FONT></FONT><A NAME="@default1548"></A></DD></DL><H2 CLASS="section"><A NAME="toc192"></A><A NAME="htoc211"><FONT COLOR=black><FONT SIZE=3>17.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1549"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1550"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1551"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1552"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>This exercise is a cautionary tale about one of the most
+common, and difficult to find, errors in Python.</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><P><A NAME="@default1553"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1554"></A></P><FONT COLOR=black><FONT SIZE=3><EM>Write a definition for a class named </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>Kangaroo</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> with the following
+methods:</EM></FONT></FONT><OL CLASS="enumerate" type=a><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>An </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>__init__</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> method that initializes an attribute named 
+</EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>pouch_contents</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> to an empty list.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>A method named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>put_in_pouch</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes an object
+of any type and adds it to </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>pouch_contents</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>A </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>__str__</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> method that returns a string representation
+of the Kangaroo object and the contents of the pouch.</EM></FONT></FONT></LI></OL><P><EM><FONT COLOR=black><FONT SIZE=3><EM>
+Test your code 
+by creating two </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>Kangaroo</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM> objects, assigning them to variables
+named </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>kanga</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>roo</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>, and then adding </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>roo</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM> to the
+contents of </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>kanga</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>&#X2019;s pouch.</EM></FONT></FONT></EM></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM>Download </EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/BadKangaroo.py</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>. It contains
+a solution to the previous problem with one big, nasty bug.
+Find and fix the bug.</EM></FONT></FONT></EM><P><EM><FONT COLOR=black><FONT SIZE=3><EM>If you get stuck, you can download
+</EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/GoodKangaroo.py</TT></EM></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><EM>, which explains the
+problem and demonstrates a solution.</EM></FONT></FONT></EM></P><P><A NAME="@default1555"></A><EM><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT></EM><A NAME="@default1556"></A><EM><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT></EM><A NAME="@default1557"></A></P></LI></OL></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1558"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1559"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1560"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1561"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Visual is a Python module that provides 3-D graphics. It is
+not always included in a Python installation, so you might have
+to install it from your software repository or, if it&#X2019;s not there,
+from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>vpython.org</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>The following example creates a 3-D space that is 256 units
+wide, long and high, and sets the &#X201C;center&#X201D; to be the
+point </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>(128, 128, 128)</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Then it draws a blue sphere.</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>from visual import *
+
+scene.range = (256, 256, 256)
+scene.center = (128, 128, 128)
+
+color = (0.1, 0.1, 0.9)          # mostly blue
+sphere(pos=scene.center, radius=128, color=color)
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3><TT>color</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> is an RGB tuple; that is, the elements are Red-Green-Blue
+levels between 0.0 and 1.0 (see
+</FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>wikipedia.org/wiki/RGB_color_model</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>).</FONT></FONT></EM></P><P><EM><FONT COLOR=black><FONT SIZE=3>If you run this code, you should see a window with a black
+background and a blue sphere. If you drag the middle button
+up and down, you can zoom in and out. You can also rotate
+the scene by dragging the right button, but with only one
+sphere in the world, it is hard to tell the difference.</FONT></FONT></EM></P><P><EM><FONT COLOR=black><FONT SIZE=3>The following loop creates a cube of spheres:</FONT></FONT></EM></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>t = range(0, 256, 51)
+for x in t:
+    for y in t:
+        for z in t:
+            pos = x, y, z
+            sphere(pos=pos, radius=10, color=color)
+</FONT></FONT></EM></PRE><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Put this code in a script and make sure it works for
+you.</FONT></FONT></EM></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Modify the program so that each sphere in the cube
+has the color that corresponds to its position in RGB space.
+Notice that the coordinates are in the range 0&#X2013;255, but
+the RGB tuples are in the range 0.0&#X2013;1.0.</FONT></FONT></EM><P><A NAME="@default1562"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1563"></A></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Download </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/color_list.py</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>
+and use the function </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>read_colors</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> to generate a list
+of the available colors on your system, their names and
+RGB values. For each named color draw a sphere in the
+position that corresponds to its RGB values.</FONT></FONT></EM></LI></OL><P><EM><FONT COLOR=black><FONT SIZE=3>You can see my solution at </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/color_space.py</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></P></DIV><HR>
+<A HREF="book017.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book019.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

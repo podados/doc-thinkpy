@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>The way of the program</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book001.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book003.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc2">Chapter&#XA0;1</A>&#XA0;&#XA0;The way of the program</H1><P>The goal of this book is to teach you to think like a
+computer scientist. This way of thinking combines some of the best features
+of mathematics, engineering, and natural science. Like mathematicians,
+computer scientists use formal languages to denote ideas (specifically
+computations). Like engineers, they design things, assembling components
+into systems and evaluating tradeoffs among alternatives. Like scientists,
+they observe the behavior of complex systems, form hypotheses, and test
+predictions.</P><P><A NAME="@default5"></A></P><P>The single most important skill for a computer scientist is <B>problem solving</B>. Problem solving means the ability to formulate
+problems, think creatively about solutions, and express a solution clearly
+and accurately. As it turns out, the process of learning to program is an
+excellent opportunity to practice problem-solving skills. That&#X2019;s why
+this chapter is called, &#X201C;The way of the program.&#X201D;</P><P>On one level, you will be learning to program, a useful
+skill by itself. On another level, you will use programming as a means to
+an end. As we go along, that end will become clearer.</P><H2 CLASS="section"><A NAME="toc4"></A><A NAME="htoc3">1.1</A>&#XA0;&#XA0;The Python programming language</H2><P>
+<A NAME="@default6"></A>
+<A NAME="@default7"></A></P><P>The programming language you will learn is Python. Python is
+an example of a <B>high-level language</B>; other high-level languages
+you might have heard of are C, C++, Perl, and Java.</P><P>There are
+also <B>low-level languages</B>, sometimes referred to as &#X201C;machine
+languages&#X201D; or &#X201C;assembly languages.&#X201D; Loosely speaking, computers
+can only execute programs written in low-level languages. So
+programs written in a high-level language have to be processed before
+they can run. This extra processing takes some time, which is a small
+disadvantage of high-level languages.</P><P><A NAME="@default8"></A>
+<A NAME="@default9"></A>
+<A NAME="@default10"></A>
+<A NAME="@default11"></A>
+<A NAME="@default12"></A></P><P>The advantages are enormous. First, it is much easier to program
+in a high-level language. Programs written in a high-level language
+take less time to write, they are shorter and easier to read, and they
+are more likely to be correct. Second, high-level languages are <B>portable</B>, meaning that they can run on different kinds of computers
+with few or no modifications. Low-level programs can run on only one
+kind of computer and have to be rewritten to run on another.</P><P>Due to these advantages, almost all programs are written in high-level
+languages. Low-level languages are used only for a few specialized
+applications.</P><P><A NAME="@default13"></A>
+<A NAME="@default14"></A></P><P>Two kinds of programs process high-level languages
+into low-level languages: <B>interpreters</B> and <B>compilers</B>.
+An interpreter reads a high-level program and executes it, meaning that it
+does what the program says. It processes the program a little at a time,
+alternately reading lines and performing computations.</P><DIV CLASS="center"><IMG SRC="book001.png"></DIV><P><A NAME="@default15"></A>
+<A NAME="@default16"></A>
+<A NAME="@default17"></A></P><P>A compiler reads the program and translates it completely before the
+program starts running. In this context, the high-level program is
+called the <B>source code</B>, and the translated program is called the
+<B>object code</B> or the <B>executable</B>. Once a program is
+compiled, you can execute it repeatedly without further translation.</P><DIV CLASS="center"><IMG SRC="book002.png"></DIV><P>Python is considered an interpreted language because Python programs
+are executed by an interpreter. There are two ways to use the
+interpreter: <B>interactive mode</B> and <B>script mode</B>. In
+interactive mode, you type Python programs and the interpreter prints
+the result:</P><P><A NAME="@default18"></A>
+<A NAME="@default19"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; 1 + 1
+2
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The chevron, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>&gt;&gt;&gt;</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, is the
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>prompt</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the interpreter uses to indicate that it is ready. If
+you type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1 + 1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the interpreter replies </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default20"></A></P><P><FONT COLOR=black><FONT SIZE=3>Alternatively, you can store code in a file and use the interpreter to
+execute the contents of the file, which is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>script</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. By
+convention, Python scripts have names that end with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default21"></A></P><P><FONT COLOR=black><FONT SIZE=3>To execute the script, you have to tell the interpreter the name of
+the file. In a UNIX command window, you would type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>python
+dinsdale.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. In other development environments, the details of
+executing scripts are different. You can find instructions for
+your environment at the Python Website </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>python.org</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default22"></A></P><P><FONT COLOR=black><FONT SIZE=3>Working in interactive mode is convenient for testing small pieces of
+code because you can type and execute them immediately. But for
+anything more than a few lines, you should save your code
+as a script so you can modify and execute it in the future.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc5"></A><A NAME="htoc4"><FONT COLOR=black><FONT SIZE=3>1.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;What is a program?</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>program</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a sequence of instructions that specifies how to
+perform a computation. The computation might be something
+mathematical, such as solving a system of equations or finding the
+roots of a polynomial, but it can also be a symbolic computation, such
+as searching and replacing text in a document or (strangely enough)
+compiling a program.</FONT></FONT></P><P><A NAME="@default23"></A></P><P><FONT COLOR=black><FONT SIZE=3>The details look different in different languages, but a few basic
+instructions appear in just about every language:</FONT></FONT></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>input:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Get data from the keyboard, a file, or some
+other device.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>output:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Display data on the screen or send data to a
+file or other device.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>math:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Perform basic mathematical operations like addition and
+multiplication.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>conditional execution:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Check for certain conditions and
+execute the appropriate sequence of statements.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>repetition:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Perform some action repeatedly, usually with
+some variation.</FONT></FONT></DD></DL><P><FONT COLOR=black><FONT SIZE=3>Believe it or not, that&#X2019;s pretty much all there is to it. Every
+program you&#X2019;ve ever used, no matter how complicated, is made up of
+instructions that look pretty much like these. So you can think of
+programming as the process of breaking a large, complex task
+into smaller and smaller subtasks until the subtasks are
+simple enough to be performed with one of these basic instructions.</FONT></FONT></P><P><A NAME="@default24"></A></P><P><FONT COLOR=black><FONT SIZE=3>That may be a little vague, but we will come back to this topic
+when we talk about </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>algorithms</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc6"></A><A NAME="htoc5"><FONT COLOR=black><FONT SIZE=3>1.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;What is debugging?</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default25"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default26"></A></P><P><FONT COLOR=black><FONT SIZE=3>Programming is error-prone. For whimsical reasons, programming errors
+are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>bugs</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and the process of tracking them down is called
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>debugging</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default27"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default28"></A></P><P><FONT COLOR=black><FONT SIZE=3>Three kinds of errors can occur in a program: syntax errors, runtime 
+errors, and semantic errors. It is useful
+to distinguish between them in order to track them down more quickly.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc6"><FONT COLOR=black><FONT SIZE=3>1.3.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Syntax errors</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default29"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default30"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default31"></A></P><P><FONT COLOR=black><FONT SIZE=3>Python can only execute a program if the syntax is
+correct; otherwise, the interpreter displays an error message.
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>Syntax</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to the structure of a program and the rules about
+that structure. </FONT></FONT><A NAME="@default32"></A><FONT COLOR=black><FONT SIZE=3> 
+For example, parentheses have to come in matching pairs, so
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>(1 + 2)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is legal, but </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>8)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>syntax error</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default33"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default34"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default35"></A></P><P><FONT COLOR=black><FONT SIZE=3>In English readers can tolerate most syntax errors, which is why we
+can read the poetry of e. e. cummings without spewing error messages.
+Python is not so forgiving. If there is a single syntax error
+anywhere in your program, Python will display an error message and quit,
+and you will not be able to run your program. During the first few
+weeks of your programming career, you will probably spend a lot of
+time tracking down syntax errors. As you gain experience, you will
+make fewer errors and find them faster.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc7"><FONT COLOR=black><FONT SIZE=3>1.3.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Runtime errors</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="runtime"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default36"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default37"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default38"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default39"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default40"></A></P><P><FONT COLOR=black><FONT SIZE=3>The second type of error is a runtime error, so called because the
+error does not appear until after the program has started running.
+These errors are also called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>exceptions</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because they usually
+indicate that something exceptional (and bad) has happened.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Runtime errors are rare in the simple programs you will see in the
+first few chapters, so it might be a while before you encounter one.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc8"><FONT COLOR=black><FONT SIZE=3>1.3.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Semantic errors</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default41"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default42"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default43"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default44"></A></P><P><FONT COLOR=black><FONT SIZE=3>The third type of error is the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>semantic error</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If there is a
+semantic error in your program, it will run successfully in the sense
+that the computer will not generate any error messages, but it will
+not do the right thing. It will do something else. Specifically, it
+will do what you told it to do.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The problem is that the program you wrote is not the program you
+wanted to write. The meaning of the program (its semantics) is wrong.
+Identifying semantic errors can be tricky because it requires you to work
+backward by looking at the output of the program and trying to figure
+out what it is doing.</FONT></FONT></P><H3 CLASS="subsection"><A NAME="htoc9"><FONT COLOR=black><FONT SIZE=3>1.3.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Experimental debugging</FONT></FONT></H3><P><FONT COLOR=black><FONT SIZE=3>One of the most important skills you will acquire is debugging.
+Although it can be frustrating, debugging is one of the most
+intellectually rich, challenging, and interesting parts of
+programming.</FONT></FONT></P><P><A NAME="@default45"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default46"></A></P><P><FONT COLOR=black><FONT SIZE=3>In some ways, debugging is like detective work. You are confronted
+with clues, and you have to infer the processes and events that led
+to the results you see.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Debugging is also like an experimental science. Once you have an idea
+about what is going wrong, you modify your program and try again. If
+your hypothesis was correct, then you can predict the result of the
+modification, and you take a step closer to a working program. If
+your hypothesis was wrong, you have to come up with a new one. As
+Sherlock Holmes pointed out, &#X201C;When you have eliminated the
+impossible, whatever remains, however improbable, must be the truth.&#X201D;
+(A. Conan Doyle, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>The Sign of Four</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>)</FONT></FONT></P><P><A NAME="@default47"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default48"></A></P><P><FONT COLOR=black><FONT SIZE=3>For some people, programming and debugging are the same thing. That
+is, programming is the process of gradually debugging a program until
+it does what you want. The idea is that you should start with a
+program that does </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>something</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and make small modifications,
+debugging them as you go, so that you always have a working program.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, Linux is an operating system that contains thousands of
+lines of code, but it started out as a simple program Linus Torvalds
+used to explore the Intel 80386 chip. According to Larry Greenfield,
+&#X201C;One of Linus&#X2019;s earlier projects was a program that would switch
+between printing AAAA and BBBB. This later evolved to Linux.&#X201D;
+(</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>The Linux Users&#X2019; Guide</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> Beta Version 1).</FONT></FONT></P><P><A NAME="@default49"></A></P><P><FONT COLOR=black><FONT SIZE=3>Later chapters will make more suggestions about debugging and other
+programming practices.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc7"></A><A NAME="htoc10"><FONT COLOR=black><FONT SIZE=3>1.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Formal and natural languages</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default50"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default51"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default52"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default53"></A></P><P><FONT COLOR=black><FONT SIZE=3><B>Natural languages</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are the languages people speak,
+such as English, Spanish, and French. They were not designed
+by people (although people try to impose some order on them);
+they evolved naturally.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><B>Formal languages</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are languages that are designed by people for
+specific applications. For example, the notation that mathematicians
+use is a formal language that is particularly good at denoting
+relationships among numbers and symbols. Chemists use a formal
+language to represent the chemical structure of molecules. And
+most importantly:</FONT></FONT></P><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>Programming languages are formal languages that have been
+designed to express computations.</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></BLOCKQUOTE><P><FONT COLOR=black><FONT SIZE=3>Formal languages tend to have strict rules about syntax. For example,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3>3 + 3 = 6</FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a syntactically correct mathematical statement, but 
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3>3 + = 3 </FONT></FONT><FONT COLOR=black><FONT SIZE=3>$</FONT></FONT><FONT COLOR=black><FONT SIZE=3> 6</FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>H</I></FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3><I>O</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a syntactically correct
+chemical formula, but </FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3><I>Zz</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Syntax rules come in two flavors, pertaining to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>tokens</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+structure. Tokens are the basic elements of the language, such as
+words, numbers, and chemical elements. One of the problems with </FONT></FONT><FONT COLOR=black><FONT SIZE=3>3 +
+= 3 </FONT></FONT><FONT COLOR=black><FONT SIZE=3>$</FONT></FONT><FONT COLOR=black><FONT SIZE=3> 6</FONT></FONT><FONT COLOR=black><FONT SIZE=3> is that </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>$</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> is not a legal token in mathematics
+(at least as far as I know). Similarly, </FONT></FONT><SUB><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></SUB><FONT COLOR=black><FONT SIZE=3><I>Zz</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not legal because
+there is no element with the abbreviation </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>Zz</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default54"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default55"></A></P><P><FONT COLOR=black><FONT SIZE=3>The second type of syntax error pertains to the structure of a
+statement; that is, the way the tokens are arranged. The statement </FONT></FONT><FONT COLOR=black><FONT SIZE=3>3
++ = 3 </FONT></FONT><FONT COLOR=black><FONT SIZE=3>$</FONT></FONT><FONT COLOR=black><FONT SIZE=3> 6</FONT></FONT><FONT COLOR=black><FONT SIZE=3> is illegal because even though </FONT></FONT><FONT COLOR=black><FONT SIZE=3>+</FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3>=</FONT></FONT><FONT COLOR=black><FONT SIZE=3> are
+legal tokens, you can&#X2019;t have one right after the other. Similarly,
+in a chemical formula the subscript comes after the element name, not
+before.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a well-structured English
+sentence with invalid tokens in it. Then write another sentence
+with all valid tokens but with invalid structure.
+</EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>When you read a sentence in English or a statement in a formal
+language, you have to figure out what the structure of the sentence is
+(although in a natural language you do this subconsciously). This
+process is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>parsing</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default56"></A></P><P><FONT COLOR=black><FONT SIZE=3>For example, when you hear the sentence, &#X201C;The penny dropped,&#X201D; you
+understand that &#X201C;the penny&#X201D; is the subject and &#X201C;dropped&#X201D; is the
+predicate. Once you have parsed a sentence, you can figure out what it
+means, or the semantics of the sentence. Assuming that you know
+what a penny is and what it means to drop, you will understand the
+general implication of this sentence.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Although formal and natural languages have many features in
+common&#X2014;tokens, structure, syntax, and semantics&#X2014;there are some
+differences:</FONT></FONT></P><P><A NAME="@default57"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default58"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default59"></A></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>ambiguity:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Natural languages are full of ambiguity, which
+people deal with by using contextual clues and other information.
+Formal languages are designed to be nearly or completely unambiguous,
+which means that any statement has exactly one meaning,
+regardless of context.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>redundancy:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> In order to make up for ambiguity and reduce
+misunderstandings, natural languages employ lots of
+redundancy. As a result, they are often verbose. Formal languages
+are less redundant and more concise.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>literalness:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Natural languages are full of idiom and metaphor.
+If I say, &#X201C;The penny dropped,&#X201D; there is probably no penny and
+nothing dropping</FONT></FONT><SUP><A NAME="text1" HREF="#note1"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>. Formal languages
+mean exactly what they say.</FONT></FONT></DD></DL><P><FONT COLOR=black><FONT SIZE=3>People who grow up speaking a natural language&#X2014;everyone&#X2014;often have a
+hard time adjusting to formal languages. In some ways, the difference
+between formal and natural language is like the difference between
+poetry and prose, but more so:</FONT></FONT></P><P><A NAME="@default60"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default61"></A></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Poetry:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Words are used for their sounds as well as for
+their meaning, and the whole poem together creates an effect or
+emotional response. Ambiguity is not only common but often
+deliberate.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Prose:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The literal meaning of words is more important,
+and the structure contributes more meaning. Prose is more amenable to
+analysis than poetry but still often ambiguous.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Programs:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The meaning of a computer program is unambiguous
+and literal, and can be understood entirely by analysis of the
+tokens and structure.</FONT></FONT></DD></DL><P><FONT COLOR=black><FONT SIZE=3>Here are some suggestions for reading programs (and other formal
+languages). First, remember that formal languages are much more dense
+than natural languages, so it takes longer to read them. Also, the
+structure is very important, so it is usually not a good idea to read
+from top to bottom, left to right. Instead, learn to parse the
+program in your head, identifying the tokens and interpreting the
+structure. Finally, the details matter. Small errors in
+spelling and punctuation, which you can get away
+with in natural languages, can make a big difference in a formal
+language.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc8"></A><A NAME="htoc11"><FONT COLOR=black><FONT SIZE=3>1.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;The first program</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="hello"></A></P><P><A NAME="@default62"></A></P><P><FONT COLOR=black><FONT SIZE=3>Traditionally, the first program you write in a new language
+is called &#X201C;Hello, World!&#X201D; because all it does is display the
+words, &#X201C;Hello, World!&#X201D; In Python, it looks like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>print 'Hello, World!'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This is an example of a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>print statement</B></FONT></FONT><SUP><A NAME="text2" HREF="#note2"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>, which
+doesn&#X2019;t actually print anything on paper. It displays a value on the
+screen. In this case, the result is the words</FONT></FONT></P><P><A NAME="@default63"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>Hello, World!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The quotation marks in the program mark the beginning and end
+of the text to be displayed; they don&#X2019;t appear in the result.</FONT></FONT></P><P><A NAME="@default64"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default65"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default66"></A></P><P><FONT COLOR=black><FONT SIZE=3>Some people judge the quality of a programming language by the
+simplicity of the &#X201C;Hello, World!&#X201D; program. By this standard, Python
+does about as well as possible.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc9"></A><A NAME="htoc12"><FONT COLOR=black><FONT SIZE=3>1.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default67"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is a good idea to read this book in front of a computer so you can
+try out the examples as you go. You can run most of the examples in
+interactive mode, but if you put the code into a script, it is easier
+to try out variations.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Whenever you are experimenting with a new feature, you should try
+to make mistakes. For example, in the &#X201C;Hello, world!&#X201D; program,
+what happens if you leave out one of the quotation marks? What
+if you leave out both? What if you spell </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> wrong?</FONT></FONT></P><P><A NAME="@default68"></A></P><P><FONT COLOR=black><FONT SIZE=3>This kind of experiment helps you remember what you read; it also helps
+with debugging, because you get to know what the error messages mean.
+It is better to make mistakes now and on purpose than later
+and accidentally.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Programming, and especially debugging, sometimes brings out strong
+emotions. If you are struggling with a difficult bug, you might 
+feel angry, despondent or embarrassed.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>There is evidence that people naturally respond to computers as if
+they were people</FONT></FONT><SUP><A NAME="text3" HREF="#note3"><FONT COLOR=black><FONT SIZE=3>3</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>. When they work well, we think
+of them as teammates, and when they are obstinate or rude, we
+respond to them the same way we respond to rude,
+obstinate people.</FONT></FONT></P><P><A NAME="@default69"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default70"></A></P><P><FONT COLOR=black><FONT SIZE=3>Preparing for these reactions might help you deal with them.
+One approach is to think of the computer as an employee with
+certain strengths, like speed and precision, and
+particular weaknesses, like lack of empathy and inability
+to grasp the big picture.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Your job is to be a good manager: find ways to take advantage
+of the strengths and mitigate the weaknesses. And find ways
+to use your emotions to engage with the problem,
+without letting your reactions interfere with your ability
+to work effectively.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Learning to debug can be frustrating, but it is a valuable skill
+that is useful for many activities beyond programming. At the
+end of each chapter there is a debugging section, like this one,
+with my thoughts about debugging. I hope they help!</FONT></FONT></P><H2 CLASS="section"><A NAME="toc10"></A><A NAME="htoc13"><FONT COLOR=black><FONT SIZE=3>1.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>problem solving:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The process of formulating a problem, finding
+a solution, and expressing the solution.
+</FONT></FONT><A NAME="@default71"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>high-level language:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A programming language like Python that
+is designed to be easy for humans to read and write.
+</FONT></FONT><A NAME="@default72"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>low-level language:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A programming language that is designed
+to be easy for a computer to execute; also called &#X201C;machine language&#X201D; or
+&#X201C;assembly language.&#X201D;
+</FONT></FONT><A NAME="@default73"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>portability:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A property of a program that can run on more
+than one kind of computer.
+</FONT></FONT><A NAME="@default74"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>interpret:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To execute a program in a high-level language
+by translating it one line at a time.
+</FONT></FONT><A NAME="@default75"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>compile:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To translate a program written in a high-level language
+into a low-level language all at once, in preparation for later
+execution.
+</FONT></FONT><A NAME="@default76"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>source code:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A program in a high-level language before
+being compiled.
+</FONT></FONT><A NAME="@default77"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>object code:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The output of the compiler after it translates
+the program.
+</FONT></FONT><A NAME="@default78"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>executable:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Another name for object code that is ready
+to be executed.
+</FONT></FONT><A NAME="@default79"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>prompt:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Characters displayed by the interpreter to indicate
+that it is ready to take input from the user.
+</FONT></FONT><A NAME="@default80"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>script:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A program stored in a file (usually one that will be
+interpreted).
+</FONT></FONT><A NAME="@default81"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>interactive mode:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A way of using the Python interpreter by
+typing commands and expressions at the prompt.
+</FONT></FONT><A NAME="@default82"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>script mode:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A way of using the Python interpreter to read
+and execute statements in a script.
+</FONT></FONT><A NAME="@default83"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>program:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A set of instructions that specifies a computation.
+</FONT></FONT><A NAME="@default84"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>algorithm:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A general process for solving a category of
+problems.
+</FONT></FONT><A NAME="@default85"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>bug:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An error in a program.
+</FONT></FONT><A NAME="@default86"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>debugging:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The process of finding and removing any of the
+three kinds of programming errors.
+</FONT></FONT><A NAME="@default87"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>syntax:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The structure of a program.
+</FONT></FONT><A NAME="@default88"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>syntax error:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An error in a program that makes it impossible
+to parse (and therefore impossible to interpret).
+</FONT></FONT><A NAME="@default89"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>exception:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An error that is detected while the program is running.
+</FONT></FONT><A NAME="@default90"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>semantics:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The meaning of a program.
+</FONT></FONT><A NAME="@default91"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>semantic error:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An error in a program that makes it do something
+other than what the programmer intended.
+</FONT></FONT><A NAME="@default92"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>natural language:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Any one of the languages that people speak that
+evolved naturally.
+</FONT></FONT><A NAME="@default93"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>formal language:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Any one of the languages that people have designed
+for specific purposes, such as representing mathematical ideas or
+computer programs; all programming languages are formal languages.
+</FONT></FONT><A NAME="@default94"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>token:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> One of the basic elements of the syntactic structure of
+a program, analogous to a word in a natural language.
+</FONT></FONT><A NAME="@default95"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>parse:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To examine a program and analyze the syntactic structure.
+</FONT></FONT><A NAME="@default96"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>print statement:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An instruction that causes the Python
+interpreter to display a value on the screen.
+</FONT></FONT><A NAME="@default97"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default98"></A></DD></DL><H2 CLASS="section"><A NAME="toc11"></A><A NAME="htoc14"><FONT COLOR=black><FONT SIZE=3>1.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Use a web browser to go to the Python Website </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>python.org</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+This page contains information about Python and links
+to Python-related pages, and it gives you the ability to search
+the Python documentation.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>For example, if you enter </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>print</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> in the search window, the
+first link that appears is the documentation of the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>print</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+statement. At this point, not all of it will make sense to you,
+but it is good to know where it is.</EM></FONT></FONT></P><P><A NAME="@default99"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default100"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Start the Python interpreter and type </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>help()</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> to start the online
+help utility. Or you can type </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>help(&#X2019;print&#X2019;)</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> to get information
+about the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>print</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> statement.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>If this example doesn&#X2019;t work, you
+may need to install additional Python documentation or set an
+environment variable; the details depend on your operating system and
+version of Python.</EM></FONT></FONT></P><P><A NAME="@default101"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Start the Python interpreter and use it as a calculator.
+Python&#X2019;s syntax for math operations is almost the same as
+standard mathematical notation. For example they symbols
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>+</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>-</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>/</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> denote addition, subtraction
+and division, as you would expect. The symbol for
+multiplication is </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>*</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>If you run a 10 kilometer race in 43 minutes 30 seconds, what is your
+average time per mile? What is your average speed in miles per hour?
+(Hint: there are 1.61 kilometers in a mile).</EM></FONT></FONT></P><P><A NAME="@default102"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default103"></A></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note1" HREF="#text1"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>This idiom means that someone realized something
+after a period of confusion.
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note2" HREF="#text2"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>In Python 3.0,
+<TT>print</TT> is a function, not a statement, so the syntax is <TT>print(&#X2019;Hello, World!&#X2019;)</TT>. We will get to functions soon!
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note3" HREF="#text3"><FONT COLOR=black><FONT SIZE=3>3</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See Reeves and Nass, <I>The Media
+Equation: How People Treat Computers, Television, and New Media
+Like Real People and Places</I>.
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book001.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book003.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

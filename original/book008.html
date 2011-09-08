@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Iteration</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book007.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book009.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc84"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Iteration</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default517"></A></P><H2 CLASS="section"><A NAME="toc76"></A><A NAME="htoc85"><FONT COLOR=black><FONT SIZE=3>7.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Multiple assignment</FONT></FONT></H2><P><A NAME="@default518"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default519"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default520"></A></P><P><FONT COLOR=black><FONT SIZE=3>As you may have discovered, it is legal to
+make more than one assignment to the same variable. A
+new assignment makes an existing variable refer to a new
+value (and stop referring to the old value).</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>bruce = 5
+print bruce,
+bruce = 7
+print bruce
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The output of this program is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>5 7</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, because the first time
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bruce</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is printed, its value is 5, and the second time, its
+value is 7. The
+comma at the end of the first </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement suppresses
+the newline, which is why both outputs
+appear on the same line.</FONT></FONT></P><P><A NAME="@default521"></A></P><P><FONT COLOR=black><FONT SIZE=3>Here is what </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>multiple assignment</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> looks like in a state diagram:</FONT></FONT></P><P><A NAME="@default522"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default523"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book010.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>With multiple assignment it is especially important to distinguish
+between an assignment operation and a statement of equality. Because
+Python uses the equal sign (</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>=</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>) for assignment, it is tempting to
+interpret a statement like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a = b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a statement of equality. It
+is not!</FONT></FONT></P><P><A NAME="@default524"></A></P><P><FONT COLOR=black><FONT SIZE=3>First, equality is a symmetric relation and assignment is not. For
+example, in mathematics, if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>a</I> = 7</FONT></FONT><FONT COLOR=black><FONT SIZE=3> then </FONT></FONT><FONT COLOR=black><FONT SIZE=3>7 = <I>a</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. But in Python, the
+statement </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a = 7</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is legal and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>7 = a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Furthermore, in mathematics, a statement of equality is either true or
+false, for all time. If </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>a</I> = <I>b</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> now, then </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>a</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> will always equal </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>b</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+In Python, an assignment statement can make two variables equal, but
+they don&#X2019;t have to stay that way:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>a = 5
+b = a    # a and b are now equal
+a = 3    # a and b are no longer equal
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The third line changes the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> but does not change the
+value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, so they are no longer equal. </FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Although multiple assignment is frequently helpful, you should use it
+with caution. If the values of variables change frequently, it can
+make the code difficult to read and debug.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc77"></A><A NAME="htoc86"><FONT COLOR=black><FONT SIZE=3>7.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Updating variables</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="update"></A></P><P><A NAME="@default525"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default526"></A></P><P><FONT COLOR=black><FONT SIZE=3>One of the most common forms of multiple assignment is an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>update</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+where the new value of the variable depends on the old.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>x = x+1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This means &#X201C;get the current value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, add one, and then
+update </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with the new value.&#X201D;</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If you try to update a variable that doesn&#X2019;t exist, you get an
+error, because Python evaluates the right side before it assigns
+a value to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = x+1
+NameError: name 'x' is not defined
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Before you can update a variable, you have to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>initialize</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+it, usually with a simple assignment:</FONT></FONT></P><P><A NAME="@default527"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = 0
+&gt;&gt;&gt; x = x+1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Updating a variable by adding 1 is called an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>increment</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>;
+subtracting 1 is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>decrement</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default528"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default529"></A></P><H2 CLASS="section"><A NAME="toc78"></A><A NAME="htoc87"><FONT COLOR=black><FONT SIZE=3>7.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement</FONT></FONT></H2><P><A NAME="@default530"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default531"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default532"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default533"></A></P><P><FONT COLOR=black><FONT SIZE=3>Computers are often used to automate repetitive tasks. Repeating
+identical or similar tasks without making errors is something that
+computers do well and people do poorly.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>We have seen two programs, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>print_n</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>, that
+use recursion to perform repetition, which is also called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>iteration</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Because iteration is so common, Python provides several
+language features to make it easier. One is the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement
+we saw in Section&#XA0;</FONT></FONT><A HREF="book005.html#repetition"><FONT COLOR=black><FONT SIZE=3>4.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>. We&#X2019;ll get back to that later.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Another is the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement. Here is a version of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that uses a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def countdown(n):
+    while n &gt; 0:
+        print n
+        n = n-1
+    print 'Blastoff!'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You can almost read the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement as if it were English.
+It means, &#X201C;While </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is greater than 0,
+display the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and then reduce the value of
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> by 1. When you get to 0, display the word </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>Blastoff!</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X201D;</FONT></FONT></P><P><A NAME="@default534"></A></P><P><FONT COLOR=black><FONT SIZE=3>More formally, here is the flow of execution for a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement:</FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Evaluate the condition, yielding </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>False</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>If the condition is false, exit the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement
+and continue execution at the next statement.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>If the condition is true, execute the
+body and then go back to step 1.</FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3>This type of flow is called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>loop</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because the third step
+loops back around to the top. </FONT></FONT></P><P><A NAME="@default535"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default536"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default537"></A></P><P><FONT COLOR=black><FONT SIZE=3>The body of the loop should change the value of one or more variables
+so that eventually the condition becomes false and the loop
+terminates. Otherwise the loop will repeat forever, which is called
+an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>infinite loop</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. An endless source of amusement for computer
+scientists is the observation that the directions on shampoo,
+&#X201C;Lather, rinse, repeat,&#X201D; are an infinite loop.</FONT></FONT></P><P><A NAME="@default538"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default539"></A></P><P><FONT COLOR=black><FONT SIZE=3>In the case of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>countdown</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we can prove that the loop
+terminates because we know that the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is finite, and we
+can see that the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets smaller each time through the
+loop, so eventually we have to get to 0. In other
+cases, it is not so easy to tell:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def sequence(n):
+    while n != 1:
+        print n,
+        if n%2 == 0:        # n is even
+            n = n/2
+        else:               # n is odd
+            n = n*3+1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The condition for this loop is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n != 1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, so the loop will continue
+until </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which makes the condition false.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Each time through the loop, the program outputs the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+and then checks whether it is even or odd. If it is even, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 
+divided by 2. If it is odd, the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is replaced with
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n*3+1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. For example, if the argument passed
+to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sequence</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 3, the resulting sequence is 3, 10, 5, 16, 8, 4, 2, 1.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Since </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> sometimes increases and sometimes decreases, there is no
+obvious proof that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> will ever reach 1, or that the program
+terminates. For some particular values of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we can prove
+termination. For example, if the starting value is a power of two,
+then the value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> will be even each time through the loop
+until it reaches 1. The previous example ends with such a sequence,
+starting with 16.</FONT></FONT></P><P><A NAME="@default540"></A></P><P><FONT COLOR=black><FONT SIZE=3>The hard question is whether we can prove that this program terminates
+for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>all positive values</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. So far</FONT></FONT><SUP><A NAME="text12" HREF="#note12"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3>, no one has
+been able to prove it </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>or</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> disprove it!</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Rewrite the function </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>print_n</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> from
+Section&#XA0;</EM></FONT></FONT><A HREF="book006.html#recursion"><FONT COLOR=black><FONT SIZE=3><EM>5.8</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM> using iteration instead of recursion.
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc79"></A><A NAME="htoc88"><FONT COLOR=black><FONT SIZE=3>7.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>break</TT></FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default541"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default542"></A></P><P><FONT COLOR=black><FONT SIZE=3>Sometimes you don&#X2019;t know it&#X2019;s time to end a loop until you get half
+way through the body. In that case you can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>break</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+statement to jump out of the loop.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, suppose you want to take input from the user until they
+type </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>done</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. You could write:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>while True:
+    line = raw_input('&gt; ')
+    if line == 'done':
+        break
+    print line
+
+print 'Done!'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The loop condition is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is always true, so the
+loop runs until it hits the break statement.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Each time through, it prompts the user with an angle bracket.
+If the user types </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>done</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>break</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement exits
+the loop. Otherwise the program echoes whatever the user types
+and goes back to the top of the loop. Here&#X2019;s a sample run:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt; not done
+not done
+&gt; done
+Done!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This way of writing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loops is common because you
+can check the condition anywhere in the loop (not just at the
+top) and you can express the stop condition affirmatively
+(&#X201C;stop when this happens&#X201D;) rather than negatively (&#X201C;keep going
+until that happens.&#X201D;).</FONT></FONT></P><H2 CLASS="section"><A NAME="toc80"></A><A NAME="htoc89"><FONT COLOR=black><FONT SIZE=3>7.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Square roots</FONT></FONT></H2><P><A NAME="@default543"></A></P><P><FONT COLOR=black><FONT SIZE=3>Loops are often used in programs that compute
+numerical results by starting with an approximate answer and
+iteratively improving it.</FONT></FONT></P><P><A NAME="@default544"></A></P><P><FONT COLOR=black><FONT SIZE=3>For example, one way of computing square roots is Newton&#X2019;s method.
+Suppose that you want to know the square root of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>a</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If you start
+with almost any estimate, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>x</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you can compute a better
+estimate with the following formula:</FONT></FONT></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><I>y</I>&#XA0;=&#XA0;</FONT></FONT></TD><TD CLASS="dcell"><TABLE CLASS="display"><TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><I>x</I>&#XA0;+&#XA0;<I>a</I>/<I>x</I></FONT></FONT></TD></TR>
+<TR><TD CLASS="hbar"><FONT COLOR=black><FONT SIZE=3></FONT></FONT></TD></TR>
+<TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></TD></TR>
+</TABLE></TD><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3>&#XA0;</FONT></FONT></TD></TR>
+</TABLE><P><FONT COLOR=black><FONT SIZE=3>
+For example, if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>a</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 4 and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>x</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 3:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a = 4.0
+&gt;&gt;&gt; x = 3.0
+&gt;&gt;&gt; y = (x + a/x) / 2
+&gt;&gt;&gt; print y
+2.16666666667
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Which is closer to the correct answer (</FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X221A;</FONT></FONT><FONT COLOR=black><FONT SIZE=3><SPAN style="text-decoration:overline">4</SPAN></FONT></FONT><FONT COLOR=black><FONT SIZE=3> = 2</FONT></FONT><FONT COLOR=black><FONT SIZE=3>). If we
+repeat the process with the new estimate, it gets even closer:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = y
+&gt;&gt;&gt; y = (x + a/x) / 2
+&gt;&gt;&gt; print y
+2.00641025641
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>After a few more updates, the estimate is almost exact:</FONT></FONT></P><P><A NAME="@default545"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = y
+&gt;&gt;&gt; y = (x + a/x) / 2
+&gt;&gt;&gt; print y
+2.00001024003
+&gt;&gt;&gt; x = y
+&gt;&gt;&gt; x = (x + a/x) / 2
+&gt;&gt;&gt; print y
+2.00000000003
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>In general we don&#X2019;t know ahead of time how many steps it takes
+to get to the right answer, but we know when we get there
+because the estimate
+stops changing:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; x = y
+&gt;&gt;&gt; y = (x + a/x) / 2
+&gt;&gt;&gt; print y
+2.0
+&gt;&gt;&gt; x = y
+&gt;&gt;&gt; y = (x + a/x) / 2
+&gt;&gt;&gt; print y
+2.0
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>When </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>y == x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we can stop. Here is a loop that starts
+with an initial estimate, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and improves it until it
+stops changing:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>while True:
+    print x
+    y = (x + a/x) / 2
+    if y == x:
+        break
+    x = y
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>For most values of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> this works fine, but in general it is
+dangerous to test </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>float</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> equality.
+Floating-point values are only approximately right:
+most rational numbers, like </FONT></FONT><FONT COLOR=black><FONT SIZE=3>1/3</FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and irrational numbers, like
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#X221A;</FONT></FONT><FONT COLOR=black><FONT SIZE=3><SPAN style="text-decoration:overline">2</SPAN></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, can&#X2019;t be represented exactly with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>float</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default546"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default547"></A></P><P><FONT COLOR=black><FONT SIZE=3>Rather than checking whether </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are exactly equal, it
+is safer to use the built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>abs</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to compute the
+absolute value, or magnitude, of the difference between them:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>    if abs(y-x) &lt; epsilon:
+        break
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Where </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>epsilon</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> has a value like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>0.0000001</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that
+determines how close is close enough.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="square_root"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default548"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Encapsulate this loop in a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>square_root</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>
+that takes </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>a</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> as a parameter, chooses a reasonable
+value of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>x</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, and returns an estimate of the square root
+of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>a</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc81"></A><A NAME="htoc90"><FONT COLOR=black><FONT SIZE=3>7.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Algorithms</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default549"></A></P><P><FONT COLOR=black><FONT SIZE=3>Newton&#X2019;s method is an example of an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>algorithm</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>: it is a
+mechanical process for solving a category of problems (in this
+case, computing square roots).</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>It is not easy to define an algorithm. It might help to start
+with something that is not an algorithm. When you learned
+to multiply single-digit numbers, you probably memorized the
+multiplication table. In effect, you memorized 100 specific solutions.
+That kind of knowledge is not algorithmic.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But if you were &#X201C;lazy,&#X201D; you probably cheated by learning a few
+tricks. For example, to find the product of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>n</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and 9, you can
+write </FONT></FONT><FONT COLOR=black><FONT SIZE=3><I>n</I>&#X2212;1</FONT></FONT><FONT COLOR=black><FONT SIZE=3> as the first digit and </FONT></FONT><FONT COLOR=black><FONT SIZE=3>10&#X2212;<I>n</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as the second
+digit. This trick is a general solution for multiplying any
+single-digit number by 9. That&#X2019;s an algorithm!</FONT></FONT></P><P><A NAME="@default550"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default551"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default552"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default553"></A></P><P><FONT COLOR=black><FONT SIZE=3>Similarly, the techniques you learned for addition with carrying,
+subtraction with borrowing, and long division are all algorithms. One
+of the characteristics of algorithms is that they do not require any
+intelligence to carry out. They are mechanical processes in which
+each step follows from the last according to a simple set of rules.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>In my opinion, it is embarrassing that humans spend so much time in
+school learning to execute algorithms that, quite literally, require
+no intelligence.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>On the other hand, the process of designing algorithms is interesting,
+intellectually challenging, and a central part of what we call
+programming.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Some of the things that people do naturally, without difficulty or
+conscious thought, are the hardest to express algorithmically.
+Understanding natural language is a good example. We all do it, but
+so far no one has been able to explain </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>how</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> we do it, at least
+not in the form of an algorithm.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc82"></A><A NAME="htoc91"><FONT COLOR=black><FONT SIZE=3>7.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>As you start writing bigger programs, you might find yourself
+spending more time debugging. More code means more chances to
+make an error and more place for bugs to hide.</FONT></FONT></P><P><A NAME="@default554"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default555"></A></P><P><FONT COLOR=black><FONT SIZE=3>One way to cut your debugging time is &#X201C;debugging by bisection.&#X201D;
+For example, if there are 100 lines in your program and you
+check them one at a time, it would take 100 steps.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Instead, try to break the problem in half. Look at the middle
+of the program, or near it, for an intermediate value you
+can check. Add a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>print</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement (or something else
+that has a verifiable effect) and run the program.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>If the mid-point check is incorrect, the problem must be in the
+first half of the program. If it is correct, the problem is
+in the second half.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Every time you perform a check like this, you halve the number
+of lines you have to search. After six steps (which is much
+less than 100), you would be down to one or two lines of code,
+at least in theory.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>In practice it is not always clear what
+the &#X201C;middle of the program&#X201D; is and not always possible to
+check it. It doesn&#X2019;t make sense to count lines and find the
+exact midpoint. Instead, think about places
+in the program where there might be errors and places where it
+is easy to put a check. Then choose a spot where you
+think the chances are about the same that the bug is before
+or after the check.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc83"></A><A NAME="htoc92"><FONT COLOR=black><FONT SIZE=3>7.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>multiple assignment:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Making more than one assignment to the same
+variable during the execution of a program.
+</FONT></FONT><A NAME="@default556"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default557"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>update:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An assignment where the new value of the variable
+depends on the old.
+</FONT></FONT><A NAME="@default558"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>initialize:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An assignment that gives an initial value to
+a variable that will be updated.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>increment:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An update that increases the value of a variable
+(often by one).
+</FONT></FONT><A NAME="@default559"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>decrement:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An update that decreases the value of a variable.
+</FONT></FONT><A NAME="@default560"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>iteration:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Repeated execution of a set of statements using
+either a recursive function call or a loop.
+</FONT></FONT><A NAME="@default561"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>infinite loop:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A loop in which the terminating condition is
+never satisfied.
+</FONT></FONT><A NAME="@default562"></A></DD></DL><H2 CLASS="section"><A NAME="toc84"></A><A NAME="htoc93"><FONT COLOR=black><FONT SIZE=3>7.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default563"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>To test the square root algorithm in this chapter, you could compare
+it with </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>math.sqrt</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Write a function named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>test_square_root</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>
+that prints a table like this:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>1.0 1.0           1.0           0.0
+2.0 1.41421356237 1.41421356237 2.22044604925e-16
+3.0 1.73205080757 1.73205080757 0.0
+4.0 2.0           2.0           0.0
+5.0 2.2360679775  2.2360679775  0.0
+6.0 2.44948974278 2.44948974278 0.0
+7.0 2.64575131106 2.64575131106 0.0
+8.0 2.82842712475 2.82842712475 4.4408920985e-16
+9.0 3.0           3.0           0.0
+
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>The first column is a number, </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><I>a</I></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>; the second column is
+the square root of </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><I>a</I></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> computed with the function from
+Exercise&#XA0;</FONT></FONT></EM><A HREF="#square_root"><EM><FONT COLOR=black><FONT SIZE=3>7.2</FONT></FONT></EM></A><EM><FONT COLOR=black><FONT SIZE=3>; the third column is the square root computed
+by </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>math.sqrt</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>; the fourth column is the absolute value
+of the difference between the two estimates.
+</FONT></FONT></EM></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default564"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default565"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The built-in function </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>eval</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> takes a string and evaluates
+it using the Python interpreter. For example:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; eval('1 + 2 * 3')
+7
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; eval('math.sqrt(5)')
+2.2360679774997898
+&gt;&gt;&gt; eval('type(math.pi)')
+&lt;type 'float'&gt;
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>Write a function called </FONT></FONT></EM><CODE><EM><FONT COLOR=black><FONT SIZE=3>eval_loop</FONT></FONT></EM></CODE><EM><FONT COLOR=black><FONT SIZE=3> that iteratively
+prompts the user, takes the resulting input and evaluates
+it using </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>eval</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>, and prints the result.</FONT></FONT></EM></P><P><EM><FONT COLOR=black><FONT SIZE=3>It should continue until the user enters </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;done&#X2019;</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>, and then
+return the value of the last expression it evaluated.</FONT></FONT></EM></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default566"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The Indian mathematician Srinivasa Ramanujan found an
+infinite series</EM></FONT></FONT><SUP><A NAME="text13" HREF="#note13"><FONT COLOR=black><FONT SIZE=3><EM>2</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>
+that can be used to generate a numerical
+approximation of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>&#X3C0;</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>:</EM></FONT></FONT></P><P><A NAME="@default567"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE CLASS="display"><TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM>1</EM></FONT></FONT></TD></TR>
+<TR><TD CLASS="hbar"><FONT COLOR=black><FONT SIZE=3><EM></EM></FONT></FONT></TD></TR>
+<TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM>&#X3C0;</EM></FONT></FONT></TD></TR>
+</TABLE></TD><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;=&#XA0;</EM></FONT></FONT></TD><TD CLASS="dcell"><TABLE CLASS="display"><TR><TD CLASS="dcell" ALIGN="center"><TABLE CLASS="display"><TR VALIGN="middle"><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM>2</EM></FONT></FONT></TD><TD CLASS="dcell"><FONT COLOR=black><EM><FONT SIZE=5>&#X221A;</FONT></EM></FONT></TD><TD CLASS="dcell"><TABLE border=0 cellspacing=1 cellpadding=0><TR><TD CLASS="hbar"><FONT COLOR=black><FONT SIZE=3><EM></EM></FONT></FONT></TD></TR>
+<TR><TD ALIGN=center NOWRAP><FONT COLOR=black><FONT SIZE=3><EM>2</EM></FONT></FONT></TD></TR>
+</TABLE></TD></TR>
+</TABLE></TD></TR>
+<TR><TD CLASS="hbar"><FONT COLOR=black><FONT SIZE=3><EM></EM></FONT></FONT></TD></TR>
+<TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM>9801</EM></FONT></FONT></TD></TR>
+</TABLE></TD><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;
+</EM></FONT></FONT></TD><TD CLASS="dcell"><TABLE CLASS="display"><TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM><FONT COLOR=black><FONT SIZE=3><EM>&#X221E;</EM></FONT></FONT></EM></FONT></FONT></TD></TR>
+<TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><EM><FONT SIZE=6>&#X2211;</FONT></EM></FONT></TD></TR>
+<TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM><FONT COLOR=black><FONT SIZE=3><EM><I>k</I>=0</EM></FONT></FONT></EM></FONT></FONT></TD></TR>
+</TABLE></TD><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;</EM></FONT></FONT></TD><TD CLASS="dcell"><TABLE CLASS="display"><TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM>(4<I>k</I>)!(1103+26390<I>k</I>)</EM></FONT></FONT></TD></TR>
+<TR><TD CLASS="hbar"><FONT COLOR=black><FONT SIZE=3><EM></EM></FONT></FONT></TD></TR>
+<TR><TD CLASS="dcell" ALIGN="center"><FONT COLOR=black><FONT SIZE=3><EM>(<I>k</I>!)</EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM>4</EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;396</EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM>4<I>k</I></EM></FONT></FONT></SUP></TD></TR>
+</TABLE></TD><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;</EM></FONT></FONT></TD></TR>
+</TABLE><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>estimate_pi</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that uses this formula
+to compute and return an estimate of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>&#X3C0;</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. It should use a </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>while</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+loop to compute terms of the summation until the last term is
+smaller than </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>1e-15</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> (which is Python notation for </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>10</EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM>&#X2212;15</EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>).
+You can check the result by comparing it to </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>math.pi</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/pi.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.
+</EM></FONT></FONT></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note12" HREF="#text12"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See
+<TT>wikipedia.org/wiki/Collatz_conjecture</TT>.
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note13" HREF="#text13"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See <TT>wikipedia.org/wiki/Pi</TT>.
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book007.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book009.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Case study: data structure selection</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book013.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book015.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc155"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;13</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Case study: data structure selection</FONT></FONT></H1><H2 CLASS="section"><A NAME="toc141"></A><A NAME="htoc156"><FONT COLOR=black><FONT SIZE=3>13.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Word frequency analysis</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="analysis"></A></P><P><FONT COLOR=black><FONT SIZE=3>As usual, you should at least attempt the following exercises
+before you read my solutions.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a program that reads a file, breaks each line into
+words, strips whitespace and punctuation from the words, and
+converts them to lowercase.</EM></FONT></FONT><P><A NAME="@default1158"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1159"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Hint: The </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>string</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module provides strings named </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>whitespace</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>,
+which contains space, tab, newline, etc., and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>punctuation</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> which contains the punctuation characters. Let&#X2019;s see
+if we can make Python swear:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; import string
+&gt;&gt;&gt; print string.punctuation
+!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>Also, you might consider using the string methods </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>strip</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>,
+</FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>replace</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>translate</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></P><P><A NAME="@default1160"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1161"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1162"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1163"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1164"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1165"></A></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1166"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Go to Project Gutenberg (</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>gutenberg.net</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>) and download 
+your favorite out-of-copyright book in plain text format.</EM></FONT></FONT></P><P><A NAME="@default1167"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1168"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Modify your program from the previous exercise to read the book
+you downloaded, skip over the header information at the beginning
+of the file, and process the rest of the words as before.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Then modify the program to count the total number of words in
+the book, and the number of times each word is used.</EM></FONT></FONT></P><P><A NAME="@default1169"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1170"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Print the number of different words used in the book. Compare
+different books by different authors, written in different eras.
+Which author uses the most extensive vocabulary?
+</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Modify the program from the previous exercise to print the
+20 most frequently-used words in the book.
+</EM></FONT></FONT></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Modify the previous program to read a word list (see
+Section&#XA0;</EM></FONT></FONT><A HREF="book010.html#wordlist"><FONT COLOR=black><FONT SIZE=3><EM>9.1</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>) and then print all the words in the book that
+are not in the word list. How many of them are typos? How many of
+them are common words that </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>should</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> be in the word list, and how
+many of them are really obscure?
+</EM></FONT></FONT></DIV><H2 CLASS="section"><A NAME="toc142"></A><A NAME="htoc157"><FONT COLOR=black><FONT SIZE=3>13.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Random numbers</FONT></FONT></H2><P><A NAME="@default1171"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1172"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1173"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1174"></A></P><P><FONT COLOR=black><FONT SIZE=3>Given the same inputs, most computer programs generate the same
+outputs every time, so they are said to be </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>deterministic</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+Determinism is usually a good thing, since we expect the same
+calculation to yield the same result. For some applications, though,
+we want the computer to be unpredictable. Games are an obvious
+example, but there are more.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Making a program truly nondeterministic turns out to be not so easy,
+but there are ways to make it at least seem nondeterministic. One of
+them is to use algorithms that generate </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>pseudorandom</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> numbers.
+Pseudorandom numbers are not truly random because they are generated
+by a deterministic computation, but just by looking at the numbers it
+is all but impossible to distinguish them from random.</FONT></FONT></P><P><A NAME="@default1175"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1176"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>random</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module provides functions that generate
+pseudorandom numbers (which I will simply call &#X201C;random&#X201D; from
+here on).</FONT></FONT></P><P><A NAME="@default1177"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1178"></A></P><P><FONT COLOR=black><FONT SIZE=3>The function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>random</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> returns a random float
+between 0.0 and 1.0 (including 0.0 but not 1.0). Each time you
+call </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>random</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you get the next number in a long series. To see a
+sample, run this loop:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>import random
+
+for i in range(10):
+    x = random.random()
+    print x
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>randint</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes parameters </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>low</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>high</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and returns an integer between </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>low</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>high</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> (including both).</FONT></FONT></P><P><A NAME="@default1179"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1180"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; random.randint(5, 10)
+5
+&gt;&gt;&gt; random.randint(5, 10)
+9
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To choose an element from a sequence at random, you can use
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>choice</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1181"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1182"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = [1, 2, 3]
+&gt;&gt;&gt; random.choice(t)
+2
+&gt;&gt;&gt; random.choice(t)
+3
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>random</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module also provides functions to generate
+random values from continuous distributions including
+Gaussian, exponential, gamma, and a few more.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1183"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a function named </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>choose_from_hist</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes
+a histogram as defined in Section&#XA0;</EM></FONT></FONT><A HREF="book012.html#histogram"><FONT COLOR=black><FONT SIZE=3><EM>11.1</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM> and returns a 
+random value from the histogram, chosen with probability
+in proportion to frequency. For example, for this histogram:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ['a', 'a', 'b']
+&gt;&gt;&gt; h = histogram(t)
+&gt;&gt;&gt; print h
+{'a': 2, 'b': 1}
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>your function should </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;a&#X2019;</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> with probability </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>2/3</FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>&#X2019;b&#X2019;</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>
+with probability </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>1/3</FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3>.
+</FONT></FONT></EM></P></DIV><H2 CLASS="section"><A NAME="toc143"></A><A NAME="htoc158"><FONT COLOR=black><FONT SIZE=3>13.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Word histogram</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>Here is a program that reads a file and builds a histogram of the
+words in the file:</FONT></FONT></P><P><A NAME="@default1184"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>import string
+
+def process_file(filename):
+    h = dict()
+    fp = open(filename)
+    for line in fp:
+        process_line(line, h)
+    return h
+
+def process_line(line, h):
+    line = line.replace('-', ' ')
+    
+    for word in line.split():
+        word = word.strip(string.punctuation + string.whitespace)
+        word = word.lower()
+
+        h[word] = h.get(word, 0) + 1
+
+hist = process_file('emma.txt')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This program reads </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>emma.txt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which contains the text of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>Emma</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> by Jane Austin.</FONT></FONT></P><P><A NAME="@default1185"></A></P><P><CODE><FONT COLOR=black><FONT SIZE=3>process_file</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> loops through the lines of the file,
+passing them one at a time to </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>process_line</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>. The histogram
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>h</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is being used as an accumulator.</FONT></FONT></P><P><A NAME="@default1186"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1187"></A></P><P><CODE><FONT COLOR=black><FONT SIZE=3>process_line</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> uses the string method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>replace</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to replace
+hyphens with spaces before using </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>split</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to break the line into a
+list of strings. It traverses the list of words and uses </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>strip</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lower</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to remove punctuation and convert to lower case. (It
+is a shorthand to say that strings are &#X201C;converted;&#X201D; remember that
+string are immutable, so methods like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>strip</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lower</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+return new strings.)</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Finally, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>process_line</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> updates the histogram by creating a new
+item or incrementing an existing one.</FONT></FONT></P><P><A NAME="@default1188"></A></P><P><FONT COLOR=black><FONT SIZE=3>To count the total number of words in the file, we can add up
+the frequencies in the histogram:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def total_words(h):
+    return sum(h.values())
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The number of different words is just the number of items in
+the dictionary:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def different_words(h):
+    return len(h)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here is some code to print the results:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>print 'Total number of words:', total_words(hist)
+print 'Number of different words:', different_words(hist)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And the results:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>Total number of words: 161073
+Number of different words: 7212
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc144"></A><A NAME="htoc159"><FONT COLOR=black><FONT SIZE=3>13.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Most common words</FONT></FONT></H2><P><A NAME="@default1189"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1190"></A></P><P><FONT COLOR=black><FONT SIZE=3>To find the most common words, we can apply the DSU pattern;
+</FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>most_common</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> takes a histogram and returns a list of
+word-frequency tuples, sorted in reverse order by frequency:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def most_common(h):
+    t = []
+    for key, value in h.items():
+        t.append((value, key))
+
+    t.sort(reverse=True)
+    return t
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here is a loop that prints the ten most common words:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>t = most_common(hist)
+print 'The most common words are:'
+for freq, word in t[0:10]:
+    print word, '\t', freq
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And here are the results from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>Emma</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>The most common words are:
+to      5242
+the     5204
+and     4897
+of      4293
+i       3191
+a       3130
+it      2529
+her     2483
+was     2400
+she     2364
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc145"></A><A NAME="htoc160"><FONT COLOR=black><FONT SIZE=3>13.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Optional parameters</FONT></FONT></H2><P><A NAME="@default1191"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1192"></A></P><P><FONT COLOR=black><FONT SIZE=3>We have seen built-in functions and methods that take a variable
+number of arguments. It is possible to write user-defined functions
+with optional arguments, too. For example, here is a function that
+prints the most common words in a histogram</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def print_most_common(hist, num=10)
+    t = most_common(hist)
+    print 'The most common words are:'
+    for freq, word in t[0:num]:
+        print word, '\t', freq
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first parameter is required; the second is optional.
+The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>default value</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>num</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is 10.</FONT></FONT></P><P><A NAME="@default1193"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1194"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you only provide one argument:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>print_most_common(hist)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>num</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets the default value. If you provide two arguments:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>print_most_common(hist, 20)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>num</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> gets the value of the argument instead. In other
+words, the optional argument </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>overrides</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the default value.</FONT></FONT></P><P><A NAME="@default1195"></A></P><P><FONT COLOR=black><FONT SIZE=3>If a function has both required and optional parameters, all
+the required parameters have to come first, followed by the
+optional ones.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc146"></A><A NAME="htoc161"><FONT COLOR=black><FONT SIZE=3>13.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Dictionary subtraction</FONT></FONT></H2><P><A NAME="@default1196"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1197"></A></P><P><FONT COLOR=black><FONT SIZE=3>Finding the words from the book that are not in the word list
+from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>words.txt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a problem you might recognize as set
+subtraction; that is, we want to find all the words from one
+set (the words in the book) that are not in another set (the
+words in the list).</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>subtract</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes dictionaries </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and returns a
+new dictionary that contains all the keys from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that are not
+in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>d2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Since we don&#X2019;t really care about the values, we
+set them all to None.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def subtract(d1, d2):
+    res = dict()
+    for key in d1:
+        if key not in d2:
+            res[key] = None
+    return res
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To find the words in the book that are not in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>words.txt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+we can use </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>process_file</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> to build a histogram for
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>words.txt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and then subtract:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>words = process_file('words.txt')
+diff = subtract(hist, words)
+
+print "The words in the book that aren't in the word list are:"
+for word in diff.keys():
+    print word,
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here are some of the results from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>Emma</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>The words in the book that aren't in the word list are:
+ rencontre jane's blanche woodhouses disingenuousness 
+friend's venice apartment ...
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Some of these words are names and possessives. Others, like
+&#X201C;rencontre,&#X201D; are no longer in common use. But a few are common
+words that should really be in the list!</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;6</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1198"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1199"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Python provides a data structure called </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>set</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> that provides many
+common set operations. Read the documentation at
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>docs.python.org/lib/types-set.html</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and write a program
+that uses set subtraction to find words in the book that are not in
+the word list.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc147"></A><A NAME="htoc162"><FONT COLOR=black><FONT SIZE=3>13.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Random words</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="randomwords"></A></P><P><A NAME="@default1200"></A></P><P><FONT COLOR=black><FONT SIZE=3>To choose a random word from the histogram, the simplest algorithm
+is to build a list with multiple copies of each word, according
+to the observed frequency, and then choose from the list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def random_word(h):
+    t = []
+    for word, freq in h.items():
+        t.extend([word] * freq)
+
+    return random.choice(t)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The expression </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>[word] * freq</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> creates a list with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>freq</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+copies of the string </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>extend</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+method is similar to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>append</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> except that the argument is
+a sequence.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;7</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="randhist"></A><P><A NAME="@default1201"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>This algorithm works, but it is not very efficient; each time you
+choose a random word, it rebuilds the list, which is as big as
+the original book. An obvious improvement is to build the list
+once and then make multiple selections, but the list is still big.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>An alternative is:</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Use </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>keys</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> to get a list of the words in the book.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Build a list that contains the cumulative sum of the word
+frequencies (see Exercise&#XA0;</EM></FONT></FONT><A HREF="book011.html#cumulative"><FONT COLOR=black><FONT SIZE=3><EM>10.1</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>). The last item
+in this list is the total number of words in the book, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Choose a random number from 1 to </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>n</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Use a bisection search
+(See Exercise&#XA0;</EM></FONT></FONT><A HREF="book011.html#bisection"><FONT COLOR=black><FONT SIZE=3><EM>10.8</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>) to find the index where the random
+number would be inserted in the cumulative sum.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Use the index to find the corresponding word in the word list.</EM></FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3><EM>Write a program that uses this algorithm to choose a random
+word from the book.
+</EM></FONT></FONT></P></DIV><H2 CLASS="section"><A NAME="toc148"></A><A NAME="htoc163"><FONT COLOR=black><FONT SIZE=3>13.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Markov analysis</FONT></FONT></H2><P><A NAME="@default1202"></A></P><P><FONT COLOR=black><FONT SIZE=3>If you choose words from the book at random, you can get a
+sense of the vocabulary, you probably won&#X2019;t get a sentence:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>this the small regard harriet which knightley's it most things
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>A series of random words seldom makes sense because there
+is no relationship between successive words. For example, in
+a real sentence you would expect an article like &#X201C;the&#X201D; to
+be followed by an adjective or a noun, and probably not a verb
+or adverb.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>One way to measure these kinds of relationships is Markov
+analysis, which characterizes, for a given sequence of words,
+the probability of the word that comes next. For example,
+the song </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>Eric, the Half a Bee</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> begins:</FONT></FONT></P><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3>
+Half a bee, philosophically,<BR>
+Must, ipso facto, half not be.<BR>
+But half the bee has got to be<BR>
+Vis a vis, its entity. D&#X2019;you see?<BR><BR>
+But can a bee be said to be<BR>
+Or not to be an entire bee<BR>
+When half the bee is not a bee<BR>
+Due to some ancient injury?<BR>
+</FONT></FONT></BLOCKQUOTE><P><FONT COLOR=black><FONT SIZE=3>
+In this text,
+the phrase &#X201C;half the&#X201D; is always followed by the word &#X201C;bee,&#X201D;
+but the phrase &#X201C;the bee&#X201D; might be followed by either
+&#X201C;has&#X201D; or &#X201C;is&#X201D;.</FONT></FONT></P><P><A NAME="@default1203"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1204"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1205"></A></P><P><FONT COLOR=black><FONT SIZE=3>The result of Markov analysis is a mapping from each prefix
+(like &#X201C;half the&#X201D; and &#X201C;the bee&#X201D;) to all possible suffixes
+(like &#X201C;has&#X201D; and &#X201C;is&#X201D;).</FONT></FONT></P><P><A NAME="@default1206"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1207"></A></P><P><FONT COLOR=black><FONT SIZE=3>Given this mapping, you can generate a random text by
+starting with any prefix and choosing at random from the
+possible suffixes. Next, you can combine the end of the
+prefix and the new suffix to form the next prefix, and repeat.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, if you start with the prefix &#X201C;Half a,&#X201D; then the
+next word has to be &#X201C;bee,&#X201D; because the prefix only appears
+once in the text. The next prefix is &#X201C;a bee,&#X201D; so the
+next suffix might be &#X201C;philosophically,&#X201D; &#X201C;be&#X201D; or &#X201C;due.&#X201D;</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>In this example the length of the prefix is always two, but
+you can do Markov analysis with any prefix length. The length
+of the prefix is called the &#X201C;order&#X201D; of the analysis.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;8</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Markov analysis:</EM></FONT></FONT><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a program to read a text from a file and perform Markov
+analysis. The result should be a dictionary that maps from
+prefixes to a collection of possible suffixes. The collection
+might be a list, tuple, or dictionary; it is up to you to make
+an appropriate choice. You can test your program with prefix
+length two, but you should write the program in a way that makes
+it easy to try other lengths.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Add a function to the previous program to generate random text
+based on the Markov analysis. Here is an example from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>Emma</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+with prefix length 2:</EM></FONT></FONT><BLOCKQUOTE CLASS="quote"><EM><FONT COLOR=black><FONT SIZE=3><EM>
+He was very clever, be it sweetness or be angry, ashamed or only
+amused, at such a stroke. She had never thought of Hannah till you
+were never meant for me?" "I cannot make speeches, Emma:" he soon cut
+it all himself.
+</EM></FONT></FONT></EM></BLOCKQUOTE><P><EM><FONT COLOR=black><FONT SIZE=3><EM>For this example, I left the punctuation attached to the words.
+The result is almost syntactically correct, but not quite.
+Semantically, it almost makes sense, but not quite.</EM></FONT></FONT></EM></P><P><EM><FONT COLOR=black><FONT SIZE=3><EM>What happens if you increase the prefix length? Does the random
+text make more sense?</EM></FONT></FONT></EM></P><P><A NAME="@default1208"></A></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3><EM>Once your program is working, you might want to try a mash-up:
+if you analyze text from two or more books, the random
+text you generate will blend the vocabulary and phrases from
+the sources in interesting ways.</EM></FONT></FONT></EM></LI></OL></DIV><H2 CLASS="section"><A NAME="toc149"></A><A NAME="htoc164"><FONT COLOR=black><FONT SIZE=3>13.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Data structures</FONT></FONT></H2><P><A NAME="@default1209"></A></P><P><FONT COLOR=black><FONT SIZE=3>Using Markov analysis to generate random text is fun, but there is
+also a point to this exercise: data structure selection. In your
+solution to the previous exercises, you had to choose:</FONT></FONT></P><UL CLASS="itemize"><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>How to represent the prefixes.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>How to represent the collection of possible suffixes.</FONT></FONT></LI><LI CLASS="li-itemize"><FONT COLOR=black><FONT SIZE=3>How to represent the mapping from each prefix to
+the collection of possible suffixes.</FONT></FONT></LI></UL><P><FONT COLOR=black><FONT SIZE=3>Ok, the last one is the easy; the only mapping type we have
+seen is a dictionary, so it is the natural choice.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For the prefixes, the most obvious options are string,
+list of strings, or tuple of strings. For the suffixes,
+one option is a list; another is a histogram (dictionary).</FONT></FONT></P><P><A NAME="@default1210"></A></P><P><FONT COLOR=black><FONT SIZE=3>How should you choose? The first step is to think about
+the operations you will need to implement for each data structure.
+For the prefixes, we need to be able to remove words from
+the beginning and add to the end. For example, if the current
+prefix is &#X201C;Half a,&#X201D; and the next word is &#X201C;bee,&#X201D; you need
+to be able to form the next prefix, &#X201C;a bee.&#X201D;</FONT></FONT></P><P><A NAME="@default1211"></A></P><P><FONT COLOR=black><FONT SIZE=3>Your first choice might be a list, since it is easy to add
+and remove elements, but we also need to be able to use the
+prefixes as keys in a dictionary, so that rules out lists.
+With tuples, you can&#X2019;t append or remove, but you can use
+the addition operator to form a new tuple:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def shift(prefix, word):
+    return prefix[1:] + (word,)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>shift</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes a tuple of words, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>prefix</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and a string, 
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and forms a new tuple that has all the words
+in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>prefix</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> except the first, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>word</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> added to
+the end.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For the collection of suffixes, the operations we need to
+perform include adding a new suffix (or increasing the frequency
+of an existing one), and choosing a random suffix.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Adding a new suffix is equally easy for the list implementation
+or the histogram. Choosing a random element from a list
+is easy; choosing from a histogram is harder to do
+efficiently (see Exercise&#XA0;</FONT></FONT><A HREF="#randhist"><FONT COLOR=black><FONT SIZE=3>13.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>).</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>So far we have been talking mostly about ease of implementation,
+but there are other factors to consider in choosing data structures.
+One is run time. Sometimes there is a theoretical reason to expect
+one data structure to be faster than other; for example, I mentioned
+that the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>in</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator is faster for dictionaries than for lists,
+at least when the number of elements is large.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But often you don&#X2019;t know ahead of time which implementation will
+be faster. One option is to implement both of them and see which
+is better. This approach is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>benchmarking</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. A practical
+alternative is to choose the data structure that is
+easiest to implement, and then see if it is fast enough for the
+intended application. If so, there is no need to go on. If not,
+there are tools, like the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>profile</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> module, that can identify
+the places in a program that take the most time.</FONT></FONT></P><P><A NAME="@default1212"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1213"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1214"></A></P><P><FONT COLOR=black><FONT SIZE=3>The other factor to consider is storage space. For example, using a
+histogram for the collection of suffixes might take less space because
+you only have to store each word once, no matter how many times it
+appears in the text. In some cases, saving space can also make your
+program run faster, and in the extreme, your program might not run at
+all if you run out of memory. But for many applications, space is a
+secondary consideration after run time.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>One final thought: in this discussion, I have implied that
+we should use one data structure for both analysis and generation. But
+since these are separate phases, it would also be possible to use one
+structure for analysis and then convert to another structure for
+generation. This would be a net win if the time saved during
+generation exceeded the time spent in conversion.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc150"></A><A NAME="htoc165"><FONT COLOR=black><FONT SIZE=3>13.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1215"></A></P><P><FONT COLOR=black><FONT SIZE=3>When you are debugging a program, and especially if you are
+working on a hard bug, there are four things to try:</FONT></FONT></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>reading:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Examine your code, read it back to yourself, and
+check that it says what you meant to say.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>running:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Experiment by making changes and running different
+versions. Often if you display the right thing at the right place
+in the program, the problem becomes obvious, but sometimes you have to
+spend some time to build scaffolding.</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>ruminating:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Take some time to think! What kind of error
+is it: syntax, runtime, semantic? What information can you get from
+the error messages, or from the output of the program? What kind of
+error could cause the problem you&#X2019;re seeing? What did you change
+last, before the problem appeared?</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>retreating:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> At some point, the best thing to do is back
+off, undoing recent changes, until you get back to a program that
+works and that you understand. Then you can starting rebuilding.</FONT></FONT></DD></DL><P><FONT COLOR=black><FONT SIZE=3>Beginning programmers sometimes get stuck on one of these activities
+and forget the others. Each activity comes with its own failure
+mode.</FONT></FONT></P><P><A NAME="@default1216"></A></P><P><FONT COLOR=black><FONT SIZE=3>For example, reading your code might help if the problem is a
+typographical error, but not if the problem is a conceptual
+misunderstanding. If you don&#X2019;t understand what your program does, you
+can read it 100 times and never see the error, because the error is in
+your head.</FONT></FONT></P><P><A NAME="@default1217"></A></P><P><FONT COLOR=black><FONT SIZE=3>Running experiments can help, especially if you run small, simple
+tests. But if you run experiments without thinking or reading your
+code, you might fall into a pattern I call &#X201C;random walk programming,&#X201D;
+which is the process of making random changes until the program
+does the right thing. Needless to say, random walk programming
+can take a long time.</FONT></FONT></P><P><A NAME="@default1218"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1219"></A></P><P><FONT COLOR=black><FONT SIZE=3>You have to take time to think. Debugging is like an
+experimental science. You should have at least one hypothesis about
+what the problem is. If there are two or more possibilities, try to
+think of a test that would eliminate one of them.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Taking a break helps with the thinking. So does talking.
+If you explain the problem to someone else (or even yourself), you
+will sometimes find the answer before you finish asking the question.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>But even the best debugging techniques will fail if there are too many
+errors, or if the code you are trying to fix is too big and
+complicated. Sometimes the best option is to retreat, simplifying the
+program until you get to something that works and that you
+understand.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Beginning programmers are often reluctant to retreat because
+they can&#X2019;t stand to delete a line of code (even if it&#X2019;s wrong).
+If it makes you feel better, copy your program into another file
+before you start stripping it down. Then you can paste the pieces
+back in a little bit at a time.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Finding a hard bug requires reading, running, ruminating, and
+sometimes retreating. If you get stuck on one of these activities,
+try the others.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc151"></A><A NAME="htoc166"><FONT COLOR=black><FONT SIZE=3>13.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>deterministic:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Pertaining to a program that does the same
+thing each time it runs, given the same inputs.
+</FONT></FONT><A NAME="@default1220"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>pseudorandom:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Pertaining to a sequence of numbers that appear
+to be random, but are generated by a deterministic program.
+</FONT></FONT><A NAME="@default1221"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>default value:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The value given to an optional parameter if no
+argument is provided.
+</FONT></FONT><A NAME="@default1222"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>override:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> To replace a default value with an argument.
+</FONT></FONT><A NAME="@default1223"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>benchmarking:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The process of choosing between data structures
+by implementing alternatives and testing them on a sample of the
+possible inputs. 
+</FONT></FONT><A NAME="@default1224"></A></DD></DL><H2 CLASS="section"><A NAME="toc152"></A><A NAME="htoc167"><FONT COLOR=black><FONT SIZE=3>13.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;9</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1225"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1226"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1227"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>The &#X201C;rank&#X201D; of a word is its position in a list of words
+sorted by frequency: the most common word has rank 1, the
+second most common has rank 2, etc.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Zipf&#X2019;s law describes a relationship between the ranks and frequencies
+of words in natural languages</EM></FONT></FONT><SUP><A NAME="text27" HREF="#note27"><FONT COLOR=black><FONT SIZE=3><EM>1</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>. Specifically, it
+predicts that the frequency, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>f</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, of the word with rank </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>r</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> is:</EM></FONT></FONT></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM><I>f</I>&#XA0;=&#XA0;<I>c</I>&#XA0;<I>r</I></EM></FONT></FONT><SUP><FONT COLOR=black><FONT SIZE=3><EM>&#X2212;<I>s</I></EM></FONT></FONT></SUP><FONT COLOR=black><FONT SIZE=3><EM>&#XA0;</EM></FONT></FONT></TD></TR>
+</TABLE><P><FONT COLOR=black><FONT SIZE=3><EM>
+where </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>s</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>c</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> are parameters that depend on the language and the
+text. If you take the logarithm of both sides of this equation, you
+get:</EM></FONT></FONT></P><P><A NAME="@default1228"></A></P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>f</I>&#XA0;=&#XA0;</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>c</I>&#XA0;&#X2212;&#XA0;<I>s</I>&#XA0;</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>r</I>&#XA0;</EM></FONT></FONT></TD></TR>
+</TABLE><P><FONT COLOR=black><FONT SIZE=3><EM>
+So if you plot </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>f</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> versus </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>r</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, you should get
+a straight line with slope </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>&#X2212;<I>s</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and intercept </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>c</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a program that reads a text from a file, counts
+word frequencies, and prints one line
+for each word, in descending order of frequency, with
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>f</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>log</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>r</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. Use the graphing program of your
+choice to plot the results and check whether they form
+a straight line. Can you estimate the value of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><I>s</I></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>?
+</EM></FONT></FONT></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note27" HREF="#text27"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>See
+<TT>wikipedia.org/wiki/Zipf's_law</TT>
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book013.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book015.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

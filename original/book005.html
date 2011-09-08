@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Case study: interface design</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book004.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book006.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc44"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Case study: interface design</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="turtlechap"></A></P><H2 CLASS="section"><A NAME="toc39"></A><A NAME="htoc45"><FONT COLOR=black><FONT SIZE=3>4.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;TurtleWorld</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default290"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default291"></A></P><P><FONT COLOR=black><FONT SIZE=3>To accompany this book, I have written a suite of modules called
+Swampy. One of these modules is TurtleWorld, which provides
+a set of functions for drawing lines by steering
+turtles around the screen.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>You can download Swampy from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/swampy</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>;
+follow the instructions there to install Swampy on your system.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Move into the directory that contains </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>TurtleWorld.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+create a file named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and type in the following
+code:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>from TurtleWorld import *
+
+world = TurtleWorld()
+bob = Turtle()
+print bob
+
+wait_for_user()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first line is a variation of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>import</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement we saw before;
+instead of creating a module object, it imports the functions
+from the module directly, so you can access them without using dot
+notation.</FONT></FONT></P><P><A NAME="@default292"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default293"></A></P><P><FONT COLOR=black><FONT SIZE=3>The next lines create a TurtleWorld assigned to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>world</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+a Turtle assigned to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Printing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> yields something
+like:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&lt;TurtleWorld.Turtle instance at 0xb7bfbf4c&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This means that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to
+an </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>instance</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> of a Turtle
+as defined in module </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>TurtleWorld</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. In this context,
+&#X201C;instance&#X201D; means a member of a set;
+this TurtleWorld is one of the set of possible TurtleWorlds.</FONT></FONT></P><P><A NAME="@default294"></A></P><P><CODE><FONT COLOR=black><FONT SIZE=3>wait_for_user</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> tells TurtleWorld to wait for the user
+to do something, although in this case there&#X2019;s not much for
+the user to do except close the window.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>TurtleWorld provides several
+turtle-steering functions: </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bk</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> for
+forward and backward, and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>rt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> for left and
+right turns. Also, each Turtle is holding a pen, which is
+either down or up; if the pen is down, the Turtle leaves
+a trail when it moves. The functions </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pu</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>pd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+stand for &#X201C;pen up&#X201D; and &#X201C;pen down.&#X201D;</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>To draw a right angle, add these lines to the program
+(after creating </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and before calling </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>wait_for_user</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>fd(bob, 100)
+rt(bob)
+fd(bob, 100)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first line tells </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to take 100 steps
+forward. The second line tells him to turn right.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>When you run this program, you should see </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> move east and then
+south, leaving two line segments behind.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Now modify the program to draw a square. Don&#X2019;t turn the page until
+you&#X2019;ve got it working!</FONT></FONT></P><H2 CLASS="section"><A NAME="toc40"></A><A NAME="htoc46"><FONT COLOR=black><FONT SIZE=3>4.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Simple repetition</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="repetition"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default295"></A></P><P><FONT COLOR=black><FONT SIZE=3>Chances are you wrote something like this (leaving out the code
+that creates TurtleWorld and waits for the user):</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=black><FONT SIZE=3>fd(bob, 100)
+lt(bob)
+
+fd(bob, 100)
+lt(bob)
+
+fd(bob, 100)
+lt(bob)
+
+fd(bob, 100)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>We can do the same thing more concisely with a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement.
+Add this example to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon.py</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and run it again:</FONT></FONT></P><P><A NAME="@default296"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default297"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default298"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for i in range(4):
+    print 'Hello!'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You should see something like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>Hello!
+Hello!
+Hello!
+Hello!
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This is the simplest use of the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement; we will see
+more later. But that should be enough to let you rewrite your
+square-drawing program. Don&#X2019;t turn the page until you do.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here is a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement that draws a square:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for i in range(4):
+    fd(bob, 100)
+    lt(bob)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The syntax of a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement is similar to a function
+definition. It has a header that ends with a colon and an indented
+body. The body can contain any number of statements.</FONT></FONT></P><P><A NAME="@default299"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement is sometimes called a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>loop</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because
+the flow of execution runs through the body and then loops back
+to the top. In this case, it runs the body four times.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This version is actually a little different from the previous
+square-drawing code because it makes another left turn after
+drawing the last side of the square. The extra turn takes a little
+more time, but it simplifies the code if we do the same thing
+every time through the loop. This version also has the effect
+of leaving the turtle back in the starting position, facing in
+the starting direction.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc41"></A><A NAME="htoc47"><FONT COLOR=black><FONT SIZE=3>4.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>The following is a series of exercises using TurtleWorld. They
+are meant to be fun, but they have a point, too. While you are
+working on them, think about what the point is.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The following sections have solutions to the exercises, so
+don&#X2019;t look until you have finished (or at least tried).</FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Write a function called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that takes a parameter
+named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is a turtle. It should use the turtle to draw
+a square.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>Write a function call that passes </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as an argument to
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and then run the program again.</FONT></FONT></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Add another parameter, named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+Modify the body so length of the sides is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and then
+modify the function call to provide a second argument. Run the
+program again. Test your program with a range of values for </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>The functions </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>rt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> make 90-degree turns by
+default, but you can provide a second argument that specifies the
+number of degrees. For example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt(bob, 45)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> turns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> 45
+degrees to the left.</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3>Make a copy of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and change the name to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Add
+another parameter named </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and modify the body so it draws an
+n-sided regular polygon. Hint: The angles of an n-sided regular
+polygon are </FONT></FONT><FONT COLOR=black><FONT SIZE=3>360.0 / <I>n</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3> degrees.</FONT></FONT></P><P><A NAME="@default300"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default301"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Write a function called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that takes a turtle, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+and radius, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>r</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, as parameters and that draws an approximate circle
+by invoking </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with an appropriate length and number of
+sides. Test your function with a range of values of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>r</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT><P><A NAME="@default302"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default303"></A></P><P><FONT COLOR=black><FONT SIZE=3>Hint: figure out the circumference of the circle and make sure that
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length * n = circumference</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Another hint: if </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is too slow for you, you can speed
+him up by changing </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob.delay</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which is the time between moves,
+in seconds. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob.delay = 0.01</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> ought to get him moving.</FONT></FONT></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Make a more general version of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+that takes an additional parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>angle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which determines
+what fraction of a circle to draw. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>angle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is in units of
+degrees, so when </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>angle=360</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> should draw a complete
+circle.</FONT></FONT><P><A NAME="@default304"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default305"></A></P></LI></OL><H2 CLASS="section"><A NAME="toc42"></A><A NAME="htoc48"><FONT COLOR=black><FONT SIZE=3>4.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Encapsulation</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>The first exercise asks you to put your square-drawing code
+into a function definition and then call the function, passing
+the turtle as a parameter. Here is a solution:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def square(t):
+    for i in range(4):
+        fd(t, 100)
+        lt(t)
+
+square(bob)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The innermost statements, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are
+indented twice to show that they are inside the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop,
+which is inside the function definition. The next line,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square(bob)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, is flush with the left margin, so that is the
+end of both the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop and the function definition.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Inside the function, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> refers to the same turtle </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+refers to, so </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt(t)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> has the same effect as </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt(bob)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+So why not call the parameter </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>? The idea is that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+can be any turtle, not just </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>bob</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, so you could create
+a second turtle and pass it as an argument to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>ray = Turtle()
+square(ray)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Wrapping a piece of code up in a function is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>encapsulation</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. One of the benefits of encapsulation is that it
+attaches a name to the code, which serves as a kind of documentation.
+Another advantage is that if you re-use the code, it is more concise
+to call a function twice than to copy and paste the body!</FONT></FONT></P><P><A NAME="@default306"></A></P><H2 CLASS="section"><A NAME="toc43"></A><A NAME="htoc49"><FONT COLOR=black><FONT SIZE=3>4.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Generalization</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>The next step is to add a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> parameter to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>square</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+Here is a solution:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def square(t, length):
+    for i in range(4):
+        fd(t, length)
+        lt(t)
+
+square(bob, 100)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Adding a parameter to a function is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>generalization</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+because it makes the function more general: in the previous
+version, the square is always the same size; in this version
+it can be any size.</FONT></FONT></P><P><A NAME="@default307"></A></P><P><FONT COLOR=black><FONT SIZE=3>The next step is also a generalization. Instead of drawing
+squares, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> draws regular polygons with any number of
+sides. Here is a solution:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def polygon(t, n, length):
+    angle = 360.0 / n
+    for i in range(n):
+        fd(t, length)
+        lt(t, angle)
+
+polygon(bob, 7, 70)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This draws a 7-sided polygon with side length 70. If you have
+more than a few numeric arguments, it is easy to forget what they
+are, or what order they should be in. It is legal, and sometimes
+helpful, to include the names of the parameters in the argument
+list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>polygon(bob, n=7, length=70)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>These are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>keyword arguments</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because they include
+the parameter names as &#X201C;keywords&#X201D; (not to be confused with
+Python keywords like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>while</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>def</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>).</FONT></FONT></P><P><A NAME="@default308"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default309"></A></P><P><FONT COLOR=black><FONT SIZE=3>This syntax makes the program more readable. It is also a reminder
+about how arguments and parameters work: when you call a function, the
+arguments are assigned to the parameters.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc44"></A><A NAME="htoc50"><FONT COLOR=black><FONT SIZE=3>4.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Interface design</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>The next step is to write </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which takes a radius,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>r</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, as a parameter. Here is a simple solution that uses
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to draw a 50-sided polygon:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def circle(t, r):
+    circumference = 2 * math.pi * r
+    n = 50
+    length = circumference / n
+    polygon(t, n, length)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first line computes the circumference of a circle with radius
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>r</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> using the formula </FONT></FONT><FONT COLOR=black><FONT SIZE=3>2 &#X3C0; <I>r</I></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Since we use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>math.pi</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we
+have to import </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>math</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. By convention, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>import</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statements
+are usually at the beginning of the script.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the number of line segments in our approximation of a circle,
+so </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>length</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the length of each segment. Thus, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+draws a 50-sides polygon that approximates a circle with radius </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>r</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>One limitation of this solution is that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a constant, which
+means that for very big circles, the line segments are too long, and
+for small circles, we waste time drawing very small segments. One
+solution would be to generalize the function by taking </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as
+a parameter. This would give the user (whoever calls </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>)
+more control, but the interface would be less clean.</FONT></FONT></P><P><A NAME="@default310"></A></P><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>interface</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> of a function is a summary of how it is used: what
+are the parameters? What does the function do? And what is the return
+value? An interface is &#X201C;clean&#X201D; if it is &#X201C;as simple as
+possible, but not simpler. (Einstein)&#X201D;</FONT></FONT></P><P><A NAME="@default311"></A></P><P><FONT COLOR=black><FONT SIZE=3>In this example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>r</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> belongs in the interface because it
+specifies the circle to be drawn. </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is less appropriate
+because it pertains to the details of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>how</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3> the circle should
+be rendered.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Rather than clutter up the interface, it is better
+to choose an appropriate value of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>n</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+depending on </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circumference</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def circle(t, r):
+    circumference = 2 * math.pi * r
+    n = int(circumference / 3) + 1
+    length = circumference / n
+    polygon(t, n, length)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now the number of segments is (approximately) </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circumference/3</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,
+so the length of each segment is (approximately) 3, which is small
+enough that the circles look good, but big enough to be efficient,
+and appropriate for any size circle.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc45"></A><A NAME="htoc51"><FONT COLOR=black><FONT SIZE=3>4.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Refactoring</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="refactoring"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default312"></A></P><P><FONT COLOR=black><FONT SIZE=3>When I wrote </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, I was able to re-use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+because a many-sided polygon is a good approximation of a circle.
+But </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is not as cooperative; we can&#X2019;t use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+or </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to draw an arc.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>One alternative is to start with a copy
+of </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and transform it into </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The result
+might look like this:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def arc(t, r, angle):
+    arc_length = 2 * math.pi * r * angle / 360
+    n = int(arc_length / 3) + 1
+    step_length = arc_length / n
+    step_angle = float(angle) / n
+    
+    for i in range(n):
+        fd(t, step_length)
+        lt(t, step_angle)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The second half of this function looks like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, but we
+can&#X2019;t re-use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> without changing the interface. We could
+generalize </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to take an angle as a third argument,
+but then </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> would no longer be an appropriate name!
+Instead, let&#X2019;s call the more general function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polyline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def polyline(t, n, length, angle):
+    for i in range(n):
+        fd(t, length)
+        lt(t, angle)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Now we can rewrite </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polyline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def polygon(t, n, length):
+    angle = 360.0 / n
+    polyline(t, n, length, angle)
+
+def arc(t, r, angle):
+    arc_length = 2 * math.pi * r * angle / 360
+    n = int(arc_length / 3) + 1
+    step_length = arc_length / n
+    step_angle = float(angle) / n
+    polyline(t, n, step_length, step_angle)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Finally, we can rewrite </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>circle</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to use </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def circle(t, r):
+    arc(t, r, 360)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This process&#X2014;rearranging a program to improve function
+interfaces and facilitate code re-use&#X2014;is called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>refactoring</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+In this case, we noticed that there was similar code in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>arc</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polygon</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, so we &#X201C;factored it out&#X201D; into </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polyline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><P><A NAME="@default313"></A></P><P><FONT COLOR=black><FONT SIZE=3>If we had planned ahead, we might have written </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polyline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> first
+and avoided refactoring, but often you don&#X2019;t know enough at the
+beginning of a project to design all the interfaces. Once you start
+coding, you understand the problem better. Sometimes refactoring is a
+sign that you have learned something.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc46"></A><A NAME="htoc52"><FONT COLOR=black><FONT SIZE=3>4.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;A development plan</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default314"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>development plan</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a process for writing programs.
+The process we used
+in this case study is &#X201C;encapsulation and
+generalization.&#X201D; The steps of this process are:</FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Start by writing a small program with no function definitions.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Once you get the program working, encapsulate it in a function
+and give it a name.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Generalize the function by adding appropriate parameters.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Repeat steps 1&#X2013;3 until you have a set of working functions.
+Copy and paste working code to avoid retyping (and re-debugging).</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>Look for opportunities to improve the program by refactoring.
+For example, if you have similar code in several places, consider
+factoring it into an appropriately general function.</FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3>This process has some drawbacks&#X2014;we will see alternatives later&#X2014;but
+it can be useful if you don&#X2019;t know ahead of time how to divide the
+program into functions. This approach lets you design as you go
+along.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc47"></A><A NAME="htoc53"><FONT COLOR=black><FONT SIZE=3>4.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;docstring</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="docstring"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default315"></A></P><P><FONT COLOR=black><FONT SIZE=3>A </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>docstring</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a string at the beginning of a function that
+explains the interface (&#X201C;doc&#X201D; is short for &#X201C;documentation&#X201D;). Here
+is an example:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def polyline(t, length, n, angle):
+    """Draw n line segments with the given length and
+    angle (in degrees) between them.  t is a turtle.
+    """    
+    for i in range(n):
+        fd(t, length)
+        lt(t, angle)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This docstring is a triple-quoted string, also known
+as a multiline string because the triple quotes allow the string
+to span more than one line.</FONT></FONT></P><P><A NAME="@default316"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default317"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default318"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default319"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default320"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is terse, but it contains the essential information
+someone would need to use this function. It explains concisely what
+the function does (without getting into the details of how it does
+it). It explains what effect each parameter has on the behavior of
+the function and what type each parameter should be (if it is not
+obvious).</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Writing this kind of documentation is an important part of interface
+design. A well-designed interface should be simple to explain;
+if you are having a hard time explaining one of your functions,
+that might be a sign that the interface could be improved.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc48"></A><A NAME="htoc54"><FONT COLOR=black><FONT SIZE=3>4.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default321"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default322"></A></P><P><FONT COLOR=black><FONT SIZE=3>An interface is like a contract between a function and a caller.
+The caller agrees to provide certain parameters and the function
+agrees to do certain work.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>For example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>polyline</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> requires four arguments. The first
+has to be a Turtle (or some other object that works with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>fd</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>lt</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>). The second has to be a number, and it should
+probably be positive, although it turns out that the function
+works even if it isn&#X2019;t. The third argument should be an integer;
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>range</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> complains otherwise (depending on which version
+of Python you are running). The fourth has to be a number,
+which is understood to be in degrees.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>These requirements are called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>preconditions</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> because they
+are supposed to be true before the function starts executing.
+Conversely, conditions at the end of the function are
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>postconditions</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. Postconditions include the intended
+effect of the function (like drawing line segments) and any
+side effects (like moving the Turtle or making other changes
+in the World).</FONT></FONT></P><P><A NAME="@default323"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default324"></A></P><P><FONT COLOR=black><FONT SIZE=3>Preconditions are the responsibility of the caller. If the caller
+violates a (properly documented!) precondition and the function
+doesn&#X2019;t work correctly, the bug is in the caller, not the function.
+However, for purposes of debugging it is often a good idea for
+functions to check their preconditions rather than assume they are
+true. If every function checks its preconditions before starting,
+then if something goes wrong, you will know which function to blame.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc49"></A><A NAME="htoc55"><FONT COLOR=black><FONT SIZE=3>4.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>instance:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A member of a set. The TurtleWorld in this
+chapter is a member of the set of TurtleWorlds.
+</FONT></FONT><A NAME="@default325"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>loop:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A part of a program that can execute repeatedly.
+</FONT></FONT><A NAME="@default326"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>encapsulation:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The process of transforming a sequence of
+statements into a function definition.
+</FONT></FONT><A NAME="@default327"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>generalization:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The process of replacing something
+unnecessarily specific (like a number) with something appropriately
+general (like a variable or parameter).
+</FONT></FONT><A NAME="@default328"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>keyword argument:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An argument that includes the name of
+the parameter as a &#X201C;keyword.&#X201D;
+</FONT></FONT><A NAME="@default329"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default330"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>interface:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A description of how to use a function, including
+the name and descriptions of the arguments and return value.
+</FONT></FONT><A NAME="@default331"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>development plan:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A process for writing programs.
+</FONT></FONT><A NAME="@default332"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>docstring:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A string that appears in a function definition
+to document the function&#X2019;s interface.
+</FONT></FONT><A NAME="@default333"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>precondition:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A requirement that should be satisfied by
+the caller before a function starts.
+</FONT></FONT><A NAME="@default334"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>postcondition:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A requirement that should be satisfied by
+the function before it ends.
+</FONT></FONT><A NAME="@default335"></A></DD></DL><H2 CLASS="section"><A NAME="toc50"></A><A NAME="htoc56"><FONT COLOR=black><FONT SIZE=3>4.12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Download the code in this chapter from
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/polygon.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write appropriate docstrings for </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>polygon</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>arc</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> and
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>circle</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT><P><A NAME="@default336"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Draw a stack diagram that shows the state of the program
+while executing </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>circle(bob, radius)</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. You can do the
+arithmetic by hand or add </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>print</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> statements to the code.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>The version of </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>arc</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> in Section&#XA0;</EM></FONT></FONT><A HREF="#refactoring"><FONT COLOR=black><FONT SIZE=3><EM>4.7</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM> is not
+very accurate because the linear approximation of the
+circle is always outside the true circle. As a result,
+the turtle ends up a few units away from the correct
+destination. My solution shows a way to reduce
+the effect of this error. Read the code and see if it makes
+sense to you. If you draw a diagram, you might see how it works.</EM></FONT></FONT></LI></OL></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default337"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Write an appropriately general set of functions that
+can draw flowers like this:</EM></FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><EM><IMG SRC="book005.png"></EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3><EM>You can download a solution from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/flower.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default338"></A><P><FONT COLOR=black><FONT SIZE=3><EM>Write an appropriately general set of functions that
+can draw shapes like this:</EM></FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><EM><IMG SRC="book006.png"></EM></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3><EM>You can download a solution from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/pie.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="@default339"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default340"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default341"></A><P><FONT COLOR=black><FONT SIZE=3><EM>The letters of the alphabet can be constructed from a moderate
+number of basic elements, like vertical and horizontal lines
+and a few curves. Design a font that can be drawn with a
+minimal number of basic elements and then write functions
+that draw letters of the alphabet.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>You should write one function for each letter, with names
+</EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>draw_a</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>, </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>draw_b</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM>, etc., and put your functions
+in a file named </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>letters.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>. You can download a
+&#X201C;turtle typewriter&#X201D; from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/typewriter.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+to help you test your code.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>You can download a solution from </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/letters.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><HR>
+<A HREF="book004.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book006.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>

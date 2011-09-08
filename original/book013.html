@@ -1,0 +1,433 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<LINK rel="stylesheet" type="text/css" href="book.css">
+<TITLE>Tuples</TITLE>
+</HEAD>
+<BODY >
+<A HREF="book012.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book014.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+<HR>
+<H1 CLASS="chapter"><A NAME="htoc143"><FONT COLOR=black><FONT SIZE=3>Chapter&#XA0;12</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Tuples</FONT></FONT></H1><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="tuplechap"></A></P><H2 CLASS="section"><A NAME="toc130"></A><A NAME="htoc144"><FONT COLOR=black><FONT SIZE=3>12.1</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Tuples are immutable</FONT></FONT></H2><P><A NAME="@default1024"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1025"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1026"></A></P><P><FONT COLOR=black><FONT SIZE=3>A tuple is a sequence of values. The values can be any type, and
+they are indexed by integers, so in that respect tuples are a lot
+like lists. The important difference is that tuples are immutable.</FONT></FONT></P><P><A NAME="@default1027"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1028"></A></P><P><FONT COLOR=black><FONT SIZE=3>Syntactically, a tuple is a comma-separated list of values:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = 'a', 'b', 'c', 'd', 'e'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Although it is not necessary, it is common to enclose tuples in
+parentheses:</FONT></FONT></P><P><A NAME="@default1029"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ('a', 'b', 'c', 'd', 'e')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>To create a tuple with a single element, you have to include the final
+comma:</FONT></FONT></P><P><A NAME="@default1030"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1031"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t1 = ('a',)
+&gt;&gt;&gt; type(t1)
+&lt;type 'tuple'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Without the comma, Python treats </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>(&#X2019;a&#X2019;)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> as a string in
+parentheses:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t2 = ('a')
+&gt;&gt;&gt; type(t2)
+&lt;type 'str'&gt;
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Another way to create a tuple is the built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>tuple</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.
+With no argument, it creates an empty tuple:</FONT></FONT></P><P><A NAME="@default1032"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1033"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = tuple()
+&gt;&gt;&gt; print t
+()
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If the argument is a sequence (string, list or tuple), the result
+is a tuple with the elements of the sequence:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = tuple('lupins')
+&gt;&gt;&gt; print t
+('l', 'u', 'p', 'i', 'n', 's')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Because </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>tuple</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is the name of a built-in function, you should
+avoid using it as a variable name.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Most list operators also work on tuples. The bracket operator
+indexes an element:</FONT></FONT></P><P><A NAME="@default1034"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1035"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ('a', 'b', 'c', 'd', 'e')
+&gt;&gt;&gt; print t[0]
+'a'
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And the slice operator selects a range of elements.</FONT></FONT></P><P><A NAME="@default1036"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1037"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1038"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1039"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print t[1:3]
+('b', 'c')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But if you try to modify one of the elements of the tuple, you get
+an error:</FONT></FONT></P><P><A NAME="@default1040"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1041"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1042"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1043"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t[0] = 'A'
+TypeError: object doesn't support item assignment
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You can&#X2019;t modify the elements of a tuple, but you can replace
+one tuple with another:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = ('A',) + t[1:]
+&gt;&gt;&gt; print t
+('A', 'b', 'c', 'd', 'e')
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc131"></A><A NAME="htoc145"><FONT COLOR=black><FONT SIZE=3>12.2</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Tuple assignment</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="tuple assignment"></A></P><P><A NAME="@default1044"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1045"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1046"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1047"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is often useful to swap the values of two variables.
+With conventional assignments, you have to use a temporary
+variable. For example, to swap </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>a</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>b</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; temp = a
+&gt;&gt;&gt; a = b
+&gt;&gt;&gt; b = temp
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This solution is cumbersome; </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>tuple assignment</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is more elegant:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a, b = b, a
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The left side is a tuple of variables; the right side is a tuple of
+expressions. Each value is assigned to its respective variable. 
+All the expressions on the right side are evaluated before any
+of the assignments.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The number of variables on the left and the number of
+values on the right have to be the same:</FONT></FONT></P><P><A NAME="@default1048"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1049"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; a, b = 1, 2, 3
+ValueError: too many values to unpack
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>More generally, the right side can be any kind of sequence
+(string, list or tuple). For example, to split an email address
+into a user name and a domain, you could write:</FONT></FONT></P><P><A NAME="@default1050"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1051"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1052"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; addr = 'monty@python.org'
+&gt;&gt;&gt; uname, domain = addr.split('@')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The return value from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>split</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a list with two elements;
+the first element is assigned to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>uname</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, the second to
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>domain</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; print uname
+monty
+&gt;&gt;&gt; print domain
+python.org
+</FONT></FONT></PRE><H2 CLASS="section"><A NAME="toc132"></A><A NAME="htoc146"><FONT COLOR=black><FONT SIZE=3>12.3</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Tuples as return values</FONT></FONT></H2><P><A NAME="@default1053"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1054"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1055"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1056"></A></P><P><FONT COLOR=black><FONT SIZE=3>Strictly speaking, a function can only return one value, but
+if the value is a tuple, the effect is the same as returning
+multiple values. For example, if you want to divide two integers
+and compute the quotient and remainder, it is inefficient to
+compute </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x/y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and then </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>x%y</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. It is better to compute
+them both at the same time.</FONT></FONT></P><P><A NAME="@default1057"></A></P><P><FONT COLOR=black><FONT SIZE=3>The built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>divmod</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes two arguments and
+returns a tuple of two values, the quotient and remainder.
+You can store the result as a tuple:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = divmod(7, 3)
+&gt;&gt;&gt; print t
+(2, 1)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Or use tuple assignment to store the elements separately:</FONT></FONT></P><P><A NAME="@default1058"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1059"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; quot, rem = divmod(7, 3)
+&gt;&gt;&gt; print quot
+2
+&gt;&gt;&gt; print rem
+1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here is an example of a function that returns a tuple:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def min_max(t):
+    return min(t), max(t)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3><TT>max</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>min</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> are built-in functions that find
+the largest and smallest elements of a sequence. </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>min_max</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3>
+computes both and returns a tuple of two values.</FONT></FONT></P><P><A NAME="@default1060"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1061"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1062"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1063"></A></P><H2 CLASS="section"><A NAME="toc133"></A><A NAME="htoc147"><FONT COLOR=black><FONT SIZE=3>12.4</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Variable-length argument tuples</FONT></FONT></H2><P><A NAME="@default1064"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1065"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1066"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1067"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1068"></A></P><P><FONT COLOR=black><FONT SIZE=3>Functions can take a variable number of arguments. A parameter
+name that begins with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>*</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>gathers</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> arguments into
+a tuple. For example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>printall</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+takes any number of arguments and prints them:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def printall(*args):
+    print args
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The gather parameter can have any name you like, but </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>args</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is
+conventional. Here&#X2019;s how the function works:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; printall(1, 2.0, '3')
+(1, 2.0, '3')
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You can combine the gather operator with required and positional
+arguments:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def pointless(required, optional=0, *args):
+    print required, optional, args
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Run this function with 1, 2, 3 and 4 or more arguments and
+make sure you understand what it does.</FONT></FONT></P><P><A NAME="@default1069"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1070"></A></P><P><FONT COLOR=black><FONT SIZE=3>The complement of gather is </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>scatter</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. If you have a
+sequence of values and you want to pass it to a function
+as multiple arguments, you can use the </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>*</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> operator.
+For example, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>divmod</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> takes exactly two arguments; it
+doesn&#X2019;t work with a tuple:</FONT></FONT></P><P><A NAME="@default1071"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1072"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = (7, 3)
+&gt;&gt;&gt; divmod(t)
+TypeError: divmod expected 2 arguments, got 1
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>But if you scatter the tuple, it works:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; divmod(*t)
+(2, 1)
+</FONT></FONT></PRE><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;1</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Many of the built-in functions use
+variable-length argument tuples. For example, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>max</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>
+and </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>min</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> can take any number of arguments:</EM></FONT></FONT><P><A NAME="@default1073"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1074"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1075"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1076"></A></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; max(1,2,3)
+3
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>But </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>sum</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> does not.</FONT></FONT></EM></P><P><A NAME="@default1077"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1078"></A></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; sum(1,2,3)
+TypeError: sum expected at most 2 arguments, got 3
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>Write a function called </FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3><TT>sumall</TT></FONT></FONT></EM><EM><FONT COLOR=black><FONT SIZE=3> that takes any number
+of arguments and returns their sum.</FONT></FONT></EM></P></DIV><H2 CLASS="section"><A NAME="toc134"></A><A NAME="htoc148"><FONT COLOR=black><FONT SIZE=3>12.5</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Lists and tuples</FONT></FONT></H2><P><A NAME="@default1079"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1080"></A></P><P><FONT COLOR=black><FONT SIZE=3><TT>zip</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> is a built-in function that takes two or more sequences and
+&#X201C;zips&#X201D; them into a list</FONT></FONT><SUP><A NAME="text24" HREF="#note24"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3> of tuples where each tuple contains one element from each
+sequence.</FONT></FONT></P><P><A NAME="@default1081"></A></P><P><FONT COLOR=black><FONT SIZE=3>This example zips a string and a list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = 'abc'
+&gt;&gt;&gt; t = [0, 1, 2]
+&gt;&gt;&gt; zip(s, t)
+[('a', 0), ('b', 1), ('c', 2)]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The result is a list of tuples where each tuple contains
+a character from the string and the corresponding element from
+the list.</FONT></FONT></P><P><A NAME="@default1082"></A></P><P><FONT COLOR=black><FONT SIZE=3>If the sequences are not the same length, the result has the
+length of the shorter one.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; zip('Anne', 'Elk')
+[('A', 'E'), ('n', 'l'), ('n', 'k')]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>You can use tuple assignment in a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> loop to traverse a list of
+tuples:</FONT></FONT></P><P><A NAME="@default1083"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1084"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1085"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>t = [('a', 0), ('b', 1), ('c', 2)]
+for letter, number in t:
+    print number, letter
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Each time through the loop, Python selects the next tuple in
+the list and assigns the elements to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>letter</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and 
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>number</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>. The output of this loop is:</FONT></FONT></P><P><A NAME="@default1086"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>0 a
+1 b
+2 c
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you combine </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>zip</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and tuple assignment, you get a
+useful idiom for traversing two (or more) sequences at the same
+time. For example, </FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3>has_match</FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3> takes two sequences, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t1</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t2</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, and returns </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> if there is an index </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>i</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+such that </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>t1[i] == t2[i]</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1087"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def has_match(t1, t2):
+    for x, y in zip(t1, t2):
+        if x == y:
+            return True
+    return False
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you need to traverse the elements of a sequence and their
+indices, you can use the built-in function </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>enumerate</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>:</FONT></FONT></P><P><A NAME="@default1088"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1089"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1090"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for index, element in enumerate('abc'):
+    print index, element
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The output of this loop is:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>0 a
+1 b
+2 c
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Again.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc135"></A><A NAME="htoc149"><FONT COLOR=black><FONT SIZE=3>12.6</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Dictionaries and tuples</FONT></FONT></H2><P><A NAME="@default1091"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1092"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1093"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1094"></A></P><P><FONT COLOR=black><FONT SIZE=3>Dictionaries have a method called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>items</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that returns
+a list of tuples, where each tuple is a key-value pair.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; d = {'a':0, 'b':1, 'c':2}
+&gt;&gt;&gt; t = d.items()
+&gt;&gt;&gt; print t
+[('a', 0), ('c', 2), ('b', 1)]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>As you should expect from a dictionary, the items are in no
+particular order.</FONT></FONT></P><P><A NAME="@default1095"></A></P><P><FONT COLOR=black><FONT SIZE=3>Conversely, you can use a list of tuples to initialize
+a new dictionary:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t = [('a', 0), ('c', 2), ('b', 1)]
+&gt;&gt;&gt; d = dict(t)
+&gt;&gt;&gt; print d
+{'a': 0, 'c': 2, 'b': 1}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Combining </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>dict</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> with </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>zip</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> yields a concise way
+to create a dictionary:</FONT></FONT></P><P><A NAME="@default1096"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; d = dict(zip('abc', range(3)))
+&gt;&gt;&gt; print d
+{'a': 0, 'c': 2, 'b': 1}
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The dictionary method </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>update</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> also takes a list of tuples
+and adds them, as key-value pairs, to an existing dictionary.</FONT></FONT></P><P><A NAME="@default1097"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1098"></A></P><P><A NAME="@default1099"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1100"></A></P><P><FONT COLOR=black><FONT SIZE=3>Combining </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>items</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, tuple assignment and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>for</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, you
+get the idiom for traversing the keys and values of a dictionary:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for key, val in d.items():
+    print val, key
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The output of this loop is:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>0 a
+2 c
+1 b
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Again.</FONT></FONT></P><P><A NAME="@default1101"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1102"></A></P><P><FONT COLOR=black><FONT SIZE=3>It is common to use tuples as keys in dictionaries (primarily because
+you can&#X2019;t use lists). For example, a telephone directory might map
+from last-name, first-name pairs to telephone numbers. Assuming
+that we have defined </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>last</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>first</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>number</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, we
+could write:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>directory[last,first] = number
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The expression in brackets is a tuple. We could use tuple
+assignment to traverse this dictionary.</FONT></FONT></P><P><A NAME="@default1103"></A></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>for last, first in directory:
+    print first, last, directory[last,first]
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>This loop traverses the keys in </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>directory</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which are tuples. It
+assigns the elements of each tuple to </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>last</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>first</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, then
+prints the name and corresponding telephone number.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>There are two ways to represent tuples in a state diagram. The more
+detailed version shows the indices and elements just as they appear in
+a list. For example, the tuple </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>(&#X2019;Cleese&#X2019;, &#X2019;John&#X2019;)</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> would appear:</FONT></FONT></P><P><A NAME="@default1104"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1105"></A></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book020.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>But in a larger diagram you might want to leave out the
+details. For example, a diagram of the telephone directory might
+appear:</FONT></FONT></P><DIV CLASS="center"><FONT COLOR=black><FONT SIZE=3><IMG SRC="book021.png"></FONT></FONT></DIV><P><FONT COLOR=black><FONT SIZE=3>Here the tuples are shown using Python syntax as a graphical
+shorthand.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>The telephone number in the diagram is the complaints line for the
+BBC, so please don&#X2019;t call it.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc136"></A><A NAME="htoc150"><FONT COLOR=black><FONT SIZE=3>12.7</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Comparing tuples</FONT></FONT></H2><P><A NAME="@default1106"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1107"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1108"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1109"></A></P><P><FONT COLOR=black><FONT SIZE=3>The comparison operators work with tuples and other sequences;
+Python starts by comparing the first element from each
+sequence. If they are equal, it goes on to the next elements,
+and so on, until it finds elements that differ. Subsequent
+elements are not considered (even if they are really big).</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; (0, 1, 2) &lt; (0, 3, 4)
+True
+&gt;&gt;&gt; (0, 1, 2000000) &lt; (0, 3, 4)
+True
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> function works the same way. It sorts 
+primarily by first element, but in the case of a tie, it sorts
+by second element, and so on. </FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>This feature lends itself to a pattern called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>DSU</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3> for </FONT></FONT></P><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Decorate</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> a sequence by building a list of tuples
+with one or more sort keys preceding the elements from the sequence,</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Sort</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> the list of tuples, and</FONT></FONT></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>Undecorate</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> by extracting the sorted elements of the sequence.</FONT></FONT></DD></DL><P><A NAME="DSU"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1110"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1111"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1112"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1113"></A></P><P><FONT COLOR=black><FONT SIZE=3>For example, suppose you have a list of words and you want to
+sort them from longest to shortest:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>def sort_by_length(words):
+    t = []
+    for word in words:
+       t.append((len(word), word))
+
+    t.sort(reverse=True)
+
+    res = []
+    for length, word in t:
+        res.append(word)
+    return res
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>The first loop builds a list of tuples, where each
+tuple is a word preceded by its length.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> compares the first element, length, first, and
+only considers the second element to break ties. The keyword argument
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>reverse=True</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> tells </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> to go in decreasing order.</FONT></FONT></P><P><A NAME="@default1114"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1115"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1116"></A></P><P><FONT COLOR=black><FONT SIZE=3>The second loop traverses the list of tuples and builds a list of
+words in descending order of length.</FONT></FONT></P><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;2</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+In this example, ties are broken by comparing words, so words
+with the same length appear in alphabetical order. For other
+applications you might want to break ties at random. Modify
+this example so that words with the same length appear in
+random order. Hint: see the </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>random</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> function in the
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>random</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM> module.</EM></FONT></FONT><P><A NAME="@default1117"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1118"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1119"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1120"></A></P></DIV><H2 CLASS="section"><A NAME="toc137"></A><A NAME="htoc151"><FONT COLOR=black><FONT SIZE=3>12.8</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Sequences of sequences</FONT></FONT></H2><P><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1121"></A></P><P><FONT COLOR=black><FONT SIZE=3>I have focused on lists of tuples, but almost all of the examples in
+this chapter also work with lists of lists, tuples of tuples, and
+tuples of lists. To avoid enumerating the possible combinations, it
+is sometimes easier to talk about sequences of sequences.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>In many contexts, the different kinds of sequences (strings, lists and
+tuples) can be used interchangeably. So how and why do you choose one
+over the others?</FONT></FONT></P><P><A NAME="@default1122"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1123"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1124"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1125"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1126"></A></P><P><FONT COLOR=black><FONT SIZE=3>To start with the obvious, strings are more limited than other
+sequences because the elements have to be characters. They are
+also immutable. If you need the ability to change the characters
+in a string (as opposed to creating a new string), you might
+want to use a list of characters instead.</FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Lists are more common than tuples, mostly because they are mutable.
+But there are a few cases where you might prefer tuples:</FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>In some contexts, like a </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>return</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> statement, it is
+syntactically simpler to create a tuple than a list. In other
+contexts, you might prefer a list.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>If you want to use a sequence as a dictionary key, you
+have to use an immutable type like a tuple or string.</FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3>If you are passing a sequence as an argument to a function,
+using tuples reduces the potential for unexpected behavior
+due to aliasing.</FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3>Because tuples are immutable, they don&#X2019;t provide methods
+like </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sort</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>reverse</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which modify existing lists.
+But Python provides the built-in functions </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>sorted</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>
+and </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>reversed</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, which take any sequence as a parameter
+and return a new list with the same elements in a different
+order.</FONT></FONT></P><P><A NAME="@default1127"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1128"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1129"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1130"></A></P><H2 CLASS="section"><A NAME="toc138"></A><A NAME="htoc152"><FONT COLOR=black><FONT SIZE=3>12.9</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Debugging</FONT></FONT></H2><P><A NAME="@default1131"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1132"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1133"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1134"></A></P><P><FONT COLOR=black><FONT SIZE=3>Lists, dictionaries and tuples are known generically as </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>data
+structures</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; in this chapter we are starting to see compound data
+structures, like lists of tuples, and dictionaries that contain tuples
+as keys and lists as values. Compound data structures are useful, but
+they are prone to what I call </FONT></FONT><FONT COLOR=black><FONT SIZE=3><B>shape errors</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>; that is, errors
+caused when a data structure has the wrong type, size or composition.
+For example, if you are expecting a list with one integer and I
+give you a plain old integer (not in a list), it won&#X2019;t work.</FONT></FONT></P><P><A NAME="@default1135"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1136"></A></P><P><FONT COLOR=black><FONT SIZE=3>To help debug these kinds of errors, I have written a module
+called </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>structshape</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> that provides a function, also called
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>structshape</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3>, that takes any kind of data structure as
+an argument and returns a string that summarizes its shape.
+You can download it from </FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/structshape.py</TT></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s the result for a simple list:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; from structshape import structshape
+&gt;&gt;&gt; t = [1,2,3]
+&gt;&gt;&gt; print structshape(t)
+list of 3 int
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>A fancier program might write &#X201C;list of 3 int</FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>s</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3>,&#X201D; but it
+was easier not to deal with plurals. Here&#X2019;s a list of lists:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t2 = [[1,2], [3,4], [5,6]]
+&gt;&gt;&gt; print structshape(t2)
+list of 3 list of 2 int
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If the elements of the list are not the same type,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>structshape</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> groups them, in order, by type:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; t3 = [1, 2, 3, 4.0, '5', '6', [7], [8], 9]
+&gt;&gt;&gt; print structshape(t3)
+list of (3 int, float, 2 str, 2 list of int, int)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>Here&#X2019;s a list of tuples:</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; s = 'abc'
+&gt;&gt;&gt; lt = zip(t, s)
+&gt;&gt;&gt; print structshape(lt)
+list of 3 tuple of (int, str)
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>And here&#X2019;s a dictionary with 3 items that map integers to strings.</FONT></FONT></P><PRE CLASS="verbatim"><FONT COLOR=blue><FONT SIZE=4>&gt;&gt;&gt; d = dict(lt) 
+&gt;&gt;&gt; print structshape(d)
+dict of 3 int-&gt;str
+</FONT></FONT></PRE><P><FONT COLOR=black><FONT SIZE=3>If you are having trouble keeping track of your data structures,
+</FONT></FONT><FONT COLOR=black><FONT SIZE=3><TT>structshape</TT></FONT></FONT><FONT COLOR=black><FONT SIZE=3> can help.</FONT></FONT></P><H2 CLASS="section"><A NAME="toc139"></A><A NAME="htoc153"><FONT COLOR=black><FONT SIZE=3>12.10</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Glossary</FONT></FONT></H2><DL CLASS="description"><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>tuple:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An immutable sequence of elements.
+</FONT></FONT><A NAME="@default1137"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>tuple assignment:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> An assignment with a sequence on the
+right side and a tuple of variables on the left. The right
+side is evaluated and then its elements are assigned to the
+variables on the left.
+</FONT></FONT><A NAME="@default1138"></A><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="@default1139"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>gather:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The operation of assembling a variable-length
+argument tuple.
+</FONT></FONT><A NAME="@default1140"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>scatter:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> The operation of treating a sequence as a list of
+arguments.
+</FONT></FONT><A NAME="@default1141"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>DSU:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> Abbreviation of &#X201C;decorate-sort-undecorate,&#X201D; a
+pattern that involves building a list of tuples, sorting, and
+extracting part of the result.
+</FONT></FONT><A NAME="@default1142"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>data structure:</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A collection of related values, often
+organized in lists, dictionaries, tuples, etc.
+</FONT></FONT><A NAME="@default1143"></A></DD><DT CLASS="dt-description"><FONT COLOR=black><FONT SIZE=3><B>shape (of a data structure):</B></FONT></FONT></DT><DD CLASS="dd-description"><FONT COLOR=black><FONT SIZE=3> A summary of the type,
+size and composition of a data structure.
+</FONT></FONT><A NAME="@default1144"></A></DD></DL><H2 CLASS="section"><A NAME="toc140"></A><A NAME="htoc154"><FONT COLOR=black><FONT SIZE=3>12.11</FONT></FONT></A><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;Exercises</FONT></FONT></H2><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;3</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+Write a function called </EM></FONT></FONT><CODE><FONT COLOR=black><FONT SIZE=3><EM>most_frequent</EM></FONT></FONT></CODE><FONT COLOR=black><FONT SIZE=3><EM> that takes a string and
+prints the letters in decreasing order of frequency. Find text
+samples from several different languages and see how letter frequency
+varies between languages. Compare your results with the tables at
+</EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>wikipedia.org/wiki/Letter_frequencies</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT><P><A NAME="@default1145"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1146"></A></P></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;4</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;<EM>
+</EM></FONT></FONT><A NAME="anagrams"></A><P><A NAME="@default1147"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1148"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>More anagrams!</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Write a program
+that reads a word list from a file (see Section&#XA0;</EM></FONT></FONT><A HREF="book010.html#wordlist"><FONT COLOR=black><FONT SIZE=3><EM>9.1</EM></FONT></FONT></A><FONT COLOR=black><FONT SIZE=3><EM>) and
+prints all the sets of words that are anagrams.</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Here is an example of what the output might look like:</EM></FONT></FONT></P><PRE CLASS="verbatim"><EM><FONT COLOR=blue><FONT SIZE=4>['deltas', 'desalt', 'lasted', 'salted', 'slated', 'staled']
+['retainers', 'ternaries']
+['generating', 'greatening']
+['resmelts', 'smelters', 'termless']
+</FONT></FONT></EM></PRE><P><EM><FONT COLOR=black><FONT SIZE=3>Hint: you might want to build a dictionary that maps from a
+set of letters to a list of words that can be spelled with those
+letters. The question is, how can you represent the set of
+letters in a way that can be used as a key?</FONT></FONT></EM></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>Modify the previous program so that it prints the largest set
+of anagrams first, followed by the second largest set, and so on.</FONT></FONT></EM><P><A NAME="@default1149"></A><EM><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT></EM><A NAME="@default1150"></A></P></LI><LI CLASS="li-enumerate"><EM><FONT COLOR=black><FONT SIZE=3>In Scrabble a &#X201C;bingo&#X201D; is when you play all seven tiles in
+your rack, along with a letter on the board, to form an eight-letter
+word. What set of 8 letters forms the most possible bingos?
+Hint: there are seven.</FONT></FONT></EM><P><A NAME="@default1151"></A></P></LI><LI CLASS="li-enumerate"><EM><EM><FONT COLOR=black><FONT SIZE=3>Two words form a &#X201C;metathesis pair&#X201D; if you can transform one
+into the other by swapping two letters</FONT></FONT></EM></EM><SUP><A NAME="text25" HREF="#note25"><EM><EM><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></EM></EM></A></SUP><EM><EM><FONT COLOR=black><FONT SIZE=3>; for example,
+&#X201C;converse&#X201D; and &#X201C;conserve.&#X201D; Write a program that finds all of
+the metathesis pairs in the dictionary. Hint: don&#X2019;t test all pairs
+of words, and don&#X2019;t test all possible swaps.</FONT></FONT></EM></EM><P><EM><EM><FONT COLOR=black><FONT SIZE=3>You can download a solution from </FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3><TT>thinkpython.com/code/anagram_sets.py</TT></FONT></FONT></EM></EM><EM><EM><FONT COLOR=black><FONT SIZE=3>.</FONT></FONT></EM></EM></P></LI></OL></DIV><DIV CLASS="theorem"><FONT COLOR=black><FONT SIZE=3><B>Exercise&#XA0;5</B></FONT></FONT><FONT COLOR=black><FONT SIZE=3>&#XA0;&#XA0;</FONT></FONT><P><A NAME="@default1152"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1153"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Here&#X2019;s another Car Talk Puzzler</EM></FONT></FONT><SUP><A NAME="text26" HREF="#note26"><FONT COLOR=black><FONT SIZE=3><EM>3</EM></FONT></FONT></A></SUP><FONT COLOR=black><FONT SIZE=3><EM>:</EM></FONT></FONT></P><BLOCKQUOTE CLASS="quote"><FONT COLOR=black><FONT SIZE=3><EM>
+What is the longest English word, that remains a valid English word,
+as you remove its letters one at a time?</EM></FONT></FONT><P><FONT COLOR=black><FONT SIZE=3><EM>Now, letters can be removed from either end, or the middle, but you
+can&#X2019;t rearrange any of the letters. Every time you drop a letter, you
+wind up with another English word. If you do that, you&#X2019;re eventually
+going to wind up with one letter and that too is going to be an
+English word&#X2014;one that&#X2019;s found in the dictionary. I want to know
+what&#X2019;s the longest word and how many letters does it
+have?</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>I&#X2019;m going to give you a little modest example: Sprite. Ok? You start
+off with sprite, you take a letter off, one from the interior of the
+word, take the r away, and we&#X2019;re left with the word spite, then we
+take the e off the end, we&#X2019;re left with spit, we take the s off, we&#X2019;re
+left with pit, it, and I.
+</EM></FONT></FONT></P></BLOCKQUOTE><P><A NAME="@default1154"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1155"></A></P><P><FONT COLOR=black><FONT SIZE=3><EM>Write a program to find all words that can be reduced in this way,
+and then find the longest one.</EM></FONT></FONT></P><P><FONT COLOR=black><FONT SIZE=3><EM>This exercise is a little more challenging than most, so here are
+some suggestions:</EM></FONT></FONT></P><OL CLASS="enumerate" type=1><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>You might want to write a function that takes a word and
+computes a list of all the words that can be formed by removing one
+letter. These are the &#X201C;children&#X201D; of the word.</EM></FONT></FONT><P><A NAME="@default1156"></A><FONT COLOR=black><FONT SIZE=3><EM>
+</EM></FONT></FONT><A NAME="@default1157"></A></P></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>Recursively, a word is reducible if any of its children
+are reducible. As a base case, you can consider the empty
+string reducible.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>The wordlist I provided, </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>words.txt</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>, doesn&#X2019;t
+contain single letter words. So you might want to add
+&#X201C;I&#X201D;, &#X201C;a&#X201D;, and the empty string.</EM></FONT></FONT></LI><LI CLASS="li-enumerate"><FONT COLOR=black><FONT SIZE=3><EM>To improve the performance of your program, you might want
+to memoize the words that are known to be reducible.</EM></FONT></FONT></LI></OL><P><FONT COLOR=black><FONT SIZE=3><EM>You can see my solution at </EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM><TT>thinkpython.com/code/reducible.py</TT></EM></FONT></FONT><FONT COLOR=black><FONT SIZE=3><EM>.</EM></FONT></FONT></P></DIV><HR CLASS="footnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+</FONT></FONT><A NAME="note24" HREF="#text24"><FONT COLOR=black><FONT SIZE=3>1</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>In Python 3.0, <TT>zip</TT> returns an
+iterator of tuples, but for most purposes, an iterator behaves like
+a list
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note25" HREF="#text25"><FONT COLOR=black><FONT SIZE=3>2</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>This exercise is
+inspired by an example at <TT>puzzlers.org</TT>.
+</FONT></FONT></DD><DT CLASS="dt-thefootnotes"><A NAME="note26" HREF="#text26"><FONT COLOR=black><FONT SIZE=3>3</FONT></FONT></A></DT><DD CLASS="dd-thefootnotes"><FONT COLOR=black><FONT SIZE=3>
+<TT>www.cartalk.com/content/puzzler/transcripts/200651</TT>
+</FONT></FONT></DD></DL>
+<HR>
+<A HREF="book012.html"><IMG SRC="previous_motif.gif" ALT="Previous"></A>
+<A HREF="index.html"><IMG SRC="contents_motif.gif" ALT="Up"></A>
+<A HREF="book014.html"><IMG SRC="next_motif.gif" ALT="Next"></A>
+</BODY>
+</HTML>
